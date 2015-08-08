@@ -1,0 +1,4 @@
+this is a series of characters
+Uh oh a new line
+
+And another one                  whitespace!
