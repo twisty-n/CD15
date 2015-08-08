@@ -1,6 +1,7 @@
 package scanner.fsm.states;
 
 import scanner.fsm.StateMachine;
+import scanner.fsm.StateManager;
 
 /**
  * Author:          Tristan Newmann
@@ -41,6 +42,12 @@ public abstract class State {
      * Will generally be responsible for outputing Lexemes to the Scanner context
      */
     public abstract void exitState();
+
+    /**
+     * Returns the type of class that this state is
+     * @return
+     */
+    public abstract StateManager.StateClass getStateClass();
 
     /**
      * Set the execution context for this state

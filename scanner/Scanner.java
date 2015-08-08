@@ -2,6 +2,7 @@ package scanner;
 
 import io.InputController;
 import scanner.fsm.StateMachine;
+import scanner.tokenizer.Token;
 import utils.DebugWriter;
 
 /**
@@ -41,8 +42,13 @@ public class Scanner {
      * @param input
      */
     public void configure(InputController input) {
+
+        // Configure the input controller
         this.input = input;
         this.lastReportedInputStatus = InputController.InputStatus.PUMP_SUCCESS;
+
+        // Configure the flying spaghetti machine
+        this.fsm = new StateMachine(this, this.input);
     }
 
     /**
@@ -63,6 +69,26 @@ public class Scanner {
 
     public boolean canContinue() {
         return this.lastReportedInputStatus == InputController.InputStatus.PUMP_SUCCESS;
+    }
+
+    /**
+     * Returns the next token identified
+     * @return
+     */
+    public Token getToken() {
+
+        // First use the FSL to obtain the lexeme
+
+        //this.fsm.obtainLexeme();
+
+        // Also need to get the start of the token information. We will track this in the FSM
+        //Tokenizer.MakeToken(lexeme, this.)
+
+        // Then pass to the tokenizer with the physical values to obtain a Token
+
+        // Return the token
+        return null;
+
     }
 
 }

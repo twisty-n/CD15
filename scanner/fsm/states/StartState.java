@@ -1,6 +1,7 @@
 package scanner.fsm.states;
 
 import scanner.fsm.StateMachine;
+import scanner.fsm.StateManager;
 
 /**
  * Author:          Tristan Newmann
@@ -34,5 +35,9 @@ public class StartState extends State {
     @Override
     public void exitState() {
 
+    }
+
+    public StateManager.StateClass getStateClass() {
+        return StateManager.StateClass.START_STATE;
     }
 }
