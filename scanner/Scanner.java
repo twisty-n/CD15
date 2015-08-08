@@ -91,4 +91,12 @@ public class Scanner {
 
     }
 
+    /**
+     * For debugging only
+     * @return
+     */
+    public StateMachine getMachine() {
+        return this.fsm;
+    }
+
 }

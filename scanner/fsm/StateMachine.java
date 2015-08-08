@@ -83,6 +83,7 @@ public class StateMachine {
         }
 
         // Clean up after ourselves for next time
+        // TODO: Add in the physical information here!!!!
         Lexeme completeLexeme = lexemeBeingBuilt;
         lexemeBeingBuilt = new Lexeme();
 

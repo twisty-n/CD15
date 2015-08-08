@@ -2,7 +2,6 @@ package test;
 
 import io.InputController;
 import scanner.Scanner;
-import scanner.fsm.StateMachine;
 import utils.DebugWriter;
 
 /**
@@ -36,11 +35,9 @@ public class StateMachineTest {
         InputController ic = new InputController( considerationFile, scanner );
         scanner.configure(ic);
 
-        StateMachine fsm = new StateMachine(scanner, ic);
-
         while ( scanner.canContinue() ) {
 
-            DebugWriter.writeToConsole( "Report character: " + fsm.obtainLexeme() + "\t Scanner Status: " +scanner.getInputStatus().name() );
+            DebugWriter.writeToConsole( "Report character: " + scanner.getMachine().obtainLexeme() + "\t Scanner Status: " +scanner.getInputStatus().name() );
         }
 
     }
