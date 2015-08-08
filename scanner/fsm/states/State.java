@@ -1,5 +1,6 @@
 package scanner.fsm.states;
 
+import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import utils.DebugWriter;
@@ -36,8 +37,8 @@ public abstract class State {
                 + " char under consideration: "
                 + this.getExecutionContext().getCharacterForConsideration().getCharacter());
 
-        char preLex = this.executionContext.getCharacterForConsideration().getCharacter();
-        if (preLex != '\n' && preLex != ' ' && preLex != '\t') {
+        ReturnCharacter preLex = this.executionContext.getCharacterForConsideration();
+        if (preLex.getCharacter() != '\n' && preLex.getCharacter() != ' ' && preLex.getCharacter() != '\t') {
             this.executionContext.exposeLexeme().addCharToLexeme(preLex);
         }
     }

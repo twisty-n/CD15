@@ -48,7 +48,7 @@ public class ReturnCharacter {
     }
 
     public int getIndexOnLine() {
-        return indexOnLine;
+        return indexOnLine + 1;
     }
 
     public void setIndexOnLine(int indexOnLine) {

@@ -35,9 +35,16 @@ public class StateMachineTest {
         InputController ic = new InputController( considerationFile, scanner );
         scanner.configure(ic);
 
+        System.out.println("******************************************************************************************************************");
+        System.out.println("******************************************************************************************************************");
+        System.out.println("******************************************************************************************************************");
+        System.out.println("******************************************************************************************************************");
+        System.out.println("******************************************************************************************************************");
+        System.out.println("$$$$$$$$$$$$$$$$$$$$$ Running State Machine Tests $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$");
+
         while ( scanner.canContinue() ) {
 
-            DebugWriter.writeToConsole( "Report character: " + scanner.getMachine().obtainLexeme() + "\t Scanner Status: " +scanner.getInputStatus().name() );
+            DebugWriter.writeToConsole( "Report Lexeme: " + scanner.getMachine().obtainLexeme() + "\t Scanner Status: " +scanner.getInputStatus().name() );
         }
 
     }

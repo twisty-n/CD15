@@ -36,7 +36,7 @@ public class IdtKeyState extends State{
             return;
         }  else {
             // We've encountered something else
-            this.getExecutionContext().exposeLexeme().setIsComplete(true);
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
         }
 

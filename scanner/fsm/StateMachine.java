@@ -47,8 +47,14 @@ public class StateMachine {
         this.currentState = StateManager.getState(StateManager.StateClass.START_STATE);
         this.nextState = null;
 
-        this.lexemeBeingBuilt = new Lexeme();
+        // this.lexemeBeingBuilt = new Lexeme();
+        this.constructNewLexeme();
 
+    }
+
+    private void constructNewLexeme() {
+        this.lexemeBeingBuilt = new Lexeme();
+        this.lexemeBeingBuilt.setLineIndexInFile( this.currentlyBeingConsidered.getLineIndexInFile());
     }
 
     public void setNextState(State state) {
@@ -85,7 +91,8 @@ public class StateMachine {
         // Clean up after ourselves for next time
         // TODO: Add in the physical information here!!!!
         Lexeme completeLexeme = lexemeBeingBuilt;
-        lexemeBeingBuilt = new Lexeme();
+        //lexemeBeingBuilt = new Lexeme();
+        this.constructNewLexeme();
 
         // Emit
         return completeLexeme;

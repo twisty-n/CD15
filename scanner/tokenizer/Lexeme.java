@@ -1,5 +1,7 @@
 package scanner.tokenizer;
 
+import io.ReturnCharacter;
+
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181
@@ -34,10 +36,14 @@ public class Lexeme {
 
     /**
      * Adds a character to the lexeme
+     * The first time you push a character to the lexeme, it will set its starting information
      * @param c
      */
-    public void addCharToLexeme(char c) {
-        this.lexeme.append(c);
+    public void addCharToLexeme(ReturnCharacter c) {
+        if (this.lexeme.length() == 0) {
+            this.startLineIndex = c.getIndexOnLine();
+        }
+        this.lexeme.append(c.getCharacter());
     }
 
     /**
@@ -54,7 +60,13 @@ public class Lexeme {
         return isComplete;
     }
 
-    public void setIsComplete(boolean isComplete) {
+    /**
+     * When setting the lexeme as being complete, we will also store the end line index for it
+     * @param isComplete
+     * @param endLineIndex
+     */
+    public void setIsComplete(boolean isComplete, int endLineIndex) {
+        this.endLineIndex = endLineIndex;
         this.isComplete = isComplete;
     }
 
