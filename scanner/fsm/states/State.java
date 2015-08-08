@@ -2,6 +2,7 @@ package scanner.fsm.states;
 
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
+import utils.DebugWriter;
 
 /**
  * Author:          Tristan Newmann
@@ -26,10 +27,20 @@ public abstract class State {
     }
 
     /**
-     * Executes before this state is transitioned into to
+     * This should be called before the state is entered and will register the current char
+     * in the character buffer as belonging to the current lexeme as long as the character is not whitespace
      * Functionality as yet unthought of. But useful for debugging
      */
-    public abstract void enterState();
+    public void enterState() {
+        DebugWriter.writeToFile("Entering " + getStateClass().name()
+                + " char under consideration: "
+                + this.getExecutionContext().getCharacterForConsideration().getCharacter());
+
+        char preLex = this.executionContext.getCharacterForConsideration().getCharacter();
+        if (preLex != '\n' && preLex != ' ' && preLex != '\t') {
+            this.executionContext.exposeLexeme().addCharToLexeme(preLex);
+        }
+    }
 
     /**
      * Executes when this state is transitioned into
@@ -41,7 +52,11 @@ public abstract class State {
      * Called when this state is exited
      * Will generally be responsible for outputing Lexemes to the Scanner context
      */
-    public abstract void exitState();
+    public void exitState() {
+        DebugWriter.writeToFile("Exiting " + getStateClass().name()
+                + " current Lexeme: "
+                + this.getExecutionContext().exposeLexeme().toString());
+    }
 
     /**
      * Returns the type of class that this state is

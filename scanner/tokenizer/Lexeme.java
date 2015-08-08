@@ -11,20 +11,51 @@ package scanner.tokenizer;
  */
 public class Lexeme {
 
-    private String lexeme;
+    private StringBuffer lexeme;
     private int startLineIndex;
     private int endLineIndex;
     private int lineIndexInFile;
     private String file;
 
-    /* Access / Mutate */
+    private boolean isComplete;
 
-    public String getLexeme() {
-        return lexeme;
+    public Lexeme() {
+        this(0, 0, 0, "");
+        this.isComplete = false;
     }
 
-    public void setLexeme(String lexeme) {
-        this.lexeme = lexeme;
+    public Lexeme(int startLineIndex, int endLineIndex, int lineIndexInFile, String file) {
+        this.lexeme = new StringBuffer();
+        this.startLineIndex = startLineIndex;
+        this.endLineIndex = endLineIndex;
+        this.lineIndexInFile = lineIndexInFile;
+        this.file = file;
+    }
+
+    /**
+     * Adds a character to the lexeme
+     * @param c
+     */
+    public void addCharToLexeme(char c) {
+        this.lexeme.append(c);
+    }
+
+    /**
+     * Returns the value of the lexeme as a string
+     * @return
+     */
+    public String getLexemeVal() {
+        return this.lexeme.toString();
+    }
+
+    /* Access / Mutate */
+
+    public boolean isComplete() {
+        return isComplete;
+    }
+
+    public void setIsComplete(boolean isComplete) {
+        this.isComplete = isComplete;
     }
 
     public int getStartLineIndex() {
@@ -57,5 +88,16 @@ public class Lexeme {
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    @Override
+    public String toString() {
+        return "Lexeme{" +
+                "lexeme=" + lexeme +
+                ", startLineIndex=" + startLineIndex +
+                ", endLineIndex=" + endLineIndex +
+                ", lineIndexInFile=" + lineIndexInFile +
+                ", isComplete=" + isComplete +
+                '}';
     }
 }

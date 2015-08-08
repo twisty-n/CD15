@@ -25,7 +25,7 @@ public class Scanner {
      */
     public Scanner() {
 
-        this.configure(null);
+        //this.configure(null);
     }
 
     /**

@@ -19,14 +19,16 @@ import scanner.tokenizer.Lexeme;
 public class StateMachine {
 
     private State currentState;
+    private State nextState;
     private ReturnCharacter currentlyBeingConsidered;
     private Scanner context;
     private InputController input;
 
+    private Lexeme lexemeBeingBuilt;
+
     public StateMachine(Scanner context, InputController input) {
 
         // Set up the state manager with the need details
-
         this.configure(context, input);
     }
 
@@ -35,29 +37,84 @@ public class StateMachine {
      */
     public void configure(Scanner context, InputController input) {
 
+        // Assign vars
         this.context = context;
         this.input = input;
+        this.currentlyBeingConsidered = input.pumpChar();
 
+        // Set up state management
         StateManager.registerContext(this);
         this.currentState = StateManager.getState(StateManager.StateClass.START_STATE);
+        this.nextState = null;
+
+        this.lexemeBeingBuilt = new Lexeme();
 
     }
 
+    public void setNextState(State state) {
+        this.nextState = state;
+    }
+
+    /**
+     * Returns a complete Lexeme to the caller
+     * @return
+     */
     public Lexeme obtainLexeme() {
 
         // Spin around the states until we obtain a valid lexeme
-        // We should always be in the starting state when this is called,
-        // so we need some cleanup method
+
+        // Oh shoot me
+        while ( true ) {
+
+            // Exexute over the states
+            this.currentState.enterState();
+            this.currentState.execute();
+            this.currentState.exitState();
+
+            // Change the state
+            this.currentState = nextState;
+            this.nextState = null;
+
+            // I like explicit exits ;)
+            if ( lexemeBeingBuilt.isComplete() ) {
+                break;
+            }
+
+        }
+
+        // Clean up after ourselves for next time
+        Lexeme completeLexeme = lexemeBeingBuilt;
+        lexemeBeingBuilt = new Lexeme();
 
         // Emit
-        return null;
+        return completeLexeme;
 
     }
 
+    /**
+     * Overwrites the character currently being considered with the character to be next considered
+     */
     public void readNextCharacter() {
         this.currentlyBeingConsidered = input.pumpChar();
         //if (!this.context.canContinue())
     }
+
+    /**
+     * Returns the character that is currently being considered for lexing
+     * @return
+     */
+    public ReturnCharacter getCharacterForConsideration() {
+        return this.currentlyBeingConsidered;
+    }
+
+    /**
+     * Exposes the current Lexeme that is being built
+     * @return
+     */
+    public Lexeme exposeLexeme() {
+        return this.lexemeBeingBuilt;
+    }
+
 
 
 

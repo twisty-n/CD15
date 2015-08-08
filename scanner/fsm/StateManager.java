@@ -1,7 +1,8 @@
 package scanner.fsm;
 
 import scanner.fsm.states.FatalErrorState;
-import scanner.fsm.states.StartState;
+import scanner.fsm.states.DefaultState;
+import scanner.fsm.states.IdtKeyState;
 import scanner.fsm.states.State;
 
 /**
@@ -42,7 +43,8 @@ public class StateManager {
 
         switch (stateClass) {
 
-            case START_STATE: return new StartState(executionContext);
+            case START_STATE: return new DefaultState(executionContext);
+            case IDT_KEY_STATE: return new IdtKeyState(executionContext);
 
 
             // If there is no corresponding state. This should happpen. This should never happen
@@ -55,7 +57,8 @@ public class StateManager {
     public enum StateClass {
 
         START_STATE,    // The starting state of the machine
-        FATAL_ERROR_STATE
+        FATAL_ERROR_STATE,
+        IDT_KEY_STATE,
 
     }
 

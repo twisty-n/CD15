@@ -14,6 +14,7 @@ public class TestDriver {
     public static void main(String[] args) {
 
         new InputControllerTest().execute(args);
+        new StateMachineTest().execute(args);
 
     }
 
