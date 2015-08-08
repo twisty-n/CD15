@@ -1,6 +1,7 @@
 package scanner;
 
 import io.InputController;
+import scanner.fsm.StateMachine;
 import utils.DebugWriter;
 
 /**
@@ -16,11 +17,13 @@ public class Scanner {
 
     private InputController.InputStatus lastReportedInputStatus;
     private InputController input;
+    private StateMachine fsm;
 
     /**
      * default with no settings
      */
     public Scanner() {
+
         this.configure(null);
     }
 
@@ -29,6 +32,7 @@ public class Scanner {
      * @param input
      */
     public Scanner(InputController input) {
+
         this.configure(input);
     }
 
@@ -47,7 +51,7 @@ public class Scanner {
      */
     public void reportInputStatus( InputController.InputStatus status) {
         this.lastReportedInputStatus = status;
-        DebugWriter.writeToConsole(status.name());
+        DebugWriter.writeToFile(status.name());
     }
 
     /**

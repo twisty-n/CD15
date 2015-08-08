@@ -1,5 +1,7 @@
 package scanner.fsm.states;
 
+import scanner.fsm.StateMachine;
+
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181

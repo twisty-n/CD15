@@ -1,7 +1,9 @@
-package scanner.fsm.states;
+package scanner.fsm;
 
 import io.ReturnCharacter;
 import scanner.Scanner;
+import scanner.fsm.states.State;
+
 
 /**
  * Author:          Tristan Newmann
