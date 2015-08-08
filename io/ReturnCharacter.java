@@ -80,9 +80,7 @@ public class ReturnCharacter {
             case " " : character = "\\s";  break;
             default: break;
         }
-        if (this.character == '\n') {
-            character = "\\n";
-        }
+
         return "ReturnCharacter{" +
                 "character=" + character +
                 ", indexOnLine=" + indexOnLine +

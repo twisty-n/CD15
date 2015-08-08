@@ -74,8 +74,10 @@ public class InputController {
             int val = fis.read();
 
             // If val is -1, we've hit the end of the file, report it and return default
+            // We also close the stream
             if ( val == -1 ) {
                 this.context.reportInputStatus(InputStatus.END_OF_FILE);
+                this.closeStream();
                 return new ReturnCharacter();
             }
 
