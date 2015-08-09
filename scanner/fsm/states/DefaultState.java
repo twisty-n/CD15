@@ -50,6 +50,12 @@ public class DefaultState extends State {
             this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
             return;
+        } else if ( Character.isDigit(underConsideration) && underConsideration != '0' ) {
+            // We have the beginnings of an integer or floating point literal
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.INT_LIT_STATE));
+        } else if ( underConsideration == '0' ) {
+            // Need to handle where its just a 0.
+            // Remember, the specs say that multiple zeros are just multiple int_lit 0's
         }
 
     }

@@ -102,6 +102,34 @@ public class Lexeme {
         this.file = file;
     }
 
+    public enum SignificantCharacters {
+
+        DOT_OP('.'),
+        NEW_LINE('\n'),
+        SPACE(' '),
+        LEFT_BRACE('['),
+        RIGHT_BRACE(']'),
+        COMMA(','),
+        LEFT_PARAN('('),
+        RIGHT_PARAN(')'),
+        ASSIGN_OP('='),
+        PLUS_OP('+'),
+        MINUS_OP('-'),
+        STAR_OP('*'),
+        SLASH_OP('/'),
+        LESS_OP('<'),
+        GREAT_OP('>'),
+        QUOTE('"'),
+        DOT('.')
+        ;
+
+
+        private final char asChar;
+        public char asChar() { return asChar; }
+        private SignificantCharacters(char asChar) { this.asChar = asChar; }
+
+    }
+
     @Override
     public String toString() {
         return "Lexeme{" +

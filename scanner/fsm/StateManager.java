@@ -1,9 +1,6 @@
 package scanner.fsm;
 
-import scanner.fsm.states.FatalErrorState;
-import scanner.fsm.states.DefaultState;
-import scanner.fsm.states.IdtKeyState;
-import scanner.fsm.states.State;
+import scanner.fsm.states.*;
 
 /**
  * Author:          Tristan Newmann
@@ -43,9 +40,10 @@ public class StateManager {
 
         switch (stateClass) {
 
-            case START_STATE: return new DefaultState(executionContext);
+            case START_STATE:   return new DefaultState(executionContext);
             case IDT_KEY_STATE: return new IdtKeyState(executionContext);
-
+            case INT_LIT_STATE: return new IntLitState(executionContext);
+            case FLT_LIT_STATE: return new FltLitState(executionContext);
 
             // If there is no corresponding state. This should happpen. This should never happen
             default: return new FatalErrorState(executionContext);
@@ -59,6 +57,8 @@ public class StateManager {
         START_STATE,    // The starting state of the machine
         FATAL_ERROR_STATE,
         IDT_KEY_STATE,
+        INT_LIT_STATE,
+        FLT_LIT_STATE,
 
     }
 
