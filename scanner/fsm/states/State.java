@@ -69,7 +69,7 @@ public abstract class State {
      * Set the execution context for this state
      * @param ctx
      */
-    public void setContext(StateMachine ctx) {
+    private void setContext(StateMachine ctx) {
         this.executionContext = ctx;
     }
 
