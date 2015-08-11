@@ -40,10 +40,12 @@ public class StateManager {
 
         switch (stateClass) {
 
-            case START_STATE:   return new DefaultState(executionContext);
-            case IDT_KEY_STATE: return new IdtKeyState(executionContext);
-            case INT_LIT_STATE: return new IntLitState(executionContext);
-            case FLT_LIT_STATE: return new FltLitState(executionContext);
+            case START_STATE        :       return new DefaultState(executionContext);
+            case IDT_KEY_STATE      :       return new IdtKeyState(executionContext);
+            case INT_LIT_STATE      :       return new IntLitState(executionContext);
+            case FLT_LIT_STATE      :       return new FltLitState(executionContext);
+            case ZERO_INT_LIT_STATE :       return new ZeroIntLitState(executionContext);
+            case ERR_CHEW_STATE     :       return new ErrChewState(executionContext);
 
             // If there is no corresponding state. This should happpen. This should never happen
             default: return new FatalErrorState(executionContext);
@@ -59,6 +61,8 @@ public class StateManager {
         IDT_KEY_STATE,
         INT_LIT_STATE,
         FLT_LIT_STATE,
+        ZERO_INT_LIT_STATE,
+        ERR_CHEW_STATE,
 
     }
 

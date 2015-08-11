@@ -69,6 +69,7 @@ public class InputController {
                 // We just did the read so update the line tracking and reset the position
                 this.lineIndexInFile++;
                 this.charIndexOnLine = -1;
+                this.newLineOnNextRead = false;
             }
 
             int val = fis.read();
@@ -115,7 +116,7 @@ public class InputController {
             );
             this.context.reportInputStatus(InputStatus.FATAL_ERROR);
         } finally {
-            return new ReturnCharacter(returnChar, charIndexOnLine, lineIndexInFile, currentFile);
+            return new ReturnCharacter(returnChar, this.charIndexOnLine, this.lineIndexInFile, this.currentFile);
         }
     }
 

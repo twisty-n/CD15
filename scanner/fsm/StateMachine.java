@@ -14,7 +14,17 @@ import scanner.tokenizer.Lexeme;
  * Date Created:    8/8/2015
  * File Name:       StateMachine
  * Project Name:    CD15 Compiler
- * Description:     TODO Write DEscription
+ * Description:     The state machine will return maximal lexemes.
+ *                  The valid lexemes (tokens) will try to be maximised.
+ *                  Note that this also applied to errornous lexemes.
+ *
+ *                  The semantics for this is, always try to return the most
+ *                  maximal valid lexemes. Not always just the most lexemes
+ *
+ *                  For example, in the case of 123.abc we will consume up to
+ *                  and including the c as part of the maximal lexeme. This
+ *                  will then be returned to the scanner and tokenized, in
+ *                  order to give an invalid token
  */
 public class StateMachine {
 
@@ -54,7 +64,7 @@ public class StateMachine {
 
     private void constructNewLexeme() {
         this.lexemeBeingBuilt = new Lexeme();
-        this.lexemeBeingBuilt.setLineIndexInFile( this.currentlyBeingConsidered.getLineIndexInFile());
+        this.lexemeBeingBuilt.setLineIndexInFile( this.currentlyBeingConsidered.getLineIndexInFile() );
     }
 
     public void setNextState(State state) {
@@ -70,7 +80,10 @@ public class StateMachine {
         // Spin around the states until we obtain a valid lexeme
 
         // Oh shoot me
-        while ( true ) {
+        // And shoot me again, we will state transit unless the scanner is notified of a fatal input
+        // error by the input controller
+        // Semntically its a while true with explicit break or terminate on failure
+        while ( this.context.canContinue() ) {
 
             // Exexute over the states
             this.currentState.enterState();
@@ -81,7 +94,7 @@ public class StateMachine {
             this.currentState = nextState;
             this.nextState = null;
 
-            // I like explicit exits ;)
+            // This will tell the loop to terminate as we have found a maximal lexeme
             if ( lexemeBeingBuilt.isComplete() ) {
                 break;
             }

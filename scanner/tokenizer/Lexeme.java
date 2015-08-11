@@ -40,6 +40,7 @@ public class Lexeme {
      * @param c
      */
     public void addCharToLexeme(ReturnCharacter c) {
+
         if (this.lexeme.length() == 0) {
             this.startLineIndex = c.getIndexOnLine();
         }
@@ -120,7 +121,6 @@ public class Lexeme {
         LESS_OP('<'),
         GREAT_OP('>'),
         QUOTE('"'),
-        DOT('.')
         ;
 
 

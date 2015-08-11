@@ -1,7 +1,9 @@
 package scanner.fsm.states;
 
+import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
+import scanner.tokenizer.Lexeme;
 
 /**
  * Author:          Tristan Newmann
@@ -20,6 +22,23 @@ public class FltLitState extends State {
 
     @Override
     public void execute() {
+
+        ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
+        char charCh = charObj.getCharacter();
+
+        if ( Character.isDigit( charCh ) ) {
+
+            // We are all good to consume and come back to this state
+
+        } else if ( Character.isAlphabetic( charCh ) ) {
+
+            // This is an error point
+
+        } else if ( charCh == Lexeme.SignificantCharacters.DOT_OP.asChar() ) {
+
+            // Another error point
+
+        }
 
     }
 

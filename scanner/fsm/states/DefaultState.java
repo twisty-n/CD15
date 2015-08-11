@@ -39,23 +39,30 @@ public class DefaultState extends State {
             return;
 
         } else if ( underConsideration == '\t' || underConsideration == ' ' ) {
+
             // We are considering just simple whitespace. Not proceeding a new line
             // So consume and stay here
             this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
             return;
+
         } else if ( underConsideration == '\n' ) {
 
             // Ignore and consume for now, but we will eventually go to multi-line comment handling
             this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
             return;
+
         } else if ( Character.isDigit(underConsideration) && underConsideration != '0' ) {
+
             // We have the beginnings of an integer or floating point literal
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.INT_LIT_STATE));
+
         } else if ( underConsideration == '0' ) {
+
             // Need to handle where its just a 0.
             // Remember, the specs say that multiple zeros are just multiple int_lit 0's
+
         }
 
     }
