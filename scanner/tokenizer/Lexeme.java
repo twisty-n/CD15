@@ -18,12 +18,14 @@ public class Lexeme {
     private int endLineIndex;
     private int lineIndexInFile;
     private String file;
+    private boolean isValid;
 
     private boolean isComplete;
 
     public Lexeme() {
         this(0, 0, 0, "");
         this.isComplete = false;
+        this.isValid = false;
     }
 
     public Lexeme(int startLineIndex, int endLineIndex, int lineIndexInFile, String file) {
@@ -32,6 +34,7 @@ public class Lexeme {
         this.endLineIndex = endLineIndex;
         this.lineIndexInFile = lineIndexInFile;
         this.file = file;
+        this.isValid = false;
     }
 
     /**
@@ -63,12 +66,16 @@ public class Lexeme {
 
     /**
      * When setting the lexeme as being complete, we will also store the end line index for it
-     * @param isComplete
-     * @param endLineIndex
+     *
+     * @param isComplete        Should always be passed true, I dont know why this is here
+     * @param endLineIndex      The column number in which this leexeme ended
+     * @param isValid           Indicates if the state machine finished in an accepting state when
+     *                          constructing this lexeme
      */
-    public void setIsComplete(boolean isComplete, int endLineIndex) {
+    public void setIsComplete(boolean isComplete, int endLineIndex, boolean isValid) {
         this.endLineIndex = endLineIndex;
         this.isComplete = isComplete;
+        this.isValid = isValid;
     }
 
     public int getStartLineIndex() {
@@ -103,33 +110,6 @@ public class Lexeme {
         this.file = file;
     }
 
-    public enum SignificantCharacters {
-
-        DOT_OP('.'),
-        NEW_LINE('\n'),
-        SPACE(' '),
-        LEFT_BRACE('['),
-        RIGHT_BRACE(']'),
-        COMMA(','),
-        LEFT_PARAN('('),
-        RIGHT_PARAN(')'),
-        ASSIGN_OP('='),
-        PLUS_OP('+'),
-        MINUS_OP('-'),
-        STAR_OP('*'),
-        SLASH_OP('/'),
-        LESS_OP('<'),
-        GREAT_OP('>'),
-        QUOTE('"'),
-        ;
-
-
-        private final char asChar;
-        public char asChar() { return asChar; }
-        private SignificantCharacters(char asChar) { this.asChar = asChar; }
-
-    }
-
     @Override
     public String toString() {
         return "Lexeme{" +
@@ -138,6 +118,7 @@ public class Lexeme {
                 ", endLineIndex=" + endLineIndex +
                 ", lineIndexInFile=" + lineIndexInFile +
                 ", isComplete=" + isComplete +
+                ", isValid=" + isValid +
                 '}';
     }
 }

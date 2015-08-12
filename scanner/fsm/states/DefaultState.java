@@ -29,6 +29,7 @@ public class DefaultState extends State {
     @Override
     public void execute() {
 
+
         char underConsideration = this.getExecutionContext().getCharacterForConsideration().getCharacter();
 
         // Let the games begin. May the odds be ever in your favour
@@ -60,8 +61,13 @@ public class DefaultState extends State {
 
         } else if ( underConsideration == '0' ) {
 
-            // Need to handle where its just a 0.
+            // Need to handle where its just a 0
             // Remember, the specs say that multiple zeros are just multiple int_lit 0's
+
+            // Behaviour change, we are manually taking control of lexeme tracking for this
+            //this.getExecutionContext().exposeLexeme().addCharToLexeme(this.getExecutionContext().getCharacterForConsideration());
+            //this.getExecutionContext().readNextCharacter();
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ZERO_INT_LIT_STATE));
 
         }
 

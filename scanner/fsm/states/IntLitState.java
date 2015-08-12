@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.Lexeme;
+import scanner.tokenizer.SignificantCharacters;
 
 /**
  * Author:          Tristan Newmann
@@ -37,7 +37,7 @@ public class IntLitState extends State {
             this.getExecutionContext().setNextState( StateManager.getState(StateManager.StateClass.INT_LIT_STATE) );
             return;
 
-        } else if ( charCh == Lexeme.SignificantCharacters.DOT_OP.asChar() ) {
+        } else if ( charCh == SignificantCharacters.DOT_OP.asChar() ) {
 
             // We've seen a dot operator, so now we will try to get a
             // floating point literal
@@ -49,7 +49,6 @@ public class IntLitState extends State {
             // This is invalid
             // We will need to consume and add to the lexeme until we find the
             // Next valid lexeme
-            this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ERR_CHEW_STATE));
             return;
 
@@ -57,7 +56,7 @@ public class IntLitState extends State {
 
             // We've hit white space, this acts as a delimiter so
             // set the lexeme as complete
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1);
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
             return;
 
@@ -65,7 +64,7 @@ public class IntLitState extends State {
 
             // We can also merge this state with the above, but will leave it seperately
             // for semantic reasons!
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1);
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
             return;
 

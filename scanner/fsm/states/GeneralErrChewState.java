@@ -3,35 +3,33 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
 
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181
  * Email:           c3163181@uon.edu.au
- * Date Created:    8/11/2015
- * File Name:       ErrChewState
+ * Date Created:    8/12/2015
+ * File Name:       GeneralErrChewState
  * Project Name:    CD15 Compiler
- * Description:    Specialized error chewing state. Designed to chew errors from int and float literals
- *                 Semantically, this will eat errors including any dot operators, but will stop at the normal
- *                 whitespace and other delimiters
+ * Description:     This will consume a line up to the next whitespace or any
+ *                  delimiter or operator
  */
-public class ErrChewState extends State  {
+public class GeneralErrChewState extends State {
 
-    public ErrChewState(StateMachine executionContext) {
+    public GeneralErrChewState(StateMachine executionContext) {
         super(executionContext);
     }
 
     /*
-    This function servers perfectly cooked steaks, so that you have to eat and come back
-     */
+This function servers generally well cooked steaks, so that you have to eat and come back
+ */
     private void eatAndComeback() {
         this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ERR_CHEW_STATE));
     }
 
+
     @Override
     public void execute() {
-
         this.getExecutionContext().readNextCharacter();
         ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
         char charCh = charObj.getCharacter();
@@ -48,12 +46,6 @@ public class ErrChewState extends State  {
             this.eatAndComeback();
             return;
 
-        } else if ( charCh == SignificantCharacters.DOT_OP.asChar() ) {
-
-            // This is also invalid, we consume this as part of the error
-            this.eatAndComeback();
-            return;
-
         } else {
 
             // If need be, we can add in extra character handling rules here
@@ -64,11 +56,10 @@ public class ErrChewState extends State  {
             return;
 
         }
-
     }
 
     @Override
     public StateManager.StateClass getStateClass() {
-        return StateManager.StateClass.ERR_CHEW_STATE;
+        return StateManager.StateClass.GEN_ERR_CHEW_STATE;
     }
 }

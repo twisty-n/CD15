@@ -2,6 +2,7 @@ package scanner.fsm.states;
 
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
+import scanner.tokenizer.SignificantCharacters;
 
 /**
  * Author:          Tristan Newmann
@@ -26,18 +27,32 @@ public class IdtKeyState extends State{
     @Override
     public void execute() {
 
+        this.getExecutionContext().readNextCharacter();
         char underConsideration = this.getExecutionContext().getCharacterForConsideration().getCharacter();
 
         // Loop while we continue to see characters or numbers
         if ( Character.isLetterOrDigit(underConsideration) ) {
+
             // We are able to loop so return early
-            this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.IDT_KEY_STATE));
             return;
-        }  else {
+
+        }  else if ( SignificantCharacters.isOperatorOrDelimiter( underConsideration ) ) {
+            // TODO review what to do if we hit certain operators here
             // We've encountered something else
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1);
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+
+        } else if ( Character.isWhitespace( underConsideration ) ) {
+
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true);
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+
+        } else {
+
+            // Its some form of illegal symbol enter the error chewer
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.GEN_ERR_CHEW_STATE));
+
         }
 
     }

@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.Lexeme;
+import scanner.tokenizer.SignificantCharacters;
 
 /**
  * Author:          Tristan Newmann
@@ -23,33 +23,32 @@ public class FltLitState extends State {
     @Override
     public void execute() {
 
+        this.getExecutionContext().readNextCharacter();
         ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
         char charCh = charObj.getCharacter();
 
         if ( Character.isDigit( charCh ) ) {
 
             // We are all good to consume and come back to this state
-            this.getExecutionContext().readNextCharacter();
+            //this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.FLT_LIT_STATE));
 
         } else if ( Character.isAlphabetic( charCh ) ) {
 
             // This is an error point
-            this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ERR_CHEW_STATE));
             return;
 
-        } else if ( charCh == Lexeme.SignificantCharacters.DOT_OP.asChar() ) {
+        } else if ( charCh == SignificantCharacters.DOT_OP.asChar() ) {
 
             // Another error point
-            this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ERR_CHEW_STATE));
             return;
 
         } else {
 
             // Another operator, or whitespace or whatever
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1);
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
 
         }

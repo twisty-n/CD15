@@ -46,6 +46,7 @@ public class StateManager {
             case FLT_LIT_STATE      :       return new FltLitState(executionContext);
             case ZERO_INT_LIT_STATE :       return new ZeroIntLitState(executionContext);
             case ERR_CHEW_STATE     :       return new ErrChewState(executionContext);
+            case GEN_ERR_CHEW_STATE :       return new GeneralErrChewState(executionContext);
 
             // If there is no corresponding state. This should happpen. This should never happen
             default: return new FatalErrorState(executionContext);
@@ -63,7 +64,7 @@ public class StateManager {
         FLT_LIT_STATE,
         ZERO_INT_LIT_STATE,
         ERR_CHEW_STATE,
-
+        GEN_ERR_CHEW_STATE,
     }
 
 }
