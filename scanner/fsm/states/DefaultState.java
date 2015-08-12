@@ -33,7 +33,6 @@ public class DefaultState extends State {
         char underConsideration = this.getExecutionContext().getCharacterForConsideration().getCharacter();
 
         // Let the games begin. May the odds be ever in your favour
-
         // If the character is a letter, go to the IDT_KEY_STATE
         if ( Character.isLetter(underConsideration) ) {
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.IDT_KEY_STATE));

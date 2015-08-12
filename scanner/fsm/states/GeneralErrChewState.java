@@ -3,6 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
+import scanner.tokenizer.SignificantCharacters;
 
 /**
  * Author:          Tristan Newmann
@@ -45,6 +46,11 @@ This function servers generally well cooked steaks, so that you have to eat and 
             // Same as above, keep chewing
             this.eatAndComeback();
             return;
+
+        } else if ( !SignificantCharacters.isOperatorOrDelimiter(charCh) ) {
+
+            // This is some illegal character in the context of the program
+            this.eatAndComeback();
 
         } else {
 

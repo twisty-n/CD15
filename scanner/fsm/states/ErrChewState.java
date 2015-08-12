@@ -32,10 +32,29 @@ public class ErrChewState extends State  {
     @Override
     public void execute() {
 
+
         this.getExecutionContext().readNextCharacter();
         ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
         char charCh = charObj.getCharacter();
 
+        if (
+                Character.isWhitespace( charCh ) ||
+                ( SignificantCharacters.isOperatorOrDelimiter( charCh )
+                        && charCh != SignificantCharacters.DOT_OP.asChar() )
+        ) {
+
+            // This will terminate the error
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, false);
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            return;
+
+        } else {
+            this.eatAndComeback();
+        }
+
+        /*
+        ## Ser Derpsalots Adventures in having a bunch of stupid logic
+        ## Behold the Holy Hand Grenade of Antioch!
         if ( Character.isAlphabetic( charCh ) ) {
 
             // Its a-z / A-Z, so we keep chewing
@@ -54,6 +73,12 @@ public class ErrChewState extends State  {
             this.eatAndComeback();
             return;
 
+        } else if ( ! SignificantCharacters.isOperatorOrDelimiter( charCh ) ) {
+
+            // An illegal character!
+            this.eatAndComeback();
+            return;
+
         } else {
 
             // If need be, we can add in extra character handling rules here
@@ -64,6 +89,9 @@ public class ErrChewState extends State  {
             return;
 
         }
+        */
+
+
 
     }
 
