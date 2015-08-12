@@ -35,6 +35,18 @@ This function servers generally well cooked steaks, so that you have to eat and 
         ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
         char charCh = charObj.getCharacter();
 
+        if ( Character.isWhitespace( charCh ) || SignificantCharacters.isOperatorOrDelimiter( charCh ) ) {
+
+            // This will terminate the error
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, false);
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            return;
+
+        } else {
+            this.eatAndComeback();
+        }
+
+        /*
         if ( Character.isAlphabetic( charCh ) ) {
 
             // Its a-z / A-Z, so we keep chewing
@@ -62,6 +74,7 @@ This function servers generally well cooked steaks, so that you have to eat and 
             return;
 
         }
+        */
     }
 
     @Override
