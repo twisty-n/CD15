@@ -38,8 +38,8 @@ public class SeenExclamState extends State {
 
             // We have a valid '!=' save it and prepare the fsm for
             // accepting input again as per SMOCS standard
-            lex.addCharToLexeme ( charObj );
-            lex.setIsComplete (
+            lex.addCharToLexeme( charObj );
+            lex.setIsComplete(
                     true,
                     charObj.getIndexOnLine(),
                     true

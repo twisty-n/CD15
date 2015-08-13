@@ -1,7 +1,10 @@
 package scanner.fsm.states;
 
+import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
+import scanner.tokenizer.Lexeme;
+import scanner.tokenizer.SignificantCharacters;
 
 /**
  * Author:          Tristan Newmann
@@ -21,10 +24,46 @@ public class SeenSlashState extends State {
     @Override
     public void execute () {
 
+        // Read char
+        this.getExecutionContext().readNextCharacter();
+        ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
+        char charCh = charObj.getCharacter();
+        Lexeme lex = this.getExecutionContext().exposeLexeme();
+
+        // If next char is '=' we have a /= character
+        if ( charCh == SignificantCharacters.ASSIGN_OP.asChar() ) {
+            // Complete lexeme and prepare charBuffer for default state
+            lex.addCharToLexeme ( charObj );
+            lex.setIsComplete(
+                    true,
+                    charObj.getIndexOnLine(),
+                    true
+            );
+            this.getExecutionContext().readNextCharacter();
+            this.getExecutionContext().setNextState( StateManager.getState ( StateManager.StateClass.START_STATE ) );
+
+        } else if ( charCh == SignificantCharacters.SLASH_OP.asChar() ) {
+
+            // if next char is // we have a line comment, consume until \n
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.LINE_COMMENT_STATE));
+
+        } else {
+
+            // else we just have a lone divide, close the lexeme
+            // We wont touch the char buffer, but we will set the next state to be the start state
+            lex.setIsComplete(
+                    true,
+                    charObj.getIndexOnLine(),
+                    true
+            );
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+
+        }
+
     }
 
     @Override
     public StateManager.StateClass getStateClass () {
-        return null;
+        return StateManager.StateClass.SEEN_SLASH_STATE;
     }
 }

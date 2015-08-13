@@ -70,17 +70,32 @@ public class DefaultState extends State {
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_MULTIOP_COMP_STATE));
 
         } else if ( SignificantCharacters.isOperatorOrDelimiter( underConsideration )
-                    && ! SignificantCharacters.isGeneralMultiCharOpComponent ( underConsideration )) {
+                    && ! SignificantCharacters.isGeneralMultiCharOpComponent ( underConsideration )
+                    && ! (underConsideration == SignificantCharacters.SLASH_OP.asChar())
+            ) {
 
+            // Transition to standalone operator or delimiter state
             this.getExecutionContext().setNextState(StateManager.getState( StateManager.StateClass.SEEN_STANDALONE_OP_OR_DELIM ));
 
         } else if (underConsideration == SignificantCharacters.EXCLAM.asChar()) {
 
+            // We've seen an exclamation mark, transition to handler
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_EXCLAM_STATE));
 
         } else if (underConsideration == SignificantCharacters.SLASH_OP.asChar()) {
 
+            // We've seen a slash, so its iether an operator, or a line comment. handle it!
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_SLASH_STATE));
+
+        } else if ( /* Handle multiLine comments */ false) {
+
+            // We've seen a NEWLINE. Enter possible handling of multiline comments
+            // Remember, MLC's always need to be at the beginning of the line
+
+        } else {
+
+            // We've found some sort of illegal character. Execute an error chewer until we find a valid
+            // place to continue from
 
         }
 

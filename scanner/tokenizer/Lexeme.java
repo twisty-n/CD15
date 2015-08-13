@@ -19,6 +19,7 @@ public class Lexeme {
     private int lineIndexInFile;
     private String file;
     private boolean isValid;
+    private boolean isComment;
 
     private boolean isComplete;
 
@@ -26,6 +27,7 @@ public class Lexeme {
         this(0, 0, 0, "");
         this.isComplete = false;
         this.isValid = false;
+        this.isComment = false;
     }
 
     public Lexeme(int startLineIndex, int endLineIndex, int lineIndexInFile, String file) {
@@ -35,6 +37,7 @@ public class Lexeme {
         this.lineIndexInFile = lineIndexInFile;
         this.file = file;
         this.isValid = false;
+        this.isComment = false;
     }
 
     /**
@@ -77,6 +80,20 @@ public class Lexeme {
         this.isComplete = isComplete;
         this.isValid = isValid;
     }
+
+    /**
+     * Sets the lexeme as complete stores the provided information
+     * @param isComplete        As for above
+     * @param endLineIndex      As for above
+     * @param isValid           As for above
+     * @param isComment         Pass true to set this lexeme as a comment listing
+     */
+    public void setIsComplete(boolean isComplete, int endLineIndex, boolean isValid, boolean isComment) {
+        this.setIsComplete(isComplete, endLineIndex, isValid);
+        this.isComment = isComment;
+    }
+
+    public boolean isComment() { return this.isComment; }
 
     public int getStartLineIndex() {
         return startLineIndex;
