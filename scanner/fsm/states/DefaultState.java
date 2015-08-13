@@ -82,15 +82,16 @@ public class DefaultState extends State {
             // We've seen an exclamation mark, transition to handler
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_EXCLAM_STATE));
 
-        } else if (underConsideration == SignificantCharacters.SLASH_OP.asChar()) {
+        } else if (underConsideration == SignificantCharacters.SLASH_OP.asChar() ) {
 
             // We've seen a slash, so its iether an operator, or a line comment. handle it!
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_SLASH_STATE));
 
-        } else if ( /* Handle multiLine comments */ false) {
+        } else if (underConsideration == SignificantCharacters.NEW_LINE.asChar()) {
 
             // We've seen a NEWLINE. Enter possible handling of multiline comments
             // Remember, MLC's always need to be at the beginning of the line
+
 
         } else {
 

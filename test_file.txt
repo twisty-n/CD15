@@ -23,7 +23,9 @@ Ille~gal Il#egal### not.Illegal
 
 5/=45 5/6 6.0/=2 abc/345
 
-//
+10.0 <<= 5
+
+//+
 
 // This isa  line comment
 
