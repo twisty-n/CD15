@@ -21,10 +21,22 @@ public class SeenStandaloneOpOrDelim extends State {
     @Override
     public void execute () {
 
+        // At this point, the standalone operator or delimiter has been read into the lexeme
+        // because it is standalone, regardless of the following characters, we will terminate it
+        // and say that it is valid here
+
+        this.getExecutionContext().exposeLexeme().setIsComplete(
+                true,
+                this.getExecutionContext ().getCharacterForConsideration().getIndexOnLine (),
+                true
+        );
+        this.getExecutionContext().readNextCharacter();
+        this.getExecutionContext().setNextState( StateManager.getState ( StateManager.StateClass.START_STATE) );
+
     }
 
     @Override
     public StateManager.StateClass getStateClass () {
-        return null;
+        return StateManager.StateClass.SEEN_STANDALONE_OP_OR_DELIM;
     }
 }
