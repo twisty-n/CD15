@@ -316,6 +316,145 @@ DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
 DEBUG: END_OF_FILE
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: t
@@ -808,6 +947,81 @@ DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: ;
 DEBUG: PUMP_SUCCESS
 DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=;, startLineIndex=1, endLineIndex=1, lineIndexInFile=11, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_EXCLAM_STATE char under consideration: !
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_EXCLAM_STATE current Lexeme: Lexeme{lexeme=!, startLineIndex=3, endLineIndex=3, lineIndexInFile=12, isComplete=true, isValid=false}
+DEBUG: Entering SEEN_EXCLAM_STATE char under consideration: !
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_EXCLAM_STATE current Lexeme: Lexeme{lexeme=!, startLineIndex=4, endLineIndex=4, lineIndexInFile=12, isComplete=true, isValid=false}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering IDT_KEY_STATE char under consideration: I
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=I, startLineIndex=6, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=Il, startLineIndex=6, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=Ill, startLineIndex=6, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=Ille, startLineIndex=6, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=Illeg, startLineIndex=6, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=Illega, startLineIndex=6, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=Illegal, startLineIndex=6, endLineIndex=12, lineIndexInFile=12, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_EXCLAM_STATE char under consideration: !
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_EXCLAM_STATE current Lexeme: Lexeme{lexeme=!, startLineIndex=13, endLineIndex=13, lineIndexInFile=12, isComplete=true, isValid=false}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: =
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme==, startLineIndex=15, endLineIndex=15, lineIndexInFile=12, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_EXCLAM_STATE char under consideration: !
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_EXCLAM_STATE current Lexeme: Lexeme{lexeme=!, startLineIndex=17, endLineIndex=17, lineIndexInFile=12, isComplete=true, isValid=false}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering IDT_KEY_STATE char under consideration: m
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=m, startLineIndex=19, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: o
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=mo, startLineIndex=19, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: r
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=mor, startLineIndex=19, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=more, startLineIndex=19, endLineIndex=22, lineIndexInFile=12, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering IDT_KEY_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=i, startLineIndex=24, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=il, startLineIndex=24, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=ill, startLineIndex=24, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=ille, startLineIndex=24, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=illeg, startLineIndex=24, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=illega, startLineIndex=24, endLineIndex=0, lineIndexInFile=12, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=illegal, startLineIndex=24, endLineIndex=30, lineIndexInFile=12, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
 DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: [
 DEBUG: PUMP_SUCCESS
 DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=[, startLineIndex=1, endLineIndex=1, lineIndexInFile=12, isComplete=true, isValid=true}
@@ -816,256 +1030,514 @@ DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: ]
 DEBUG: PUMP_SUCCESS
 DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=], startLineIndex=3, endLineIndex=3, lineIndexInFile=13, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
+DEBUG: Entering INT_LIT_STATE char under consideration: 5
 DEBUG: PUMP_SUCCESS
-DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=5, startLineIndex=1, endLineIndex=1, lineIndexInFile=13, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=1, endLineIndex=1, lineIndexInFile=13, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
-DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<=, startLineIndex=2, endLineIndex=3, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 6
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=3, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
-DEBUG: Entering ERR_CHEW_STATE char under consideration: 0
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=6, startLineIndex=4, endLineIndex=4, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: >
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00, startLineIndex=3, endLineIndex=4, lineIndexInFile=15, isComplete=true, isValid=false}
 DEBUG: PUMP_SUCCESS
-DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=>=, startLineIndex=5, endLineIndex=6, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 3
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=6, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=3, startLineIndex=7, endLineIndex=7, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: *
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=*=, startLineIndex=8, endLineIndex=9, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 2
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=2, startLineIndex=10, endLineIndex=10, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: +
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=+=, startLineIndex=11, endLineIndex=12, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 3
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=3, startLineIndex=13, endLineIndex=0, lineIndexInFile=14, isComplete=false, isValid=false}
+DEBUG: Entering INT_LIT_STATE char under consideration: 4
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=34, startLineIndex=13, endLineIndex=14, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<, startLineIndex=1, endLineIndex=1, lineIndexInFile=14, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: =
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme==, startLineIndex=3, endLineIndex=3, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: >
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=>, startLineIndex=5, endLineIndex=5, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: *
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=*, startLineIndex=7, endLineIndex=7, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: =
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme==, startLineIndex=9, endLineIndex=9, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<=, startLineIndex=11, endLineIndex=12, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: *
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=*=, startLineIndex=14, endLineIndex=15, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: *
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=*=, startLineIndex=16, endLineIndex=17, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: >
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=>, startLineIndex=18, endLineIndex=18, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<, startLineIndex=19, endLineIndex=19, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: *
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=*=, startLineIndex=20, endLineIndex=21, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<, startLineIndex=23, endLineIndex=23, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: +
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=+=, startLineIndex=24, endLineIndex=25, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: >
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=>, startLineIndex=26, endLineIndex=26, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<=, startLineIndex=27, endLineIndex=28, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: +
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=+, startLineIndex=29, endLineIndex=29, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering INT_LIT_STATE char under consideration: 5
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=5, startLineIndex=1, endLineIndex=1, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_EXCLAM_STATE char under consideration: !
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_EXCLAM_STATE current Lexeme: Lexeme{lexeme=!=, startLineIndex=3, endLineIndex=4, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering INT_LIT_STATE char under consideration: 3
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=3, startLineIndex=6, endLineIndex=6, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering INT_LIT_STATE char under consideration: 2
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=2, startLineIndex=8, endLineIndex=8, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_EXCLAM_STATE char under consideration: !
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_EXCLAM_STATE current Lexeme: Lexeme{lexeme=!=, startLineIndex=9, endLineIndex=10, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 8
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=8, startLineIndex=11, endLineIndex=11, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering IDT_KEY_STATE char under consideration: w
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=w, startLineIndex=13, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: o
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=wo, startLineIndex=13, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: r
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=wor, startLineIndex=13, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=word, startLineIndex=13, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=words, startLineIndex=13, endLineIndex=17, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_EXCLAM_STATE char under consideration: !
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_EXCLAM_STATE current Lexeme: Lexeme{lexeme=!=, startLineIndex=18, endLineIndex=19, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: Entering IDT_KEY_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a, startLineIndex=20, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: c
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=ac, startLineIndex=20, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: t
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=act, startLineIndex=20, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=acti, startLineIndex=20, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: o
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=actio, startLineIndex=20, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=action, startLineIndex=20, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=actions, startLineIndex=20, endLineIndex=26, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering INT_LIT_STATE char under consideration: 2
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=2, startLineIndex=28, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: .
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0., startLineIndex=6, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
-DEBUG: Entering FLT_LIT_STATE char under consideration: 1
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=2., startLineIndex=28, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: 3
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.1, startLineIndex=6, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=2.3, startLineIndex=28, endLineIndex=30, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_EXCLAM_STATE char under consideration: !
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_EXCLAM_STATE current Lexeme: Lexeme{lexeme=!=, startLineIndex=31, endLineIndex=32, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 3
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=3, startLineIndex=33, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: .
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=3., startLineIndex=33, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 2
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.12, startLineIndex=6, endLineIndex=9, lineIndexInFile=15, isComplete=true, isValid=true}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=3.2, startLineIndex=33, endLineIndex=35, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering INT_LIT_STATE char under consideration: 5
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=5, startLineIndex=1, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: .
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=5., startLineIndex=1, endLineIndex=0, lineIndexInFile=18, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: 0
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=5.0, startLineIndex=1, endLineIndex=3, lineIndexInFile=18, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<=, startLineIndex=4, endLineIndex=5, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 3
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=3, startLineIndex=6, endLineIndex=0, lineIndexInFile=20, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: .
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=3., startLineIndex=6, endLineIndex=0, lineIndexInFile=20, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: 6
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=3.6, startLineIndex=6, endLineIndex=8, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: >
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=>=, startLineIndex=9, endLineIndex=10, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 9
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=9, startLineIndex=11, endLineIndex=0, lineIndexInFile=20, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: .
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=9., startLineIndex=11, endLineIndex=0, lineIndexInFile=20, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: 7
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=9.7, startLineIndex=11, endLineIndex=13, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<, startLineIndex=14, endLineIndex=14, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 4
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=4, startLineIndex=15, endLineIndex=15, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<, startLineIndex=16, endLineIndex=16, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 4
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=4, startLineIndex=17, endLineIndex=0, lineIndexInFile=20, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: .
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=4., startLineIndex=17, endLineIndex=0, lineIndexInFile=20, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: 5
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=4.5, startLineIndex=17, endLineIndex=19, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: *
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=*=, startLineIndex=20, endLineIndex=21, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: Entering INT_LIT_STATE char under consideration: 6
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=6, startLineIndex=22, endLineIndex=0, lineIndexInFile=20, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: .
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=6., startLineIndex=22, endLineIndex=0, lineIndexInFile=20, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: 7
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=6.7, startLineIndex=22, endLineIndex=24, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=1, endLineIndex=1, lineIndexInFile=20, isComplete=true, isValid=true}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=3, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
+DEBUG: Entering ERR_CHEW_STATE char under consideration: 0
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00, startLineIndex=3, endLineIndex=4, lineIndexInFile=22, isComplete=true, isValid=false}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=6, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: .
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0., startLineIndex=6, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: 1
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.1, startLineIndex=6, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
+DEBUG: Entering FLT_LIT_STATE char under consideration: 2
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.12, startLineIndex=6, endLineIndex=9, lineIndexInFile=22, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering INT_LIT_STATE char under consideration: 1
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=1, startLineIndex=11, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=1, startLineIndex=11, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=10, startLineIndex=11, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting INT_LIT_STATE current Lexeme: Lexeme{lexeme=10, startLineIndex=11, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: .
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=10., startLineIndex=11, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=10., startLineIndex=11, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 2
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=10.2, startLineIndex=11, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=10.2, startLineIndex=11, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 5
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=10.25, startLineIndex=11, endLineIndex=15, lineIndexInFile=15, isComplete=true, isValid=true}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=10.25, startLineIndex=11, endLineIndex=15, lineIndexInFile=22, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=17, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=17, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00, startLineIndex=17, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00, startLineIndex=17, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: .
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00., startLineIndex=17, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00., startLineIndex=17, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 3
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00.3, startLineIndex=17, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00.3, startLineIndex=17, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 6
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00.36, startLineIndex=17, endLineIndex=21, lineIndexInFile=15, isComplete=true, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00.36, startLineIndex=17, endLineIndex=21, lineIndexInFile=22, isComplete=true, isValid=false}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: <
 DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=<=, startLineIndex=22, endLineIndex=23, lineIndexInFile=22, isComplete=true, isValid=true}
 DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=23, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=24, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: .
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0., startLineIndex=23, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0., startLineIndex=24, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.0, startLineIndex=23, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.0, startLineIndex=24, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.00, startLineIndex=23, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.00, startLineIndex=24, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.000, startLineIndex=23, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.000, startLineIndex=24, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.0000, startLineIndex=23, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.0000, startLineIndex=24, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.00000, startLineIndex=23, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.00000, startLineIndex=24, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 1
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.000001, startLineIndex=23, endLineIndex=30, lineIndexInFile=15, isComplete=true, isValid=true}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.000001, startLineIndex=24, endLineIndex=31, lineIndexInFile=22, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=32, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=33, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00, startLineIndex=32, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00, startLineIndex=33, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=000, startLineIndex=32, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=000, startLineIndex=33, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0000, startLineIndex=32, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0000, startLineIndex=33, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: a
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0000a, startLineIndex=32, endLineIndex=36, lineIndexInFile=15, isComplete=true, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0000a, startLineIndex=33, endLineIndex=37, lineIndexInFile=22, isComplete=true, isValid=false}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=38, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=39, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: a
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0a, startLineIndex=38, endLineIndex=39, lineIndexInFile=15, isComplete=true, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0a, startLineIndex=39, endLineIndex=40, lineIndexInFile=22, isComplete=true, isValid=false}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: a
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a, startLineIndex=41, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a, startLineIndex=42, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a0, startLineIndex=41, endLineIndex=42, lineIndexInFile=15, isComplete=true, isValid=true}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a0, startLineIndex=42, endLineIndex=43, lineIndexInFile=22, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=44, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=45, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00, startLineIndex=44, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00, startLineIndex=45, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: .
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00., startLineIndex=44, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00., startLineIndex=45, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 1
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00.1, startLineIndex=44, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00.1, startLineIndex=45, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00.10, startLineIndex=44, endLineIndex=48, lineIndexInFile=15, isComplete=true, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=00.10, startLineIndex=45, endLineIndex=49, lineIndexInFile=22, isComplete=true, isValid=false}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=1, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=1, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: .
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0., startLineIndex=1, endLineIndex=0, lineIndexInFile=15, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0., startLineIndex=1, endLineIndex=0, lineIndexInFile=22, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: a
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0.a, startLineIndex=1, endLineIndex=3, lineIndexInFile=15, isComplete=true, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0.a, startLineIndex=1, endLineIndex=3, lineIndexInFile=22, isComplete=true, isValid=false}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: a
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a, startLineIndex=5, endLineIndex=5, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a, startLineIndex=5, endLineIndex=5, lineIndexInFile=23, isComplete=true, isValid=true}
 DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: .
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=., startLineIndex=6, endLineIndex=6, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=., startLineIndex=6, endLineIndex=6, lineIndexInFile=23, isComplete=true, isValid=true}
 DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=7, endLineIndex=7, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=7, endLineIndex=7, lineIndexInFile=23, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering ZERO_INT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=10, endLineIndex=0, lineIndexInFile=16, isComplete=false, isValid=false}
+DEBUG: Exiting ZERO_INT_LIT_STATE current Lexeme: Lexeme{lexeme=0, startLineIndex=10, endLineIndex=0, lineIndexInFile=23, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: .
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0., startLineIndex=10, endLineIndex=0, lineIndexInFile=16, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0., startLineIndex=10, endLineIndex=0, lineIndexInFile=23, isComplete=false, isValid=false}
 DEBUG: Entering FLT_LIT_STATE char under consideration: 0
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.0, startLineIndex=10, endLineIndex=0, lineIndexInFile=16, isComplete=false, isValid=false}
+DEBUG: Exiting FLT_LIT_STATE current Lexeme: Lexeme{lexeme=0.0, startLineIndex=10, endLineIndex=0, lineIndexInFile=23, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: a
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0.0a, startLineIndex=10, endLineIndex=0, lineIndexInFile=16, isComplete=false, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0.0a, startLineIndex=10, endLineIndex=0, lineIndexInFile=23, isComplete=false, isValid=false}
 DEBUG: Entering ERR_CHEW_STATE char under consideration: 1
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0.0a1, startLineIndex=10, endLineIndex=14, lineIndexInFile=16, isComplete=true, isValid=false}
+DEBUG: Exiting ERR_CHEW_STATE current Lexeme: Lexeme{lexeme=0.0a1, startLineIndex=10, endLineIndex=14, lineIndexInFile=23, isComplete=true, isValid=false}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: (
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=(, startLineIndex=1, endLineIndex=1, lineIndexInFile=16, isComplete=true, isValid=true}
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=(, startLineIndex=1, endLineIndex=1, lineIndexInFile=23, isComplete=true, isValid=true}
 DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: )
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=), startLineIndex=2, endLineIndex=2, lineIndexInFile=17, isComplete=true, isValid=true}
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=), startLineIndex=2, endLineIndex=2, lineIndexInFile=24, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: f
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=f, startLineIndex=4, endLineIndex=0, lineIndexInFile=17, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=f, startLineIndex=4, endLineIndex=0, lineIndexInFile=24, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: u
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=fu, startLineIndex=4, endLineIndex=0, lineIndexInFile=17, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=fu, startLineIndex=4, endLineIndex=0, lineIndexInFile=24, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: n
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=fun, startLineIndex=4, endLineIndex=0, lineIndexInFile=17, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=fun, startLineIndex=4, endLineIndex=0, lineIndexInFile=24, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: c
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=func, startLineIndex=4, endLineIndex=7, lineIndexInFile=17, isComplete=true, isValid=true}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=func, startLineIndex=4, endLineIndex=7, lineIndexInFile=24, isComplete=true, isValid=true}
 DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: (
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=(, startLineIndex=8, endLineIndex=8, lineIndexInFile=17, isComplete=true, isValid=true}
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=(, startLineIndex=8, endLineIndex=8, lineIndexInFile=24, isComplete=true, isValid=true}
 DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: )
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=), startLineIndex=9, endLineIndex=9, lineIndexInFile=17, isComplete=true, isValid=true}
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=), startLineIndex=9, endLineIndex=9, lineIndexInFile=24, isComplete=true, isValid=true}
 DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: ,
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=,, startLineIndex=10, endLineIndex=10, lineIndexInFile=17, isComplete=true, isValid=true}
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=,, startLineIndex=10, endLineIndex=10, lineIndexInFile=24, isComplete=true, isValid=true}
 DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: ;
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=;, startLineIndex=11, endLineIndex=11, lineIndexInFile=17, isComplete=true, isValid=true}
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=;, startLineIndex=11, endLineIndex=11, lineIndexInFile=24, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: A
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=A, startLineIndex=1, endLineIndex=0, lineIndexInFile=17, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=A, startLineIndex=1, endLineIndex=0, lineIndexInFile=24, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: n
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=An, startLineIndex=1, endLineIndex=0, lineIndexInFile=17, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=An, startLineIndex=1, endLineIndex=0, lineIndexInFile=24, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: d
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=And, startLineIndex=1, endLineIndex=3, lineIndexInFile=17, isComplete=true, isValid=true}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=And, startLineIndex=1, endLineIndex=3, lineIndexInFile=24, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: a
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=a, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: n
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=an, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=an, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: o
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=ano, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=ano, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: t
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=anot, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=anot, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: h
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=anoth, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=anoth, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: e
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=anothe, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=anothe, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: r
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=another, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=another, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: 4
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=another4, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=another4, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: 4
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=another44, startLineIndex=5, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=another44, startLineIndex=5, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: 3
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=another443, startLineIndex=5, endLineIndex=14, lineIndexInFile=21, isComplete=true, isValid=true}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=another443, startLineIndex=5, endLineIndex=14, lineIndexInFile=28, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: o
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=o, startLineIndex=16, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=o, startLineIndex=16, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: n
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=on, startLineIndex=16, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=on, startLineIndex=16, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: e
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=one, startLineIndex=16, endLineIndex=18, lineIndexInFile=21, isComplete=true, isValid=true}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=one, startLineIndex=16, endLineIndex=18, lineIndexInFile=28, isComplete=true, isValid=true}
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
@@ -1086,31 +1558,31 @@ DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: w
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=w, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=w, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: h
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=wh, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=wh, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: i
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whi, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whi, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: t
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whit, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whit, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: e
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=white, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=white, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: s
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whites, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whites, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: p
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitesp, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitesp, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: a
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespa, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespa, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: c
 DEBUG: PUMP_SUCCESS
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespac, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespac, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: e
 DEBUG: END_OF_FILE
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespace, startLineIndex=37, endLineIndex=0, lineIndexInFile=21, isComplete=false, isValid=false}
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespace, startLineIndex=37, endLineIndex=0, lineIndexInFile=28, isComplete=false, isValid=false}

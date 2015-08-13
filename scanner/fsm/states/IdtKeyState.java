@@ -34,7 +34,7 @@ public class IdtKeyState extends State{
         if ( Character.isLetterOrDigit(underConsideration) ) {
 
             // We are able to loop so return early
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.IDT_KEY_STATE));
+            this.getExecutionContext().setNextState ( StateManager.getState ( StateManager.StateClass.IDT_KEY_STATE ) );
             return;
 
         }  else if ( SignificantCharacters.isOperatorOrDelimiter( underConsideration ) ) {
@@ -45,8 +45,14 @@ public class IdtKeyState extends State{
 
         } else if ( Character.isWhitespace( underConsideration ) ) {
 
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true);
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            this.getExecutionContext().exposeLexeme().setIsComplete( true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true );
+            this.getExecutionContext().setNextState( StateManager.getState( StateManager.StateClass.START_STATE ) );
+
+        } else if ( SignificantCharacters.isOperatorOrDelimiter( underConsideration ) ||
+                    underConsideration == SignificantCharacters.EXCLAM.asChar() ) {
+
+            this.getExecutionContext().exposeLexeme().setIsComplete( true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true );
+            this.getExecutionContext().setNextState( StateManager.getState( StateManager.StateClass.START_STATE ) );
 
         } else {
 
