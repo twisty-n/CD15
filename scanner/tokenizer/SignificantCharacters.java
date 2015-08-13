@@ -27,7 +27,8 @@ public enum SignificantCharacters {
     LESS_OP('<'),
     GREAT_OP('>'),
     QUOTE('"'),
-    SEMICOLON(';')
+    SEMICOLON(';'),
+    EXCLAM('!'),
     ;
 
 
@@ -70,6 +71,23 @@ public enum SignificantCharacters {
             default : return false;
 
         }
+
+    }
+
+    /**
+     * Returns true if the character is a general component in a
+     * multi character operator
+     * This includes '<', '>', '+', '-', '*'
+     * @param character
+     * @return
+     */
+    public static boolean isGeneralMultiCharOpComponent(char character) {
+
+        return  character == LEFT_BRACE.asChar ||
+                character == RIGHT_BRACE.asChar ||
+                character == PLUS_OP.asChar ||
+                character == MINUS_OP.asChar ||
+                character == STAR_OP.asChar;
 
     }
 

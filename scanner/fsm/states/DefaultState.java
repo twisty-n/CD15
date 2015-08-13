@@ -2,6 +2,7 @@ package scanner.fsm.states;
 
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
+import scanner.tokenizer.SignificantCharacters;
 
 /**
  * Author:          Tristan Newmann
@@ -61,12 +62,25 @@ public class DefaultState extends State {
         } else if ( underConsideration == '0' ) {
 
             // Need to handle where its just a 0
-            // Remember, the specs say that multiple zeros are just multiple int_lit 0's
-
-            // Behaviour change, we are manually taking control of lexeme tracking for this
-            //this.getExecutionContext().exposeLexeme().addCharToLexeme(this.getExecutionContext().getCharacterForConsideration());
-            //this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ZERO_INT_LIT_STATE));
+
+        } else if ( SignificantCharacters.isGeneralMultiCharOpComponent( underConsideration ) ) {
+
+            // Transition to generalized multi-op component state
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_MULTIOP_COMP_STATE));
+
+        } else if ( SignificantCharacters.isOperatorOrDelimiter( underConsideration )
+                    && ! SignificantCharacters.isGeneralMultiCharOpComponent ( underConsideration )) {
+
+            this.getExecutionContext().setNextState(StateManager.getState( StateManager.StateClass.SEEN_STANDALONE_OP_OR_DELIM ));
+
+        } else if (underConsideration == SignificantCharacters.EXCLAM.asChar()) {
+
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_EXCLAM_STATE));
+
+        } else if (underConsideration == SignificantCharacters.SLASH_OP.asChar()) {
+
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_SLASH_STATE));
 
         }
 
