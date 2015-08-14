@@ -1,6 +1,7 @@
 package io;
 
 import scanner.tokenizer.Token;
+import scanner.tokenizer.TokenClass;
 
 import java.io.PrintStream;
 import java.util.ArrayList;
@@ -35,12 +36,32 @@ public class A1Output extends AssignmentOutput {
 
     public void addTokenToBuffer(Token token) {
 
+        // If we encounter a TUNDF, flush the buffer, add token to buffer and then flush
+        if (token.getTokenClass() == TokenClass.TUNDF) {
+            /*
+            this.flushBufferToConsole();
+            this.clearBuffer();
+            String s = token.shortString();
+            s = s.replace("\n", "");
+            this.out.print(s);
+            this.out.flush();
+            this.out.print('\n');
+            */
+            if ( this.tokenBuffer.size() > 0 ) {
+                this.flushBufferToConsole();
+            }
+            this.clearBuffer();
+            this.tokenBuffer.add(token);
+            this.flushBufferToConsole();
+            this.clearBuffer();
+            return;
+        }
+
         // We always push into the token buffer first
         tokenBuffer.add(token);
-
         this.lineCharacterCount += token.shortString().length();
 
-        if ( this.lineCharacterCount > 60 ) {
+        if ( this.lineCharacterCount > LINE_BUFFER_LENGTH ) {
             this.flushBufferToConsole();
             this.clearBuffer();
         }
@@ -51,10 +72,8 @@ public class A1Output extends AssignmentOutput {
     Removes tokens from token output stream and resets line char count
      */
     private void clearBuffer() {
-
         this.lineCharacterCount = 0;
         this.tokenBuffer.clear();
-
     }
 
 
@@ -63,7 +82,7 @@ public class A1Output extends AssignmentOutput {
         for ( Token token : this.tokenBuffer ) {
             this.out.print( token.shortString() );
         }
-
+        out.append('\n');
         out.flush();
     }
 }
