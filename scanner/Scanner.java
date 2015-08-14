@@ -1,8 +1,13 @@
 package scanner;
 
+import config.CompilerConfig;
+import io.A1Output;
 import io.InputController;
 import scanner.fsm.StateMachine;
+import scanner.tokenizer.Lexeme;
 import scanner.tokenizer.Token;
+import scanner.tokenizer.TokenClass;
+import scanner.tokenizer.TokenFactory;
 import utils.DebugWriter;
 
 /**
@@ -19,6 +24,7 @@ public class Scanner {
     private InputController.InputStatus lastReportedInputStatus;
     private InputController input;
     private StateMachine fsm;
+    private A1Output outputForA1;
 
     /**
      * default with no settings
@@ -49,6 +55,7 @@ public class Scanner {
 
         // Configure the flying spaghetti machine
         this.fsm = new StateMachine(this, this.input);
+        this.outputForA1 = new A1Output(CompilerConfig.getDebugOutputLocation(CompilerConfig.OUT_LOCATION.STD_OUT));
     }
 
     /**
@@ -72,22 +79,46 @@ public class Scanner {
     }
 
     /**
-     * Returns the next token identified
+     * Obtains the next lexeme from the FSM and will transform and return into a token
+     * Method will return null if the obtained lexeme was a comment, or was an invalid token
      * @return
      */
-    public Token getToken() {
+    private Token getToken() {
 
-        // First use the FSL to obtain the lexeme
+        //First use the FSL to obtain the lexeme
+        Lexeme lex = this.fsm.obtainLexeme();
+        Token token = null;
 
-        //this.fsm.obtainLexeme();
+        // If the token is a comment or is undefined, return null
+        if ( ! lex.isComment() && lex.isValid() ) {
+            token =  TokenFactory.constructToken(lex);
+            outputForA1.addTokenToBuffer(token);
+            return token;
+        }
 
-        // Also need to get the start of the token information. We will track this in the FSM
-        //Tokenizer.MakeToken(lexeme, this.)
-
-        // Then pass to the tokenizer with the physical values to obtain a Token
+        // FOR ASSIGNMENT 1 **********************
+        if ( ! lex.isComment() ) {
+            token = TokenFactory.constructToken(lex);
+            this.outputForA1.addTokenToBuffer( token );
+        }
 
         // Return the token
-        return null;
+        return token;
+
+    }
+
+    /**
+     * Will return the next VALID token to the caller
+     * @return
+     */
+    public Token getNextToken() {
+
+        // Strip out non-valid tokens from the stream returned to the caller
+        Token token = null;
+        do {
+            token = this.getToken();
+        } while( token == null );       // Spin while the obtained token is null. A null token is something invalid
+        return token;
 
     }
 

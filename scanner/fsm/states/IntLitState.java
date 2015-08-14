@@ -4,6 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.SignificantCharacter;
+import scanner.tokenizer.TokenClass;
 
 /**
  * Author:          Tristan Newmann
@@ -56,19 +57,28 @@ public class IntLitState extends State {
 
             // We've hit white space, this acts as a delimiter so
             // set the lexeme as complete
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            this.acceptIntegerLiteral(charObj);
             return;
 
         } else {
 
             // We can also merge this state with the above, but will leave it seperately
             // for semantic reasons!
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            this.acceptIntegerLiteral(charObj);
             return;
 
         }
+
+    }
+
+    private void acceptIntegerLiteral(ReturnCharacter charObj) {
+
+        this.getExecutionContext().exposeLexeme().setIsComplete(
+                true,
+                charObj.getIndexOnLine() - 1,
+                true, TokenClass.TILIT
+        );
+        this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
 
     }
 

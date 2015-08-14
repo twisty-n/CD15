@@ -22,12 +22,17 @@ public class Lexeme {
     private boolean isComment;
 
     private boolean isComplete;
+    private TokenClass tokenSuggestion;     // Assigned by the FSM if lexeme requires classification from state
+                                            // That is, if we can't use implicit classification
+                                            // it will take a value of INT_LIT, FLT_LIT or STRING_CONSTANT
+                                            // OR TUNDF if we are invalid
 
     public Lexeme() {
         this(0, 0, 0, "");
         this.isComplete = false;
         this.isValid = false;
         this.isComment = false;
+        this.tokenSuggestion = null;
     }
 
     public Lexeme(int startLineIndex, int endLineIndex, int lineIndexInFile, String file) {
@@ -38,6 +43,7 @@ public class Lexeme {
         this.file = file;
         this.isValid = false;
         this.isComment = false;
+        this.tokenSuggestion = null;
     }
 
     /**
@@ -93,7 +99,27 @@ public class Lexeme {
         this.isComment = isComment;
     }
 
+    /**
+     * Set a lexeme as being complete and mark it with a classification suggestion
+     * @param isComplete
+     * @param endLineIndex
+     * @param isValid
+     * @param tokenSuggestion
+     */
+    public void setIsComplete(boolean isComplete, int endLineIndex, boolean isValid, TokenClass tokenSuggestion) {
+        this.setIsComplete(isComplete, endLineIndex, isValid);
+        this.tokenSuggestion = tokenSuggestion;
+    }
+
+    /**
+     * Returns true if this token has a token suggestion
+     * @return
+     */
+    public boolean hasSuggestion() { return this.tokenSuggestion != null; }
+
     public boolean isComment() { return this.isComment; }
+
+    public boolean isValid() { return this.isValid; }
 
     public int getStartLineIndex() {
         return startLineIndex;
@@ -125,6 +151,17 @@ public class Lexeme {
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    public TokenClass getTokenSuggestion() {
+
+        // If this token is invalid, we will return TUNDF
+        // if it has a suggestion, return it, else return null
+        if ( ! this.isValid ) {
+            return TokenClass.TUNDF;
+        }
+        return this.tokenSuggestion;
+
     }
 
     @Override

@@ -1,8 +1,10 @@
 package scanner.fsm.states;
 
+import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.SignificantCharacter;
+import scanner.tokenizer.TokenClass;
 
 /**
  * Author:          Tristan Newmann
@@ -28,38 +30,36 @@ public class IdtKeyState extends State{
     public void execute() {
 
         this.getExecutionContext().readNextCharacter();
-        char underConsideration = this.getExecutionContext().getCharacterForConsideration().getCharacter();
+        ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
+        char underConsideration = charObj.getCharacter();
 
         // Loop while we continue to see characters or numbers
         if ( Character.isLetterOrDigit(underConsideration) ) {
-
             // We are able to loop so return early
             this.getExecutionContext().setNextState ( StateManager.getState ( StateManager.StateClass.IDT_KEY_STATE ) );
             return;
-
         }  else if ( SignificantCharacter.isOperatorOrDelimiter(underConsideration) ) {
-            // TODO review what to do if we hit certain operators here
-            // We've encountered something else
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true);
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
-
+           this.acceptIdent(charObj);
         } else if ( Character.isWhitespace( underConsideration ) ) {
-
-            this.getExecutionContext().exposeLexeme().setIsComplete( true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true );
-            this.getExecutionContext().setNextState( StateManager.getState( StateManager.StateClass.START_STATE ) );
-
+            this.acceptIdent(charObj);
         } else if ( SignificantCharacter.isOperatorOrDelimiter(underConsideration) ||
                     underConsideration == SignificantCharacter.EXCLAM.asChar() ) {
-
-            this.getExecutionContext().exposeLexeme().setIsComplete( true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true );
-            this.getExecutionContext().setNextState( StateManager.getState( StateManager.StateClass.START_STATE ) );
-
+           this.acceptIdent(charObj);
         } else {
-
             // Its some form of illegal symbol enter the error chewer
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.GEN_ERR_CHEW_STATE));
-
         }
+
+    }
+
+    private void acceptIdent(ReturnCharacter charObj) {
+
+        this.getExecutionContext().exposeLexeme().setIsComplete(
+                true,
+                charObj.getIndexOnLine() - 1,
+                true, TokenClass.TIDNT
+        );
+        this.getExecutionContext().setNextState( StateManager.getState( StateManager.StateClass.START_STATE ) );
 
     }
 

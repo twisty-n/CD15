@@ -1,5 +1,10 @@
 package io;
 
+import scanner.tokenizer.Token;
+
+import java.io.PrintStream;
+import java.util.ArrayList;
+
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181
@@ -12,22 +17,53 @@ package io;
  */
 public class A1Output extends AssignmentOutput {
 
-    @Override
-    /**
-     *
-     */
-    public void writeConsoleOutput(String output) {
-        // implement this as per specifications
-        // We will need to track the number of chars printed to the line and go onto a new line where needed
-        // To do that, we will need an internal buffer in this class that flushes when needed
+    // Create a char buffer and a token buffer
+    // add tokens to buffer, when tokens exceed 60 print line
+    // clear buffer
+
+    private final int LINE_BUFFER_LENGTH = 60;
+
+    ArrayList<Token> tokenBuffer;
+    private int lineCharacterCount;
+    private PrintStream out;
+
+    public A1Output(PrintStream writeLocation) {
+        this.tokenBuffer = new ArrayList<>();
+        this.lineCharacterCount = 0;
+        this.out = writeLocation;
     }
 
-    @Override
-    /**
-     *
+    public void addTokenToBuffer(Token token) {
+
+        // We always push into the token buffer first
+        tokenBuffer.add(token);
+
+        this.lineCharacterCount += token.shortString().length();
+
+        if ( this.lineCharacterCount > 60 ) {
+            this.flushBufferToConsole();
+            this.clearBuffer();
+        }
+
+    }
+
+    /*
+    Removes tokens from token output stream and resets line char count
      */
-    public void writeFileOutput(String output) {
-        // This will need not be implemented for this assignment, unless we want to use it to print the
-        // program listing through the output listing controller
+    private void clearBuffer() {
+
+        this.lineCharacterCount = 0;
+        this.tokenBuffer.clear();
+
+    }
+
+
+    private void flushBufferToConsole() {
+
+        for ( Token token : this.tokenBuffer ) {
+            this.out.print( token.shortString() );
+        }
+
+        out.flush();
     }
 }

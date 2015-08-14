@@ -1,3 +1,5 @@
+0.0000
+
 this is a series53453 of characters
 Uh oh a new line 452 123
 14 34 212  123abc 123.0012
@@ -56,3 +58,10 @@ And another443 one                  whitespace
 "now an invalid one
 "now a valid one"
 var thing = "My new String literal";
+var empty = ""
+
+program end arras proc var val local loop exit when if then else elsif call with
+input print printline not and or xor div length
+
++/+
+fsdfgsdfgsdfgs

@@ -33,35 +33,30 @@ package scanner.tokenizer;
 //
 public class Token {
 
-    private TokenClass tid;	// token identifier
-    private int line;		// line number on listing
-    private int pos;		// character position within line
-    private String file;    // The physical file that the token belongs to. Potential support for multifile
-    private String str;		// actual lexeme character string from scanner
+    private TokenClass tokenClass;	            // token identifier
+    private int lineIndexInFile;		        // lineIndexInFile number on listing
+    private int characterStartPositionOnLine;   // character starting position within lineIndexInFile
+    private int characterEndPositionOnLine;		// character ending position within lineIndexInFile
+    private String file;                        // The physical file that the token belongs to. Potential support for multifile
+    private String lexeme;		                // actual lexeme character string from scanner
 //	private StRec symbol;	// symbol table entry - used in Pt3 for the Parser, not needed in Pt1
 
-    public Token(TokenClass t, int ln, int p, String s, String file) {
-        this.tid = t;
-        this.line = ln;
-        this.pos = p;
-        this.str = s;
+    public Token(TokenClass tokenClass, int lineStartingPosition,
+                 int lineEndingPosition,  int lineIndexInFile,
+                 String file, String lexeme) {
+        this.tokenClass = tokenClass;
+        this.lineIndexInFile = lineIndexInFile;
+        this.characterStartPositionOnLine = lineStartingPosition;
+        this.characterEndPositionOnLine = lineEndingPosition;
+        this.lexeme = lexeme;
         this.file = file;
-
-        // Identifier token could be a reserved keyword in CD15. So we need to check
-        if (tid == TokenClass.TIDNT) {
-            TokenClass v = checkKeywords(s);
-            // if keyword, alter token type
-            if (v != TokenClass.TIDNT) {
-                tid = v; str = null;
-            }
-        }
 //		symbol = null;	// initially null, got from Parser SymTab lookup if TIDNT/TILIT/TFLIT/TSTRG
     }
 
-    public TokenClass value() { return tid; }
-    public int getLn() { return line; }
-    public int getPos() { return pos; }
-    public String getStr() { return str; }
+    public TokenClass getTokenClass() { return tokenClass; }
+    public int getLineIndexInFile() { return lineIndexInFile; }
+    public int getCharacterStartPositionOnLine() { return characterStartPositionOnLine; }
+    public String getLexeme() { return lexeme; }
     public String getFile() { return this.file; }
 
     /*  Needed for part three
@@ -69,30 +64,19 @@ public class Token {
         public void setSymbol(StRec x) {symbol = x; }
     */
 
-    private TokenClass checkKeywords(String s) {
-        s = s.toLowerCase();		// change to lower case before checking
-        if ( s.equals("program") )	return TokenClass.TPROG;
-
-        // TODO change this to use a switch on the string
-
-        //**********************************************
-        //	OTHER KEYWORDS CAN BE CHECKED HERE
-        //**********************************************
-
-        return TokenClass.TIDNT;		// not a Keyword, therefore an <id>
-    }
+    // HERE BE DRAGONS
 
     public String toString() {		// toString method is only meant to be used for debug printing
-        String s = tid.toString();
+        String s = tokenClass.toString();
         while (s.length() % 6 != 0) s = s + " ";
-        s = s +" " + line + " " + pos;
-        if (str == null) return s;
-        if (tid != TokenClass.TUNDF)
-            s += " " + str;
+        s = s +" " + lineIndexInFile + " " + characterStartPositionOnLine;
+        if (lexeme == null) return s;
+        if (tokenClass != TokenClass.TUNDF)
+            s += " " + lexeme;
         else {
             s += " ";
-            for (int i=0; i<str.length(); i++) { // output non-printables as ascii codes
-                char ch = str.charAt(i);
+            for (int i=0; i< lexeme.length(); i++) { // output non-printables as ascii codes
+                char ch = lexeme.charAt(i);
                 int j = (int)ch;
                 if (j <= 31 || j >= 127) s += "\\" +j; else s += ch;
             }
@@ -101,26 +85,30 @@ public class Token {
     }
 
     public String shortString() {		// provides a String that may be useful for Part 1 printed output
-        String s = tid.name() + " ";
-        if (str == null) return s;
-        if (tid != TokenClass.TUNDF) {
-            if (tid == TokenClass.TSTRG)
-                s += "\"" + str + "\" ";
+        String s = tokenClass.name() + " ";
+        if (lexeme == null) return s;
+        if (tokenClass != TokenClass.TUNDF) {
+            if (tokenClass == TokenClass.TSTRG)
+                s += "\"" + lexeme + "\" ";
             else
-                s += str + " ";
+                s += lexeme + " ";
             int j = (6 - s.length()%6) % 6;
             for (int i=0; i<j; i++)
                 s += " ";
             return s;
         }
         s = "\n" + s;
-        for (int i=0; i<str.length(); i++) { // output non-printables as ascii codes
-            char ch = str.charAt(i);
+        for (int i=0; i< lexeme.length(); i++) { // output non-printables as ascii codes
+            char ch = lexeme.charAt(i);
             int j = (int)ch;
             if (j <= 31 || j >= 127) s += "\\" +j; else s += ch;
         }
         s += "\n";
         return s;
+    }
+
+    public void forceTokenLexemeMutation(String lex) {
+        this.lexeme = lex;
     }
 
 }

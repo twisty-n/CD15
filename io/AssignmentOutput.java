@@ -11,18 +11,5 @@ package io;
  */
 public abstract class AssignmentOutput {
 
-    /**
-     * Write the specified output to the console
-     * @param output
-     */
-    public abstract void writeConsoleOutput( String output );
-
-    /**
-     * Writes the specified output to predefined file
-     * @param output
-     */
-    public abstract void writeFileOutput( String output );
-
-
 
 }

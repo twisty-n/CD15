@@ -13,6 +13,8 @@ import config.CompilerConfig;
  */
 public class DebugWriter {
 
+    private final static boolean DEBUG = true;
+
     /**
      * Prints the information to the debug file
      * @param information
@@ -28,6 +30,12 @@ public class DebugWriter {
      * @param information
      */
     public static void writeToConsole(String information) {
+
+        if (DEBUG) {
+            DebugWriter.writeToFile(information);
+            return;
+        }
+
         CompilerConfig.getDebugOutputLocation(CompilerConfig.OUT_LOCATION.STD_OUT).println(
                 "DEBUG: " + information
         );

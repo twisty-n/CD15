@@ -4,6 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.SignificantCharacter;
+import scanner.tokenizer.TokenClass;
 
 /**
  * Author:          Tristan Newmann
@@ -48,7 +49,11 @@ public class FltLitState extends State {
         } else {
 
             // Another operator, or whitespace or whatever
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
+            this.getExecutionContext().exposeLexeme().setIsComplete(
+                    true,
+                    charObj.getIndexOnLine() - 1,
+                    true, TokenClass.TFLIT
+            );
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
 
         }

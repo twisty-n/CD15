@@ -4,6 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.SignificantCharacter;
+import scanner.tokenizer.TokenClass;
 import utils.DebugWriter;
 
 /**
@@ -53,7 +54,8 @@ public class StringConstantState extends State {
             this.getExecutionContext().exposeLexeme().setIsComplete(
                     true,
                     charObj.getIndexOnLine() - 1,
-                    true
+                    true,
+                    TokenClass.TSTRG
             );
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
             this.getExecutionContext().readNextCharacter();
