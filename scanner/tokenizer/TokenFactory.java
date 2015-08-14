@@ -86,8 +86,8 @@ public class TokenFactory {
             case "-"        :    return  TokenClass.TSUBT;
             case "*"        :    return  TokenClass.TMULT;
             case "/"        :    return  TokenClass.TDIVD;
-            case "<"        :    return  TokenClass.TGRTR;
-            case ">"        :    return  TokenClass.TLESS;
+            case "<"        :    return  TokenClass.TLESS;
+            case ">"        :    return  TokenClass.TGRTR;
             case "."        :    return  TokenClass.TDOTT;
             case "<="       :    return  TokenClass.TLEQL;
             case ">="       :    return  TokenClass.TGREQ;

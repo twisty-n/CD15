@@ -1,67 +1,38 @@
-0.0000
-
-this is a series53453 of characters
-Uh oh a new line 452 123
-14 34 212  123abc 123.0012
-12.0 1.2 1.abc 1.587abc
-1.58200.12
-1.a.258
-512 458.21;
-
-1 2 3, 4
-
-Ille~gal Il#egal### not.Illegal
-; !! Illegal! = ! more illegal
-[ ]
-5<=6>=3*=2+=34
-
-< = > * = <= *=*=><*= <+=><=+
-
-5 != 3 2!^=8 words!=actions 2.3!=3.2/=<<=//
-
-/= =/ 5/=4.0 4.0/= abc/=123.4
-
-5.0<=3.6>=9.7<4<4.5*=6.7
-
-5/=45 5/6 6.0/=2 abc/345
-
-10.0 <<= 5
-
-+/+  This is some as well
-This is some multi line comment
+program myprog = new program;
++++ ++=
+--- --=
 +/+
-
-// +/+ ^&$
-
-      +/+ This is not a MLC
-+/=
-+/ HELP
-
-//+
-
-// This isa  line comment
-
-va~lid+=newValid-123.0 <= 56 // ,+====== <= testing out new line stuff!
-
-0 00 0.1~2 10.25 00.36<=0.00&&0001 0000a 0a a0 00.10
-0.a a.0  0.0a1
-() func(),;
-
-
-Ohh Illegal ~~`` `` ~ ! @=/>&&%
-
-
-And another443 one                  whitespace
-
-"NOW we have a String literals"=+"and another"
-
-"now an invalid one
-"now a valid one"
-var thing = "My new String literal";
-var empty = ""
-
-program end arras proc var val local loop exit when if then else elsif call with
-input print printline not and or xor div length
-
+blarghjrkeg
 +/+
-fsdfgsdfgsdfgs
+/ / / / /=
+//ifakjhbsd asdf + +/+ something
+... ..=
+<<< <<=
+>>> >>=
+=== ===
+;;; ;;=
+]]] ]]=
+[[[ ][[=
+((( ((=
+))) ))=
+*** **=
+"hello"5"ahoy""You Smell
+"funny"
+0
+0.1
+123
+123.456.78.910
+123.+"a"-=3/2=.1
+12."hello"12.12
+>=
++.-/*""!+/+
+123.abc
+program end arrays procedure var val local loop exit when if then else elsif call with input print printline not or and xor div length
+pro
+gram
+ +/+
+ 
+ 
+"something
+here "
++/+
