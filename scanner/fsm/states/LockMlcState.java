@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 import utils.DebugWriter;
 
 /**
@@ -44,7 +44,7 @@ public class LockMlcState extends State {
         char charCh = charObj.getCharacter();
 
         // Loop around this state until we find a new line
-        if ( charCh != SignificantCharacters.NEW_LINE.asChar() ) {
+        if ( charCh != SignificantCharacter.NEW_LINE.asChar() ) {
 
             // chew chew chew chew!
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.LOCK_MLC_STATE));

@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -39,12 +39,12 @@ public class ZeroIntLitState extends State{
             this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
 
-        } else if ( charCh == SignificantCharacters.DOT_OP.asChar() ) {
+        } else if ( charCh == SignificantCharacter.DOT_OP.asChar() ) {
 
             // We may have a 0 level floating point literal
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.FLT_LIT_STATE));
 
-        } else if ( SignificantCharacters.isOperatorOrDelimiter( charCh )  ) {
+        } else if ( SignificantCharacter.isOperatorOrDelimiter(charCh)  ) {
 
             // We know its not a dotOperator so we have some other op or delim
             this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);

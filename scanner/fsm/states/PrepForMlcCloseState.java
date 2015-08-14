@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -32,7 +32,7 @@ public class PrepForMlcCloseState extends State {
         ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
         char charCh = charObj.getCharacter();
 
-        if ( charCh == SignificantCharacters.PLUS_OP.asChar() ) {
+        if ( charCh == SignificantCharacter.PLUS_OP.asChar() ) {
 
             // We have enough to try for a MLC Closer
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.TRY_FOR_MLC_CLOSE_STATE));

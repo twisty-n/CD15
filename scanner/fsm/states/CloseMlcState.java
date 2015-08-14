@@ -4,7 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.Lexeme;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -29,7 +29,7 @@ public class CloseMlcState extends State {
         char charCh = charObj.getCharacter();
 
         // If we see a plus we have just found the terminator for our multiline comment
-        if ( charCh == SignificantCharacters.PLUS_OP.asChar() ) {
+        if ( charCh == SignificantCharacter.PLUS_OP.asChar() ) {
 
             // Add the '+' to the lexeme
             // close the Lexeme and mark as a comment

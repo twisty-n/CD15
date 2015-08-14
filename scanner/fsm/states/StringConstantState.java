@@ -3,8 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.Lexeme;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 import utils.DebugWriter;
 
 /**
@@ -30,7 +29,7 @@ public class StringConstantState extends State {
         // For our string literals, we dont want the " stored as part of it, so ignore on char add
         ReturnCharacter preLex = this.getExecutionContext().getCharacterForConsideration();
         if (preLex.getCharacter() != '\n'
-                && preLex.getCharacter() != SignificantCharacters.QUOTE.asChar()) {
+                && preLex.getCharacter() != SignificantCharacter.QUOTE.asChar()) {
             this.getExecutionContext().exposeLexeme().addCharToLexeme(preLex);
         }
 
@@ -48,7 +47,7 @@ public class StringConstantState extends State {
         ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
         char charCh = charObj.getCharacter();
 
-        if ( charCh == SignificantCharacters.QUOTE.asChar() ) {
+        if ( charCh == SignificantCharacter.QUOTE.asChar() ) {
 
             // Terminate string constant, making sure not to include the "
             this.getExecutionContext().exposeLexeme().setIsComplete(
@@ -59,7 +58,7 @@ public class StringConstantState extends State {
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
             this.getExecutionContext().readNextCharacter();
 
-        } else if ( charCh == SignificantCharacters.NEW_LINE.asChar() ) {
+        } else if ( charCh == SignificantCharacter.NEW_LINE.asChar() ) {
 
             // This is an invalid terminator mark it and then set up the next state to go
             this.getExecutionContext().exposeLexeme().setIsComplete(

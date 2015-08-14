@@ -4,7 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.Lexeme;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -35,12 +35,12 @@ public class BeginMlcState extends State {
         // that explicity
         // That leaves a '/' or literally anything else
 
-        if ( charCh == SignificantCharacters.SLASH_OP.asChar() ) {
+        if ( charCh == SignificantCharacter.SLASH_OP.asChar() ) {
 
             // we have a '/' so try for MLC  final char
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.TRY_FOR_MLC_STATE));
 
-        } else if ( charCh == SignificantCharacters.ASSIGN_OP.asChar() ) {
+        } else if ( charCh == SignificantCharacter.ASSIGN_OP.asChar() ) {
 
             // handle the += case explicity the same as SeenMultiOperatorComponent
             lex.addCharToLexeme(charObj);

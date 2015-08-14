@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 import utils.DebugWriter;
 
 /**
@@ -42,7 +42,7 @@ public class LineCommentState extends State {
         char charCh = charObj.getCharacter();
 
         // Consume and add to the lexeme until we get to the \n operator
-        if ( charCh != SignificantCharacters.NEW_LINE.asChar() ) {
+        if ( charCh != SignificantCharacter.NEW_LINE.asChar() ) {
 
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.LINE_COMMENT_STATE));
 

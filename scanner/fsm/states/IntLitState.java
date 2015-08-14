@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -37,7 +37,7 @@ public class IntLitState extends State {
             this.getExecutionContext().setNextState( StateManager.getState(StateManager.StateClass.INT_LIT_STATE) );
             return;
 
-        } else if ( charCh == SignificantCharacters.DOT_OP.asChar() ) {
+        } else if ( charCh == SignificantCharacter.DOT_OP.asChar() ) {
 
             // We've seen a dot operator, so now we will try to get a
             // floating point literal

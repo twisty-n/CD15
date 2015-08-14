@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -35,7 +35,7 @@ This function servers generally well cooked steaks, so that you have to eat and 
         ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
         char charCh = charObj.getCharacter();
 
-        if ( Character.isWhitespace( charCh ) || SignificantCharacters.isOperatorOrDelimiter( charCh ) ) {
+        if ( Character.isWhitespace( charCh ) || SignificantCharacter.isOperatorOrDelimiter(charCh) ) {
 
             // This will terminate the error
             this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, false);

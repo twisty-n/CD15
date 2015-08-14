@@ -2,7 +2,7 @@ package scanner.fsm.states;
 
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -37,7 +37,7 @@ public class IdtKeyState extends State{
             this.getExecutionContext().setNextState ( StateManager.getState ( StateManager.StateClass.IDT_KEY_STATE ) );
             return;
 
-        }  else if ( SignificantCharacters.isOperatorOrDelimiter( underConsideration ) ) {
+        }  else if ( SignificantCharacter.isOperatorOrDelimiter(underConsideration) ) {
             // TODO review what to do if we hit certain operators here
             // We've encountered something else
             this.getExecutionContext().exposeLexeme().setIsComplete(true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true);
@@ -48,8 +48,8 @@ public class IdtKeyState extends State{
             this.getExecutionContext().exposeLexeme().setIsComplete( true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true );
             this.getExecutionContext().setNextState( StateManager.getState( StateManager.StateClass.START_STATE ) );
 
-        } else if ( SignificantCharacters.isOperatorOrDelimiter( underConsideration ) ||
-                    underConsideration == SignificantCharacters.EXCLAM.asChar() ) {
+        } else if ( SignificantCharacter.isOperatorOrDelimiter(underConsideration) ||
+                    underConsideration == SignificantCharacter.EXCLAM.asChar() ) {
 
             this.getExecutionContext().exposeLexeme().setIsComplete( true, this.getExecutionContext().getCharacterForConsideration().getIndexOnLine() - 1, true );
             this.getExecutionContext().setNextState( StateManager.getState( StateManager.StateClass.START_STATE ) );

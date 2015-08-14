@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -39,7 +39,7 @@ public class FltLitState extends State {
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ERR_CHEW_STATE));
             return;
 
-        } else if ( charCh == SignificantCharacters.DOT_OP.asChar() ) {
+        } else if ( charCh == SignificantCharacter.DOT_OP.asChar() ) {
 
             // Another error point
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ERR_CHEW_STATE));

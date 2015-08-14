@@ -46,6 +46,8 @@ valid+=newValid-123.0 <= 56 // ,+====== <= testing out new line stuff!
 () func(),;
 
 
+Ohh Illegal ~~`` `` ~ ! @=/>&&%
+
 
 And another443 one                  whitespace
 

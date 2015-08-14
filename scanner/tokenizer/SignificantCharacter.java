@@ -9,7 +9,7 @@ package scanner.tokenizer;
  * Project Name:    CD15 Compiler
  * Description:     TODO Write DEscription
  */
-public enum SignificantCharacters {
+public enum SignificantCharacter {
 
     DOT_OP('.'),
     NEW_LINE('\n'),
@@ -40,7 +40,23 @@ public enum SignificantCharacters {
         return asChar;
     }
 
-    private SignificantCharacters(char asChar) {
+    /**
+     * Will return true if the char parameter is defined as a significant
+     * character for the CD15 language
+     * @param character
+     * @return
+     */
+    public static boolean isSignificantCharacter(char character) {
+
+        for (SignificantCharacter sigChar : SignificantCharacter.class.getEnumConstants()) {
+            if (sigChar.asChar == character ) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private SignificantCharacter(char asChar) {
         this.asChar = asChar;
     }
 

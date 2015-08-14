@@ -4,7 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.Lexeme;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -32,7 +32,7 @@ public class SeenMultiOperatorComponentState extends State {
         // if its an '=' we have the second component for one of the multi
         // char operators.
         Lexeme lex = this.getExecutionContext().exposeLexeme();
-        if ( charCh == SignificantCharacters.ASSIGN_OP.asChar() ) {
+        if ( charCh == SignificantCharacter.ASSIGN_OP.asChar() ) {
             // Manially deal with the input stream here
             lex.addCharToLexeme ( charObj );
             lex.setIsComplete (

@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -31,7 +31,7 @@ public class TryForMlcState extends State{
         // Specified behaviour: only valid transition is through seeing another plus
         // if we detect anything else, terminate lexeme, report as invalid and report
         // error
-        if ( charCh != SignificantCharacters.PLUS_OP.asChar() ) {
+        if ( charCh != SignificantCharacter.PLUS_OP.asChar() ) {
 
             // WRONG WRONG WRONG WRONG, WRONG WRONG WRONG WRRRRRROOOONGGGG
             this.getExecutionContext().exposeLexeme().setIsComplete(

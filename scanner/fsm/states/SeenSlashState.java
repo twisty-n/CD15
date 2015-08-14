@@ -4,7 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.Lexeme;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -31,7 +31,7 @@ public class SeenSlashState extends State {
         Lexeme lex = this.getExecutionContext().exposeLexeme();
 
         // If next char is '=' we have a /= character
-        if ( charCh == SignificantCharacters.ASSIGN_OP.asChar() ) {
+        if ( charCh == SignificantCharacter.ASSIGN_OP.asChar() ) {
             // Complete lexeme and prepare charBuffer for default state
             lex.addCharToLexeme ( charObj );
             lex.setIsComplete(
@@ -42,7 +42,7 @@ public class SeenSlashState extends State {
             this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState( StateManager.getState ( StateManager.StateClass.START_STATE ) );
 
-        } else if ( charCh == SignificantCharacters.SLASH_OP.asChar() ) {
+        } else if ( charCh == SignificantCharacter.SLASH_OP.asChar() ) {
 
             // if next char is // we have a line comment, consume until \n
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.LINE_COMMENT_STATE));

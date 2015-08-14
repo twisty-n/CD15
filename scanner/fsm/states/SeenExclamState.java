@@ -4,7 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.Lexeme;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -34,7 +34,7 @@ public class SeenExclamState extends State {
 
         Lexeme lex = this.getExecutionContext().exposeLexeme();
 
-        if ( charCh == SignificantCharacters.ASSIGN_OP.asChar() ) {
+        if ( charCh == SignificantCharacter.ASSIGN_OP.asChar() ) {
 
             // We have a valid '!=' save it and prepare the fsm for
             // accepting input again as per SMOCS standard

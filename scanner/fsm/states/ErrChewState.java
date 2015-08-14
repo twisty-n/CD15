@@ -3,7 +3,7 @@ package scanner.fsm.states;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
-import scanner.tokenizer.SignificantCharacters;
+import scanner.tokenizer.SignificantCharacter;
 
 /**
  * Author:          Tristan Newmann
@@ -39,8 +39,8 @@ public class ErrChewState extends State  {
 
         if (
                 Character.isWhitespace( charCh ) ||
-                ( SignificantCharacters.isOperatorOrDelimiter( charCh )
-                        && charCh != SignificantCharacters.DOT_OP.asChar() )
+                ( SignificantCharacter.isOperatorOrDelimiter(charCh)
+                        && charCh != SignificantCharacter.DOT_OP.asChar() )
         ) {
 
             // This will terminate the error
