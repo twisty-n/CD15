@@ -13,6 +13,7 @@ public enum SignificantCharacters {
 
     DOT_OP('.'),
     NEW_LINE('\n'),
+    TAB('\t'),
     SPACE(' '),
     LEFT_BRACE('['),
     RIGHT_BRACE(']'),
@@ -29,6 +30,7 @@ public enum SignificantCharacters {
     QUOTE('"'),
     SEMICOLON(';'),
     EXCLAM('!'),
+    ZERO('0'),
     ;
 
 

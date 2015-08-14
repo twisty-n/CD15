@@ -48,3 +48,9 @@ valid+=newValid-123.0 <= 56 // ,+====== <= testing out new line stuff!
 
 
 And another443 one                  whitespace
+
+"NOW we have a String literals"=+"and another"
+
+"now an invalid one
+"now a valid one"
+var thing = "My new String literal";

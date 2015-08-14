@@ -39,7 +39,8 @@ public class DefaultState extends State {
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.IDT_KEY_STATE));
             return;
 
-        } else if ( underConsideration == '\t' || underConsideration == ' ' ) {
+        } else if ( underConsideration == SignificantCharacters.TAB.asChar()
+                || underConsideration == SignificantCharacters.SPACE.asChar() ) {
 
             // We are considering just simple whitespace. Not proceeding a new line
             // So consume and stay here
@@ -47,25 +48,32 @@ public class DefaultState extends State {
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
             return;
 
-        } else if ( underConsideration == '\n' ) {
+        } else if ( underConsideration == SignificantCharacters.NEW_LINE.asChar() ) {
 
             // Ignore and consume for now, but we will eventually go to multi-line comment handling
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.PREP_FOR_MLC_STATE));
             return;
 
-        } else if ( Character.isDigit(underConsideration) && underConsideration != '0' ) {
+        } else if ( Character.isDigit(underConsideration)
+                && underConsideration != SignificantCharacters.ZERO.asChar() ) {
 
             // We have the beginnings of an integer or floating point literal
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.INT_LIT_STATE));
 
-        } else if ( underConsideration == '0' ) {
+        } else if ( underConsideration == SignificantCharacters.ZERO.asChar() ) {
 
             // Need to handle where its just a 0
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.ZERO_INT_LIT_STATE));
 
+        } else if ( underConsideration == SignificantCharacters.QUOTE.asChar() ) {
+
+            // Handle the case where its a string constant
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.STRING_CONSTANT_STATE));
+
         } else if ( SignificantCharacters.isGeneralMultiCharOpComponent( underConsideration ) ) {
 
-            // Transition to generalized multi-op component state
+            // Transition to generalized multi-op component state to handle ops or delims that may be
+            // part of ops like += or !=
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_MULTIOP_COMP_STATE));
 
         } else if ( SignificantCharacters.isOperatorOrDelimiter( underConsideration )
@@ -73,7 +81,8 @@ public class DefaultState extends State {
                     && ! (underConsideration == SignificantCharacters.SLASH_OP.asChar())
             ) {
 
-            // Transition to standalone operator or delimiter state
+            // Transition to standalone operator or delimiter state to handle standalone
+            // operators: they aren't part of multicomponent operators
             this.getExecutionContext().setNextState(StateManager.getState( StateManager.StateClass.SEEN_STANDALONE_OP_OR_DELIM ));
 
         } else if (underConsideration == SignificantCharacters.EXCLAM.asChar()) {
@@ -83,14 +92,8 @@ public class DefaultState extends State {
 
         } else if (underConsideration == SignificantCharacters.SLASH_OP.asChar() ) {
 
-            // We've seen a slash, so its iether an operator, or a line comment. handle it!
+            // We've seen a slash, so its either an operator, or a line comment. handle it!
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_SLASH_STATE));
-
-        } else if (underConsideration == SignificantCharacters.NEW_LINE.asChar()) {
-
-            // We've seen a NEWLINE. Enter possible handling of multiline comments
-            // Remember, MLC's always need to be at the beginning of the line
-
 
         } else {
 

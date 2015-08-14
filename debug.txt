@@ -747,6 +747,130 @@ DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
 DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
 DEBUG: END_OF_FILE
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering IDT_KEY_STATE char under consideration: t
@@ -2783,5 +2907,366 @@ DEBUG: Entering IDT_KEY_STATE char under consideration: c
 DEBUG: PUMP_SUCCESS
 DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespac, 	startLineIndex=37, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
 DEBUG: Entering IDT_KEY_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespace, 	startLineIndex=37, 	endLineIndex=46, 	lineIndexInFile=50, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: Entering PREP_FOR_MLC_STATE char under consideration: 
+
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting PREP_FOR_MLC_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering PREP_FOR_MLC_STATE char under consideration: 
+
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting PREP_FOR_MLC_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: "
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: N
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=N, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: O
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NO, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: W
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: w
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW w, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: h
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we h, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we ha, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: v
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we hav, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: S
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a S, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: t
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a St, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: r
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a Str, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a Stri, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a Strin, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String l, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String li, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: t
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String lit, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String lite, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: r
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String liter, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String litera, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String literal, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=NOW we have a String literals, 	startLineIndex=2, 	endLineIndex=30, 	lineIndexInFile=50, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: =
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme==, 	startLineIndex=32, 	endLineIndex=32, 	lineIndexInFile=52, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: Entering SEEN_MULTIOP_COMP_STATE char under consideration: +
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_MULTIOP_COMP_STATE current Lexeme: Lexeme{lexeme=+, 	startLineIndex=33, 	endLineIndex=33, 	lineIndexInFile=52, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: "
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=a, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=an, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and , 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and a, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and an, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: o
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and ano, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: t
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and anot, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: h
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and anoth, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and anothe, 	startLineIndex=35, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: r
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=and another, 	startLineIndex=35, 	endLineIndex=45, 	lineIndexInFile=52, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: Entering PREP_FOR_MLC_STATE char under consideration: 
+
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting PREP_FOR_MLC_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering PREP_FOR_MLC_STATE char under consideration: 
+
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting PREP_FOR_MLC_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: "
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=n, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: o
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=no, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: w
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an i, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an in, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: v
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an inv, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an inva, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an inval, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an invali, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an invalid, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an invalid , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: o
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an invalid o, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an invalid on, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=52, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now an invalid one, 	startLineIndex=2, 	endLineIndex=20, 	lineIndexInFile=52, 	isComplete=true, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: "
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=n, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: o
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=no, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: w
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: v
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a v, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a va, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a val, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a vali, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a valid, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a valid , 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: o
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a valid o, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a valid on, 	startLineIndex=2, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=now a valid one, 	startLineIndex=2, 	endLineIndex=16, 	lineIndexInFile=55, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: Entering PREP_FOR_MLC_STATE char under consideration: 
+
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting PREP_FOR_MLC_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: v
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=v, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=va, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=55, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: r
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=var, 	startLineIndex=1, 	endLineIndex=3, 	lineIndexInFile=55, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering IDT_KEY_STATE char under consideration: t
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=t, 	startLineIndex=5, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: h
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=th, 	startLineIndex=5, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=thi, 	startLineIndex=5, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=thin, 	startLineIndex=5, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering IDT_KEY_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=thing, 	startLineIndex=5, 	endLineIndex=9, 	lineIndexInFile=56, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: =
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme==, 	startLineIndex=11, 	endLineIndex=11, 	lineIndexInFile=56, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: PUMP_SUCCESS
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: "
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=, 	startLineIndex=0, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: M
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=M, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: y
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My , 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My n, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My ne, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: w
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new , 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: S
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new S, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: t
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new St, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: r
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new Str, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new Stri, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: n
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new Strin, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String , 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String l, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: i
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String li, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: t
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String lit, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: e
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String lite, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: r
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String liter, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String litera, 	startLineIndex=14, 	endLineIndex=0, 	lineIndexInFile=56, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering STRING_CONSTANT_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting STRING_CONSTANT_STATE current Lexeme: Lexeme{lexeme=My new String literal, 	startLineIndex=14, 	endLineIndex=34, 	lineIndexInFile=56, 	isComplete=true, 	isValid=true, 	isComment=false}
+DEBUG: Entering SEEN_STANDALONE_OP_OR_DELIM char under consideration: ;
 DEBUG: END_OF_FILE
-DEBUG: Exiting IDT_KEY_STATE current Lexeme: Lexeme{lexeme=whitespace, 	startLineIndex=37, 	endLineIndex=0, 	lineIndexInFile=50, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Exiting SEEN_STANDALONE_OP_OR_DELIM current Lexeme: Lexeme{lexeme=;, 	startLineIndex=36, 	endLineIndex=36, 	lineIndexInFile=56, 	isComplete=true, 	isValid=true, 	isComment=false}

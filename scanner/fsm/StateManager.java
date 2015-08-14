@@ -61,6 +61,7 @@ public class StateManager {
             case TRY_FOR_MLC_CLOSE_STATE:       return new TryForMlcCloseState(executionContext);
             case CLOSE_MLC_STATE     :          return new CloseMlcState(executionContext);
 
+            case STRING_CONSTANT_STATE:         return new StringConstantState(executionContext);
 
             // If there is no corresponding state. This should happpen. This should never happen
             default: return new FatalErrorState(executionContext);
@@ -91,6 +92,7 @@ public class StateManager {
         PREP_FOR_MLC_CLOSE_STATE,
         TRY_FOR_MLC_CLOSE_STATE,
         CLOSE_MLC_STATE,
+        STRING_CONSTANT_STATE,
     }
 
 }
