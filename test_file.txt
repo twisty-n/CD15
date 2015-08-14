@@ -15,7 +15,7 @@ Ille~gal Il#egal### not.Illegal
 
 < = > * = <= *=*=><*= <+=><=+
 
-5 != 3 2!=8 words!=actions 2.3!=3.2/=<<=//
+5 != 3 2!^=8 words!=actions 2.3!=3.2/=<<=//
 
 /= =/ 5/=4.0 4.0/= abc/=123.4
 
@@ -29,7 +29,7 @@ Ille~gal Il#egal### not.Illegal
 This is some multi line comment
 +/+
 
-// +/+
+// +/+ ^&$
 
       +/+ This is not a MLC
 +/=
@@ -39,9 +39,9 @@ This is some multi line comment
 
 // This isa  line comment
 
-valid+=newValid-123.0 <= 56 // ,+====== <= testing out new line stuff!
+va~lid+=newValid-123.0 <= 56 // ,+====== <= testing out new line stuff!
 
-0 00 0.12 10.25 00.36<=0.000001 0000a 0a a0 00.10
+0 00 0.1~2 10.25 00.36<=0.00&&0001 0000a 0a a0 00.10
 0.a a.0  0.0a1
 () func(),;
 
