@@ -25,6 +25,16 @@ Ille~gal Il#egal### not.Illegal
 
 10.0 <<= 5
 
++/+  This is some as well
+This is some multi line comment
++/+
+
+// +/+
+
+      +/+ This is not a MLC
++/=
++/ HELP
+
 //+
 
 // This isa  line comment

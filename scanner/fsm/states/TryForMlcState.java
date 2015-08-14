@@ -14,9 +14,9 @@ import scanner.tokenizer.SignificantCharacters;
  * Project Name:    CD15
  * Description:
  */
-public class TryForMlc extends State{
+public class TryForMlcState extends State{
 
-    public TryForMlc(StateMachine executionContext) {
+    public TryForMlcState(StateMachine executionContext) {
         super(executionContext);
     }
 
@@ -53,6 +53,6 @@ public class TryForMlc extends State{
 
     @Override
     public StateManager.StateClass getStateClass() {
-        return null;
+        return StateManager.StateClass.TRY_FOR_MLC_STATE;
     }
 }

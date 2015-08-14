@@ -50,8 +50,7 @@ public class DefaultState extends State {
         } else if ( underConsideration == '\n' ) {
 
             // Ignore and consume for now, but we will eventually go to multi-line comment handling
-            this.getExecutionContext().readNextCharacter();
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.PREP_FOR_MLC_STATE));
             return;
 
         } else if ( Character.isDigit(underConsideration) && underConsideration != '0' ) {

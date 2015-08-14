@@ -4,6 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.SignificantCharacters;
+import utils.DebugWriter;
 
 /**
  * Author:          Tristan Newmann
@@ -18,6 +19,18 @@ public class LineCommentState extends State {
 
     public LineCommentState ( StateMachine executionContext ) {
         super ( executionContext );
+    }
+
+    @Override
+    public void enterState() {
+
+        DebugWriter.writeToFile("Entering " + getStateClass().name() + " char under consideration: " + this.getExecutionContext().getCharacterForConsideration().getCharacter());
+
+        ReturnCharacter preLex = this.getExecutionContext().getCharacterForConsideration();
+
+        // We want to add whitespace to the lexeme for comments
+        this.getExecutionContext().exposeLexeme().addCharToLexeme(preLex);
+
     }
 
     @Override
@@ -41,7 +54,7 @@ public class LineCommentState extends State {
                     true,
                     charObj.getIndexOnLine(),
                     true,
-                    true
+                    true        // Marking as a comment
             );
 
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));

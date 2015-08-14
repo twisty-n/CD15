@@ -38,7 +38,7 @@ public class BeginMlcState extends State {
         if ( charCh == SignificantCharacters.SLASH_OP.asChar() ) {
 
             // we have a '/' so try for MLC  final char
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.TRY_FOR_MLC));
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.TRY_FOR_MLC_STATE));
 
         } else if ( charCh == SignificantCharacters.ASSIGN_OP.asChar() ) {
 
@@ -63,6 +63,6 @@ public class BeginMlcState extends State {
 
     @Override
     public StateManager.StateClass getStateClass() {
-        return null;
+        return StateManager.StateClass.BEGIN_MLC_STATE;
     }
 }

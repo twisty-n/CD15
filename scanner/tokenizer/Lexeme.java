@@ -131,11 +131,12 @@ public class Lexeme {
     public String toString() {
         return "Lexeme{" +
                 "lexeme=" + lexeme +
-                ", startLineIndex=" + startLineIndex +
-                ", endLineIndex=" + endLineIndex +
-                ", lineIndexInFile=" + lineIndexInFile +
-                ", isComplete=" + isComplete +
-                ", isValid=" + isValid +
+                ", \tstartLineIndex=" + startLineIndex +
+                ", \tendLineIndex=" + endLineIndex +
+                ", \tlineIndexInFile=" + lineIndexInFile +
+                ", \tisComplete=" + isComplete +
+                ", \tisValid=" + isValid +
+                ", \tisComment=" + isComment +
                 '}';
     }
 }

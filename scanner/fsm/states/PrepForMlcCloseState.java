@@ -9,35 +9,39 @@ import scanner.tokenizer.SignificantCharacters;
  * Author:          Tristan Newmann
  * Student Number:  c3163181
  * Email:           c3163181@uon.edu.au
- * Date Created:    13/08/15
- * File Name:       PrepForMlc
+ * Date Created:    14/08/15
+ * File Name:       PrepForMlcCloseState
  * Project Name:    CD15
  * Description:
  */
-public class PrepForMlcState extends State {
+public class PrepForMlcCloseState extends State {
 
-    public PrepForMlcState(StateMachine executionContext) {
+    public PrepForMlcCloseState(StateMachine executionContext) {
         super(executionContext);
     }
+
 
     @Override
     public void execute() {
 
-        // We've seen a new line, so increment and check for a +
+        // We have seen a '\n' at this point
+        // Our options are a continuation of the comment
+        // or a plus, which might signal the end of a delimiter
+
         this.getExecutionContext().readNextCharacter();
         ReturnCharacter charObj = this.getExecutionContext().getCharacterForConsideration();
         char charCh = charObj.getCharacter();
 
-        // If we see a plus, set to beginMLC
         if ( charCh == SignificantCharacters.PLUS_OP.asChar() ) {
 
-            // Leave + in buffer to be added to lexeme
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.BEGIN_MLC_STATE));
+            // We have enough to try for a MLC Closer
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.TRY_FOR_MLC_CLOSE_STATE));
+
 
         } else {
 
-            // Else leave in buffer and refer to start state
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            // It must just be a part of the comment
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.LOCK_MLC_STATE));
 
         }
 
@@ -45,6 +49,6 @@ public class PrepForMlcState extends State {
 
     @Override
     public StateManager.StateClass getStateClass() {
-        return StateManager.StateClass.PREP_FOR_MLC_STATE;
+        return StateManager.StateClass.PREP_FOR_MLC_CLOSE_STATE;
     }
 }
