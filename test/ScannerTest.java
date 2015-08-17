@@ -43,9 +43,9 @@ public class ScannerTest {
         System.out.println("RUNNING SCANNER TESTS!");
         while ( scanner.canContinue() ) {
 
-            scanner.getNextToken();
+            scanner.getNextValidToken();
 
-            //DebugWriter.writeToConsole( "Report Token: " + scanner.getNextToken()  + "\t Scanner Status: " +scanner.getInputStatus().name() );
+            //DebugWriter.writeToConsole( "Report Token: " + scanner.getNextValidToken()  + "\t Scanner Status: " +scanner.getInputStatus().name() );
         }
 
     }

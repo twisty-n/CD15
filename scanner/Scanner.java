@@ -55,6 +55,7 @@ public class Scanner {
 
         // Configure the flying spaghetti machine
         this.fsm = new StateMachine(this, this.input);
+        // TODO: modify the output location when mofiying for assignment 2
         this.outputForA1 = new A1Output(CompilerConfig.getDebugOutputLocation(CompilerConfig.OUT_LOCATION.STD_OUT));
     }
 
@@ -97,10 +98,12 @@ public class Scanner {
         }
 
         // FOR ASSIGNMENT 1 **********************
+        // Note that we might include the compilation unit stuff here
         if ( ! lex.isComment() ) {
             token = TokenFactory.constructToken(lex);
             this.outputForA1.addTokenToBuffer( token );
         }
+        // END ASSIGNMENT 1 ***********************
 
         // Return the token
         return token;
@@ -111,13 +114,13 @@ public class Scanner {
      * Will return the next VALID token to the caller
      * @return
      */
-    public Token getNextToken() {
+    public Token getNextValidToken() {
 
         // Strip out non-valid tokens from the stream returned to the caller
         Token token = null;
         do {
             token = this.getToken();
-        } while( token == null );       // Spin while the obtained token is null. A null token is something invalid
+        } while( token == null );       // Spin while the obtained token is null. A null token is something invalid or a comment or whatnot
         return token;
 
     }

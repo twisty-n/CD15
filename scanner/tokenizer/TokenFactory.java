@@ -11,6 +11,14 @@ package scanner.tokenizer;
  */
 public class TokenFactory {
 
+    /**
+     * Constructs a token from a Lexeme
+     * if the Lexeme represents a comment, we will return null
+     * Else, if the lexeme has not been marked as accepted, we will return TUNDF
+     * OTherwise, we will return a classified lexeme
+     * @param lex
+     * @return
+     */
     public static Token constructToken(Lexeme lex) {
 
         // Build the token
@@ -133,7 +141,7 @@ public class TokenFactory {
             case "xor"      : return TokenClass.TXORK;
             case "div"      : return TokenClass.TIDIV;
             case "length"   : return TokenClass.TLENG;
-            default         : return TokenClass.TIDNT;
+            default         : return TokenClass.TIDNT;      // If its not a keyword, its an identifier
 
         }
     }
