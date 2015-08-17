@@ -61,7 +61,7 @@ public class A1Output extends AssignmentOutput {
         tokenBuffer.add(token);
         this.lineCharacterCount += token.shortString().length();
 
-        if ( this.lineCharacterCount > LINE_BUFFER_LENGTH ) {
+        if ( this.lineCharacterCount >= LINE_BUFFER_LENGTH ) {
             this.flushBufferToConsole();
             this.clearBuffer();
         }
