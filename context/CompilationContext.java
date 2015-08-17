@@ -1,5 +1,7 @@
 package context;
 
+import context.error.CompilationError;
+
 import java.util.ArrayList;
 
 /**
@@ -13,24 +15,25 @@ import java.util.ArrayList;
  */
 public abstract class CompilationContext {
 
-    private CompilationContext currentContext;
+    private  CompilationContext currentContext;
+    protected ArrayList<CompilationError> errorBuffer;
 
     /**
      * Sets the current phase that the compiler is in
      * @param compilationPhase
      */
-    public void setCurrentContext(Phase compilationPhase) {
+    public final void setCurrentContext(Phase compilationPhase) {
 
         this.currentContext.close();
         switch (compilationPhase) {
 
             case LEXICAL_ANALYSIS: {
-                this.currentContext = new ScanningContext();
+                //this.currentContext = new ScanningContext();
                 break;
             }
 
             case SYNTACTIC_ANALYSIS: {
-                this.currentContext = new ParsingContext();
+                //this.currentContext = new ParsingContext();
                 break;
             }
         }
