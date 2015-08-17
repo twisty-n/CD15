@@ -4,6 +4,7 @@ import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
 import scanner.tokenizer.SignificantCharacter;
+import scanner.tokenizer.TokenClass;
 
 /**
  * Author:          Tristan Newmann
@@ -36,7 +37,12 @@ public class ZeroIntLitState extends State{
         if ( Character.isWhitespace( charCh ) ) {
 
             // We've seen whitespace, we have a valid integer literal to consider
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
+            this.getExecutionContext().exposeLexeme().setIsComplete(
+                    true,
+                    charObj.getIndexOnLine() - 1,
+                    true,
+                    TokenClass.TILIT
+            );
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
 
         } else if ( charCh == SignificantCharacter.DOT_OP.asChar() ) {

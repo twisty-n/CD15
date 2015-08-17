@@ -42,7 +42,7 @@ public class IntLitState extends State {
 
             // We've seen a dot operator, so now we will try to get a
             // floating point literal
-            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.FLT_LIT_STATE));
+            this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.SEEN_DOT_IN_INT_LIT));
             return;
 
         } else if ( Character.isAlphabetic(charCh) ) {

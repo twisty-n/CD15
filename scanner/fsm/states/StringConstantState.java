@@ -68,6 +68,7 @@ public class StringConstantState extends State {
                     charObj.getIndexOnLine(),
                     false
             );
+            this.getExecutionContext().exposeLexeme().wrapLexemeInQuotes();
             //this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
 

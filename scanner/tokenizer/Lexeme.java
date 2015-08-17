@@ -164,6 +164,16 @@ public class Lexeme {
 
     }
 
+    /**
+     * Wraps the current lexeme in quotation marks
+     */
+    public void wrapLexemeInQuotes() {
+
+        this.lexeme.append('"');
+        this.lexeme.insert(0, '"');
+
+    }
+
     @Override
     public String toString() {
         return "Lexeme{" +

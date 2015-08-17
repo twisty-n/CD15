@@ -43,6 +43,7 @@ public class StateManager {
             case START_STATE        :           return new DefaultState(executionContext);
             case IDT_KEY_STATE      :           return new IdtKeyState(executionContext);
             case INT_LIT_STATE      :           return new IntLitState(executionContext);
+            case SEEN_DOT_IN_INT_LIT:           return new SeenDotInIntLit(executionContext);
             case FLT_LIT_STATE      :           return new FltLitState(executionContext);
             case ZERO_INT_LIT_STATE :           return new ZeroIntLitState(executionContext);
             case ERR_CHEW_STATE     :           return new ErrChewState(executionContext);
@@ -95,6 +96,7 @@ public class StateManager {
         CLOSE_MLC_STATE,
         STRING_CONSTANT_STATE,
         ILLEGAL_CHARACTER_STATE,
+        SEEN_DOT_IN_INT_LIT,
     }
 
 }
