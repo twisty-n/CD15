@@ -1,5 +1,6 @@
 package io;
 
+import context.CompilationContext;
 import utils.DebugWriter;
 import scanner.Scanner;
 
@@ -116,7 +117,9 @@ public class InputController {
             );
             this.context.reportInputStatus(InputStatus.FATAL_ERROR);
         } finally {
-            return new ReturnCharacter(returnChar, this.charIndexOnLine, this.lineIndexInFile, this.currentFile);
+            ReturnCharacter retChar = new ReturnCharacter(returnChar, this.charIndexOnLine, this.lineIndexInFile, this.currentFile);
+            CompilationContext.getContext().bufferSourceCharacter(retChar);
+            return retChar;
         }
     }
 

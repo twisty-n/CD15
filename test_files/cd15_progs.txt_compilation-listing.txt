@@ -1,0 +1,222 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compilation Listing.
+Source File: test_files/cd15_progs.txt
+Total Compilation Errors: 12
+Lexical Errors: 12
+Syntatic Errors: 0
+Semantic Errors: 0
+CodeGen Errors: 0
+Optimization Errors: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+1		|| // Tristan Newmann Phase 2 c3163181
+2		|| 
+3		|| program p1
+4		|| +/+
+5		|| 	This program allocates a bunch of variables, optains a value from 
+6		|| 	the user to store in the variable, and then prints the result of the operations
+7		|| +/+
+8		|| 
+9		|| 	// declare local variables
+10		|| 	local variable1, variable2, userVariable1;
+11		|| 
+12		|| 	// Assign 
+13		|| 	variable1 = 2.0;
+14		|| 	variable2 = 1.0;
+15		|| 
+16		|| 	// Get input from user
+17		|| 	input userVariable1;
+18		|| 	print "Value of variable2 is ", variable2;
+19		|| 
+20		|| 	// Perform operation 
+21		|| 	variable2 = ( variable1 * variable1 ) + userVariable1;
+22		|| 	variable2 *= variable2;
+23		|| 	variable2 /= variable2;
+24		|| 
+25		|| 	// Print final v2 value
+26		|| 	print variable2;
+27		|| 
+28		|| end program p1
+29		|| 
+30		|| progam simplestWorkingProgram
+31		|| +/+
+32		|| 	The simplest program that any of us write. Prints hello world
+33		|| +/+
+34		|| 
+35		|| 	local helloString;			// Required but not used
+36		|| 	printline "Hello World!";
+37		|| 
+38		|| end program simplestWorkingProgram
+39		|| 
+40		|| program usingProcedures
+41		|| +/+
+42		|| 	Program that will demonstrate the calling environment inside a procedure
+43		|| 	The procedure maintains local variables that are looped over and incremented
+44		|| +/+
+45		|| 	proc printLocalProcVal
+46		|| 		// Set up a local calling environment to see how it behaves in CD15
+47		|| 		local varInProc, counter;
+48		|| 		counter = 10;
+49		|| 		loop inclLoop
+50		|| 			varInProc += 1;
+51		|| 			exit inclLoop when varInProc == counter;
+52		|| 		end loop inclLoop 
+53		|| 		counter += varInProc;
+54		|| 		print "varInProcValue ", varInproc;
+55		|| 	end proc printLocalProcVal
+56		|| 
+57		|| 	local incl;
+58		|| 
+59		|| 	loop mainLoop 
+60		|| 		call printLocalProcValue;
+61		|| 		exit mainLoop when incl == 1000;
+62		|| 		incl += 10;
+63		|| 	end loop mainLoop
+64		|| 
+65		|| end program usingProcedures
+66		|| 
+67		|| program usingMultipleProcedures
+68		|| +/+
+69		|| 	Program that gets user input and uses it to call a procedure
+70		|| 	To exit the program, the user must enter and conform a certain value
+71		|| 	This will test escape from inner loops
+72		|| 
+73		|| 	The procedures also accept paramters by var and val respectively, with the 
+74		|| 	second only being passed a single param
+75		|| +/+
+76		|| 
+77		|| 	proc procedure1 var p1, p2
+78		|| 		printline p1, p2;
+79		|| 	end proc procedure1
+80		|| 
+81		|| 	proc procedure2 val p1, p2
+82		|| 		printline p1, p2;
+83		|| 	end proc procedure2
+84		|| 
+85		|| 	local userIn;
+86		|| 
+87		|| 	loop mainLoop 
+88		|| 		printline "Enter '1' for proc1 and '2' for proc2";
+89		|| 		printline "Enter 0 to exit program";
+90		|| 		input userIn;
+91		|| 
+92		|| 		if userIn == 1 then
+93		|| 			call procedure1 with 10.0, 12.0;	// Call with PBR
+94		|| 		elsif userIn == 2 then
+95		|| 			call procedure2 with 3.0;			// Only pass it one value because its PBV not PBR
+96		|| 		else
+97		|| 			printline "You did not call a valid procedure";
+98		|| 		end if
+99		|| 
+100		|| 		if userIn == 0 then
+101		|| 			loop exitLoop
+102		|| 				printline "Confirm exit by entering '100'";
+103		|| 				input userIn;
+104		|| 				exit mainLoop when userIn == 100;			// test escape from nested loops
+105		|| 			end loop exitLoop
+106		|| 		end if
+107		|| 
+108		|| 	end loop mainLoop
+109		|| 
+110		|| end program usingMultipleProcedures
+111		|| 
+112		|| program usingArrays
+113		|| +/+
+114		|| 	Program decalares and then iterates over two arrays assigning values
+115		|| 	Program uses a procedure which hides a global array name to print the array
+116		|| 	We are also calling the procedure with an array
+117		|| +/+
+118		|| 	// Decl arrays
+119		|| 	arrays myArray1[20], myArray2[30]
+120		|| 
+121		|| 	// Prints given array
+122		|| 	proc printArray var array
+123		|| 		local myArray1;			// Called such to test visibility
+124		|| 		loop printLoop
+125		|| 			exit printLoop when myArray1 == array.length;
+126		|| 			print array[myArray1];
+127		|| 			myArray1 += 1;
+128		|| 		end loop printLoop
+129		|| 	end proc printArray
+130		|| 
+131		|| 	local counter;				// Assume default val = 0.0;
+132		|| 
+133		|| 	// iterate over the arrays assigning values
+134		|| 	loop assignLoop
+135		|| 		exit when counter == myArray2.length;
+136		|| 		myArray2[counter] = 2*counter;
+137		|| 		if not counter >= smallerArraySize then
+138		|| 			myArray1[counter] = myArray2 * 2.3;
+139		|| 		end if
+140		|| 		counter += 1;
+141		|| 	end loop assignLoop
+142		|| 
+143		|| 	call printArray with myArray1;
+144		|| 	call printArray with myArray2;
+145		|| 
+146		|| 	printline "complete!";
+147		|| end program usingArrays
+148		|| 
+149		|| 
+150		|| *****************************************************************************
+151		|| // Start our erronous programs!!
+152		|| program failsLexically
+153		|| 
+154		|| 	local abc123;
+155		|| 
+156		|| 	123.abc *#5 = abc123;
+157		|| 	!!!!==%^&*#&$(#*@(*&$##))
+158		|| 	" this is a string
+159		|| 	"Except not really"/?~
+160		|| 	+/+   
+161		|| 
+162		|| end program failsLexically
+163		|| 
+164		|| program failsSyntactically
+165		|| 
+166		|| 	proc procBeforeArray
+167		|| 	end proc procBefore Array
+168		|| 
+169		|| 	arrays myArray[ if sultan != 2 then 3 else 4 end if ], myArray2[5.3];
+170		|| 
+171		|| 	local myLocal = "string constant";
+172		|| 	printline *= printline "Hello!"
+173		|| 
+174		|| end program
+175		|| 
+176		|| program failsSemantically
+177		|| 	arrays array1[1], array1[5];	// Duplicate names
+178		|| 	
+179		|| 	proc testProc val arr
+180		|| 		arr[10000000] = 2;
+181		|| 	end proc testProc
+182		|| 
+183		|| 	local id;
+184		|| 
+185		|| 	printline undeclardedId;		// Undeclared identifier
+186		|| 
+187		|| 	call testProc with array1;		// Passing array by value
+188		|| 	array1[40] = 15;
+189		|| 	loop myLoop
+190		|| 		exit someOtherLoop when true == false;	// Try to escape from un-id'd loop
+191		|| 	end loop mineLoop				// Identifiers dont match
+192		|| 
+193		|| 	loop forever
+194		|| 	end loop forever
+195		|| 
+196		|| end program itWillFail				// Identifiers dont match
+197		|| ~
+Compilation Errors for Phase: LEXICAL_ANALYSIS
+Error Line: 156	Error Starting Column: 2	Error Ending Column: 6	Malformed floating point value. Floating point values should be of the form 0.0 or 12.34	Error value: '123.'
+Error Line: 156	Error Starting Column: 11	Error Ending Column: 11	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '#'
+Error Line: 157	Error Starting Column: 2	Error Ending Column: 2	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '!'
+Error Line: 157	Error Starting Column: 3	Error Ending Column: 3	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '!'
+Error Line: 157	Error Starting Column: 4	Error Ending Column: 4	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '!'
+Error Line: 157	Error Starting Column: 8	Error Ending Column: 10	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '%^&'
+Error Line: 157	Error Starting Column: 12	Error Ending Column: 14	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '#&$'
+Error Line: 157	Error Starting Column: 16	Error Ending Column: 16	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '#'
+Error Line: 157	Error Starting Column: 18	Error Ending Column: 18	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '@'
+Error Line: 157	Error Starting Column: 21	Error Ending Column: 24	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '&$##'
+Error Line: 158	Error Starting Column: 3	Error Ending Column: 20	Unclosed string literal. Are you missing a " at the end of your string?	Error value: '" this is a string"'
+Error Line: 159	Error Starting Column: 22	Error Ending Column: 23	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '?~'

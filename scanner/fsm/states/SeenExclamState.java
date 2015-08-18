@@ -1,5 +1,6 @@
 package scanner.fsm.states;
 
+import context.error.CompilationError;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
@@ -54,6 +55,7 @@ public class SeenExclamState extends State {
                     charObj.getIndexOnLine() - 1,
                     false
             );
+            CompilationError.record(this.getExecutionContext().exposeLexeme(), CompilationError.Type.UNKNOWN_CHARACTER);
         }
 
         this.getExecutionContext().setNextState( StateManager.getState ( StateManager.StateClass.START_STATE ) );

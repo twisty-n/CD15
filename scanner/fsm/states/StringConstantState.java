@@ -1,5 +1,6 @@
 package scanner.fsm.states;
 
+import context.error.CompilationError;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
@@ -71,6 +72,9 @@ public class StringConstantState extends State {
             this.getExecutionContext().exposeLexeme().wrapLexemeInQuotes();
             //this.getExecutionContext().readNextCharacter();
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+
+            // Record the error type that we have encountered
+            CompilationError.record(this.getExecutionContext().exposeLexeme(), CompilationError.Type.UNCLOSED_STRING_LITERAL);
 
         } else {
 

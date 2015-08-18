@@ -1,0 +1,196 @@
+// Tristan Newmann Phase 2 c3163181
+
+program p1
++/+
+	This program allocates a bunch of variables, optains a value from 
+	the user to store in the variable, and then prints the result of the operations
++/+
+
+	// declare local variables
+	local variable1, variable2, userVariable1;
+
+	// Assign 
+	variable1 = 2.0;
+	variable2 = 1.0;
+
+	// Get input from user
+	input userVariable1;
+	print "Value of variable2 is ", variable2;
+
+	// Perform operation 
+	variable2 = ( variable1 * variable1 ) + userVariable1;
+	variable2 *= variable2;
+	variable2 /= variable2;
+
+	// Print final v2 value
+	print variable2;
+
+end program p1
+
+progam simplestWorkingProgram
++/+
+	The simplest program that any of us write. Prints hello world
++/+
+
+	local helloString;			// Required but not used
+	printline "Hello World!";
+
+end program simplestWorkingProgram
+
+program usingProcedures
++/+
+	Program that will demonstrate the calling environment inside a procedure
+	The procedure maintains local variables that are looped over and incremented
++/+
+	proc printLocalProcVal
+		// Set up a local calling environment to see how it behaves in CD15
+		local varInProc, counter;
+		counter = 10;
+		loop inclLoop
+			varInProc += 1;
+			exit inclLoop when varInProc == counter;
+		end loop inclLoop 
+		counter += varInProc;
+		print "varInProcValue ", varInproc;
+	end proc printLocalProcVal
+
+	local incl;
+
+	loop mainLoop 
+		call printLocalProcValue;
+		exit mainLoop when incl == 1000;
+		incl += 10;
+	end loop mainLoop
+
+end program usingProcedures
+
+program usingMultipleProcedures
++/+
+	Program that gets user input and uses it to call a procedure
+	To exit the program, the user must enter and conform a certain value
+	This will test escape from inner loops
+
+	The procedures also accept paramters by var and val respectively, with the 
+	second only being passed a single param
++/+
+
+	proc procedure1 var p1, p2
+		printline p1, p2;
+	end proc procedure1
+
+	proc procedure2 val p1, p2
+		printline p1, p2;
+	end proc procedure2
+
+	local userIn;
+
+	loop mainLoop 
+		printline "Enter '1' for proc1 and '2' for proc2";
+		printline "Enter 0 to exit program";
+		input userIn;
+
+		if userIn == 1 then
+			call procedure1 with 10.0, 12.0;	// Call with PBR
+		elsif userIn == 2 then
+			call procedure2 with 3.0;			// Only pass it one value because its PBV not PBR
+		else
+			printline "You did not call a valid procedure";
+		end if
+
+		if userIn == 0 then
+			loop exitLoop
+				printline "Confirm exit by entering '100'";
+				input userIn;
+				exit mainLoop when userIn == 100;			// test escape from nested loops
+			end loop exitLoop
+		end if
+
+	end loop mainLoop
+
+end program usingMultipleProcedures
+
+program usingArrays
++/+
+	Program decalares and then iterates over two arrays assigning values
+	Program uses a procedure which hides a global array name to print the array
+	We are also calling the procedure with an array
++/+
+	// Decl arrays
+	arrays myArray1[20], myArray2[30]
+
+	// Prints given array
+	proc printArray var array
+		local myArray1;			// Called such to test visibility
+		loop printLoop
+			exit printLoop when myArray1 == array.length;
+			print array[myArray1];
+			myArray1 += 1;
+		end loop printLoop
+	end proc printArray
+
+	local counter;				// Assume default val = 0.0;
+
+	// iterate over the arrays assigning values
+	loop assignLoop
+		exit when counter == myArray2.length;
+		myArray2[counter] = 2*counter;
+		if not counter >= smallerArraySize then
+			myArray1[counter] = myArray2 * 2.3;
+		end if
+		counter += 1;
+	end loop assignLoop
+
+	call printArray with myArray1;
+	call printArray with myArray2;
+
+	printline "complete!";
+end program usingArrays
+
+
+*****************************************************************************
+// Start our erronous programs!!
+program failsLexically
+
+	local abc123;
+
+	123.abc *#5 = abc123;
+	!!!!==%^&*#&$(#*@(*&$##))
+	" this is a string
+	"Except not really"/?~
+	+/+   
+
+end program failsLexically
+
+program failsSyntactically
+
+	proc procBeforeArray
+	end proc procBefore Array
+
+	arrays myArray[ if sultan != 2 then 3 else 4 end if ], myArray2[5.3];
+
+	local myLocal = "string constant";
+	printline *= printline "Hello!"
+
+end program
+
+program failsSemantically
+	arrays array1[1], array1[5];	// Duplicate names
+	
+	proc testProc val arr
+		arr[10000000] = 2;
+	end proc testProc
+
+	local id;
+
+	printline undeclardedId;		// Undeclared identifier
+
+	call testProc with array1;		// Passing array by value
+	array1[40] = 15;
+	loop myLoop
+		exit someOtherLoop when true == false;	// Try to escape from un-id'd loop
+	end loop mineLoop				// Identifiers dont match
+
+	loop forever
+	end loop forever
+
+end program itWillFail				// Identifiers dont match

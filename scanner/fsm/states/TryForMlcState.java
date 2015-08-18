@@ -1,5 +1,6 @@
 package scanner.fsm.states;
 
+import context.error.CompilationError;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
@@ -39,6 +40,7 @@ public class TryForMlcState extends State{
                     charObj.getIndexOnLine() - 1,
                     false
             );
+            CompilationError.record(this.getExecutionContext().exposeLexeme(), CompilationError.Type.MALFORMED_MLC_OPENER);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
 
         } else {

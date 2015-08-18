@@ -1,0 +1,59 @@
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+Compilation Listing.
+Source File: test_files/test_file.txt
+Total Compilation Errors: 8
+Lexical Errors: 8
+Syntatic Errors: 0
+Semantic Errors: 0
+CodeGen Errors: 0
+Optimization Errors: 0
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+1		|| program myprog = new program;
+2		|| +++ ++=
+3		|| --- --=
+4		|| +/+
+5		|| blarghjrkeg
+6		|| +/+
+7		|| / / / / /=
+8		|| //ifakjhbsd asdf + +/+ something
+9		|| ... ..=
+10		|| <<< <<=
+11		|| >>> >>=
+12		|| === ===
+13		|| ;;; ;;=
+14		|| ]]] ]]=
+15		|| [[[ ][[=
+16		|| ((( ((=
+17		|| ))) ))=
+18		|| *** **=
+19		|| "hello"5"ahoy""You Smell
+20		|| "funny"
+21		|| 0
+22		|| 0.1
+23		|| 123
+24		|| 123.456.78.910
+25		|| 123.+"a"-=3/2=.1
+26		|| 12."hello"12.12
+27		|| >=
+28		|| +.-/*""!+/+
+29		|| 123.abc
+30		|| program end arrays procedure var val local loop exit when if then else elsif call with input print printline not or and xor div length
+31		|| pro
+32		|| gram
+33		||  +/+
+34		||  
+35		||  
+36		|| "something
+37		|| here "
+38		|| +/+~
+Compilation Errors for Phase: LEXICAL_ANALYSIS
+Error Line: 19	Error Starting Column: 16	Error Ending Column: 25	Unclosed string literal. Are you missing a " at the end of your string?	Error value: '"You Smell"'
+Error Line: 24	Error Starting Column: 1	Error Ending Column: 14	Malformed integer value. Integer values should be of the form '0' or '123'	Error value: '123.456.78.910'
+Error Line: 25	Error Starting Column: 1	Error Ending Column: 5	Malformed floating point value. Floating point values should be of the form 0.0 or 12.34	Error value: '123.'
+Error Line: 26	Error Starting Column: 1	Error Ending Column: 4	Malformed floating point value. Floating point values should be of the form 0.0 or 12.34	Error value: '12.'
+Error Line: 28	Error Starting Column: 8	Error Ending Column: 8	The character or character string is illegal. Did you mean to use a defined operator or delimiter?	Error value: '!'
+Error Line: 29	Error Starting Column: 1	Error Ending Column: 5	Malformed floating point value. Floating point values should be of the form 0.0 or 12.34	Error value: '123.'
+Error Line: 36	Error Starting Column: 2	Error Ending Column: 11	Unclosed string literal. Are you missing a " at the end of your string?	Error value: '"something"'
+Error Line: 37	Error Starting Column: 0	Error Ending Column: 7	Unclosed string literal. Are you missing a " at the end of your string?	Error value: '""'

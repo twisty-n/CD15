@@ -1,5 +1,6 @@
 package scanner.fsm.states;
 
+import context.error.CompilationError;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
@@ -37,6 +38,7 @@ public class SeenDotInIntLit extends State {
                     false
             );
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            CompilationError.record(this.getExecutionContext().exposeLexeme(), CompilationError.Type.MALFORMED_FLOAT_LITERAL);
         } else {
 
             // Otherwise we can proceed to the standard FlitState

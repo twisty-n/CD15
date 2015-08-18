@@ -21,11 +21,17 @@ public class Lexeme {
     private boolean isValid;
     private boolean isComment;
 
+    private boolean justBuilt;
     private boolean isComplete;
     private TokenClass tokenSuggestion;     // Assigned by the FSM if lexeme requires classification from state
                                             // That is, if we can't use implicit classification
                                             // it will take a value of INT_LIT, FLT_LIT or STRING_CONSTANT
                                             // OR TUNDF if we are invalid
+
+    public boolean justBuilt() {
+        return this.justBuilt;
+    }
+
 
     public Lexeme() {
         this(0, 0, 0, "");
@@ -33,6 +39,7 @@ public class Lexeme {
         this.isValid = false;
         this.isComment = false;
         this.tokenSuggestion = null;
+        this.justBuilt = true;
     }
 
     public Lexeme(int startLineIndex, int endLineIndex, int lineIndexInFile, String file) {
@@ -44,6 +51,7 @@ public class Lexeme {
         this.isValid = false;
         this.isComment = false;
         this.tokenSuggestion = null;
+        this.justBuilt = true;
     }
 
     /**
@@ -55,6 +63,8 @@ public class Lexeme {
 
         if (this.lexeme.length() == 0) {
             this.startLineIndex = c.getIndexOnLine();
+            this.lineIndexInFile = c.getLineIndexInFile();
+            this.justBuilt = false;
         }
         this.lexeme.append(c.getCharacter());
     }

@@ -1,5 +1,6 @@
 package scanner.fsm.states;
 
+import context.error.CompilationError;
 import io.ReturnCharacter;
 import scanner.fsm.StateMachine;
 import scanner.fsm.StateManager;
@@ -46,6 +47,7 @@ public class ErrChewState extends State  {
             // This will terminate the error
             this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, false);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
+            CompilationError.record(this.getExecutionContext().exposeLexeme(), CompilationError.Type.MALFORMED_INTEGER_LITERAL);
             return;
 
         } else {

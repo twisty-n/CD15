@@ -90,7 +90,11 @@ public class Scanner {
         Lexeme lex = this.fsm.obtainLexeme();
         Token token = null;
 
+        // It doesn't mean anything
+        //if (lex.justBuilt()) { return null; }
+
         // If the token is a comment or is undefined, return null
+        // We also dont want to include empty lexemes
         if ( ! lex.isComment() && lex.isValid() ) {
             token =  TokenFactory.constructToken(lex);
             outputForA1.addTokenToBuffer(token);

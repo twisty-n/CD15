@@ -1,3 +1,4 @@
+import context.CompilationContext;
 import io.InputController;
 import scanner.Scanner;
 import utils.DebugWriter;
@@ -22,21 +23,35 @@ public class CD15ScannerDriver {
 
     public void run(String[] args) {
 
-        String considerationFile = null;
-        if (args.length > 0) {
-            considerationFile = args[0];
-        } else {
+        if (!(args.length > 0)) {
             DebugWriter.writeEverywhere("No input file. Terminating scanner");
             System.exit(0);
         }
 
+        // Set up the scanner
         Scanner scanner = new Scanner();
-        InputController ic = new InputController( considerationFile, scanner );
-        scanner.configure(ic);
 
-        while ( scanner.canContinue() ) {
-            scanner.getNextValidToken();
+        for (int i = 0; i < args.length; i++) {
+
+            // Iterate over each source file
+            String considerationFile = args[i];
+            CompilationContext.configureCompilationContext(considerationFile);
+            InputController ic = new InputController( considerationFile, scanner );
+            scanner.configure(ic);
+
+            System.out.println("Tokenizing File: " + considerationFile);
+
+            while ( scanner.canContinue() ) {
+                scanner.getNextValidToken();
+            }
+            scanner.reportEOF(); // Hax
+            CompilationContext.getContext().closeContext();
+
+            System.out.println();
+            System.out.println();
+
         }
+
     }
 
 }
