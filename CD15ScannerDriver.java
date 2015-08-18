@@ -22,8 +22,6 @@ public class CD15ScannerDriver {
 
     public void run(String[] args) {
 
-        // We will accept the input file via args
-        // Can expand that is later to accept multiple input files and stuff
         String considerationFile = null;
         if (args.length > 0) {
             considerationFile = args[0];
@@ -32,23 +30,12 @@ public class CD15ScannerDriver {
             System.exit(0);
         }
 
-
-        DebugWriter.writeToConsole("This is a test of the debug printing");
-        DebugWriter.writeToFile("This is a test of the debug printing");
-
         Scanner scanner = new Scanner();
-        scanner.configure( new InputController( considerationFile, scanner ) );
+        InputController ic = new InputController( considerationFile, scanner );
+        scanner.configure(ic);
 
-        while ( ! (scanner.getInputStatus() == InputController.InputStatus.END_OF_FILE)) {
-
-            // Grab some lexemes
-
-            // Make some tokens
-
-            // Print that shiz
-
-            // Have some dinner
-
+        while ( scanner.canContinue() ) {
+            scanner.getNextValidToken();
         }
     }
 

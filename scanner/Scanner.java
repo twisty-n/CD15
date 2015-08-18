@@ -125,6 +125,12 @@ public class Scanner {
 
     }
 
+    public void reportEOF() {
+
+        this.outputForA1.addTokenToBuffer(new Token(TokenClass.TEOF, 0,0,0,null, null));
+
+    }
+
     /**
      * For debugging only
      * @return

@@ -37,7 +37,7 @@ public class A1Output extends AssignmentOutput {
     public void addTokenToBuffer(Token token) {
 
         // If we encounter a TUNDF, flush the buffer, add token to buffer and then flush
-        if (token.getTokenClass() == TokenClass.TUNDF) {
+        if (token.getTokenClass() == TokenClass.TUNDF || token.getTokenClass() == TokenClass.TEOF) {
             if ( this.tokenBuffer.size() > 0 ) {
                 this.flushBufferToConsole();
             }
@@ -52,7 +52,7 @@ public class A1Output extends AssignmentOutput {
         tokenBuffer.add(token);
         this.lineCharacterCount += token.shortString().length();
 
-        if ( this.lineCharacterCount >= LINE_BUFFER_LENGTH ) {
+        if ( this.lineCharacterCount > LINE_BUFFER_LENGTH ) {
             this.flushBufferToConsole();
             this.clearBuffer();
         }

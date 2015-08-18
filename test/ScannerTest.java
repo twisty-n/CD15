@@ -47,6 +47,7 @@ public class ScannerTest {
 
             //DebugWriter.writeToConsole( "Report Token: " + scanner.getNextValidToken()  + "\t Scanner Status: " +scanner.getInputStatus().name() );
         }
+        scanner.reportEOF();
 
     }
 
