@@ -81,7 +81,7 @@ public class CompilationContext {
         // KISS it for now, we can add in more information as we go
         int sourceCharLine = sourceCharacter.getLineIndexInFile();
         if (sourceCharLine > this.lineCount) {
-            this.outputBuffer.append(sourceCharLine + "\t\t" + "|| ");
+            this.outputBuffer.append(sourceCharLine + "\t" + "|| ");
             this.lineCount = sourceCharLine;
         }
 
