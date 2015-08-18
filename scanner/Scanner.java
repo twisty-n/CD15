@@ -91,7 +91,7 @@ public class Scanner {
         Token token = null;
 
         // It doesn't mean anything
-        //if (lex.justBuilt()) { return null; }
+        if (!lex.isComplete()) { return null; }
 
         // If the token is a comment or is undefined, return null
         // We also dont want to include empty lexemes
@@ -124,7 +124,7 @@ public class Scanner {
         Token token = null;
         do {
             token = this.getToken();
-        } while( token == null );       // Spin while the obtained token is null. A null token is something invalid or a comment or whatnot
+        } while( token == null && this.canContinue());       // Spin while the obtained token is null. A null token is something invalid or a comment or whatnot
         return token;
 
     }

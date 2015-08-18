@@ -62,7 +62,7 @@ public class InputController {
      * @return pumped character
      */
     public ReturnCharacter pumpChar() {
-        char returnChar = '~';
+        char returnChar = '\0';
         try {
 
             // Now we update our tracking of the physical location
