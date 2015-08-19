@@ -1353,8 +1353,130 @@ DEBUG: Entering TRY_FOR_MLC_STATE char under consideration: /
 DEBUG: PUMP_SUCCESS
 DEBUG: Exiting TRY_FOR_MLC_STATE current Lexeme: Lexeme{lexeme=+/, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
 DEBUG: Entering LOCK_MLC_STATE char under consideration: +
-DEBUG: END_OF_FILE
+DEBUG: PUMP_SUCCESS
 DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration:  
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ , 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ s, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: a
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sa, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sad, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: j
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgj, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: k
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjk, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: h
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkh, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhd, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: z
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdz, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: k
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzk, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: j
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgj, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: l
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjl, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjld, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: f
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldf, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfs, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering PREP_FOR_MLC_CLOSE_STATE char under consideration: 
+
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting PREP_FOR_MLC_CLOSE_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgs, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsd, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: f
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdf, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgs, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsd, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: f
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdf, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgs, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsd, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: f
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdf, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgs, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsd, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: f
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsdf, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsdfg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: s
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsdfgs, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: d
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsdfgsd, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: f
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsdfgsdf, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: g
+DEBUG: PUMP_SUCCESS
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsdfgsdfg, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Entering LOCK_MLC_STATE char under consideration: s
+DEBUG: END_OF_FILE
+DEBUG: Exiting LOCK_MLC_STATE current Lexeme: Lexeme{lexeme=+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsdfgsdfgs, 	startLineIndex=1, 	endLineIndex=0, 	lineIndexInFile=38, 	isComplete=false, 	isValid=false, 	isComment=false}
+DEBUG: Recorded compilation error: Error Line: 38	Error Starting Column: 1	Error Ending Column: 0	You have an unclosed multi-line comment. Did you forget to delimit your comment block with '+/+'	Error value: '+/+ sadgjkhdzkgjldfsgsdfgsdfgsdfgsdfgsdfgs'
 DEBUG: PUMP_SUCCESS
 DEBUG: Entering SEEN_SLASH_STATE char under consideration: /
 DEBUG: PUMP_SUCCESS

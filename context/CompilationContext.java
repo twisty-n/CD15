@@ -1,5 +1,6 @@
 package context;
 
+import config.CompilerConfig;
 import context.error.CompilationError;
 import io.ReturnCharacter;
 import utils.DebugWriter;
@@ -100,6 +101,30 @@ public class CompilationContext {
         // Record our errors and stuff
         // Clean up anything that we need to
         String fileName = this.sourceFile + "_compilation-listing.txt";
+
+                                    /*      NASTY HAX ZONE      */
+        // *************************************************************************************************************
+        if (CompilerConfig.IS_ASSIGNMENT1) {                                                                     //    *
+                                                                                                                 //    *
+            // Write shit to STD OUT as well                                                                     //    *
+            // HAX ALERT I just cut an paste                                                                     //    *
+            try    {                                                                                             //    *
+                Writer writer = new BufferedWriter(new OutputStreamWriter(System.out));                          //    *
+                                                                                                                 //    *
+                this.writeCompilationSummary(writer);                                                            //    *
+                writer.write(this.outputBuffer.toString());                                                      //    *
+                for (Phase phase : Phase.values()) {                                                             //    *
+                    this.writeCompilationErrors(phase, writer);                                                  //    *
+                }                                                                                                //    *
+                writer.flush();                                                                                  //    *
+            } catch (FileNotFoundException e) {                                                                  //    *
+                DebugWriter.writeToFile("ERROR: cannot write to program listing file. \n" + e.getCause());       //    *
+            }catch (IOException e) {                                                                             //    *
+                DebugWriter.writeToFile("ERROR: cannot write to program listing file. \n" + e.getCause());       //    *
+            }                                                                                                    //    *
+                                                                                                                 //    *
+        }                                                                                                        //    *
+        // *************************************************************************************************************
 
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(fileName), "utf-8"))) {

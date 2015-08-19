@@ -17,6 +17,7 @@ import java.io.PrintStream;
 public class CompilerConfig {
 
     public static PrintStream outputFile = null;
+    public static boolean IS_ASSIGNMENT1 = true;
 
     private static final String DEBUG_FILE_LOCATION = "debug.txt";
 

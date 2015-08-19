@@ -1,6 +1,7 @@
 package scanner;
 
 import config.CompilerConfig;
+import context.error.CompilationError;
 import io.A1Output;
 import io.InputController;
 import scanner.fsm.StateMachine;
@@ -91,7 +92,15 @@ public class Scanner {
         Token token = null;
 
         // It doesn't mean anything
-        if (!lex.isComplete()) { return null; }
+        if (!lex.isComplete()) {
+            if ( ! lex.getLexemeVal().isEmpty() && !lex.justBuilt()) {
+                outputForA1.addTokenToBuffer(TokenFactory.constructToken(lex));
+                CompilationError.record(lex, CompilationError.Type.UNCLOSED_MLC);
+                return null;
+            } else {
+                return null;
+            }
+        }
 
         // If the token is a comment or is undefined, return null
         // We also dont want to include empty lexemes
