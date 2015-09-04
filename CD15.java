@@ -12,11 +12,11 @@ import utils.DebugWriter;
  * Project Name:    CD15 Compiler
  * Description:     A basic driver file for the CD15 Scanner
  */
-public class CD15ScannerDriver {
+public class CD15 {
 
     public static void main(String[] args) {
 
-        CD15ScannerDriver sd = new CD15ScannerDriver();
+        CD15 sd = new CD15();
         sd.run(args);
 
     }
@@ -39,7 +39,7 @@ public class CD15ScannerDriver {
             InputController ic = new InputController( considerationFile, scanner );
             scanner.configure(ic);
 
-            System.out.println("Tokenizing File: " + considerationFile);
+            //System.out.println("Tokenizing File: " + considerationFile);
 
             while ( scanner.canContinue() ) {
                 scanner.getNextValidToken();

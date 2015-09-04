@@ -1,0 +1,26 @@
+/**
+ * Author:          Tristan Newmann
+ * Student Number:  c3163181
+ * Email:           c3163181@uon.edu.au
+ * Date Created:    8/8/2015
+ * File Name:       CD15ScannerDriver
+ * Project Name:    CD15 Compiler
+ * Description:     A compiler for the CD15 Programming Language
+ */
+
+
+ Compiled and tested with Java 7 on Windows and OS X
+
+ To run the compiler:
+    java CD15 you_input_file
+
+Note that the compiler can accept multiple files for compilation at once with
+    java CD15 your_input_file_1 your_input_file_2 ...
+
+The output will be the required Token stream specified in the Assignment 1 Brief,
+as well as a listing file with all of the errors aggregated at the bottom of the file.
+
+Listing files will also be generated in the directory that the compiler was run.
+To view expanded debugging information, view the created debug.txt file
+
+Note that the compiler will print any fatal error information to console.
