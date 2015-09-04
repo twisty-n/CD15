@@ -1,4 +1,4 @@
-package context.Symbolism;
+package context.symbolism;
 
 /**
  * Author:          Tristan Newmann

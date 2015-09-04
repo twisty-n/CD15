@@ -1,6 +1,7 @@
 package scanner;
 
 import config.CompilerConfig;
+import context.CompilationContext;
 import context.error.CompilationError;
 import io.A1Output;
 import io.InputController;
@@ -141,6 +142,7 @@ public class Scanner {
             return token;
         }
         // Else we are fine
+        CompilationContext.Context.SymbolTable.insert(token);
         return token;
 
     }

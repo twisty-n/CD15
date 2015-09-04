@@ -1,5 +1,10 @@
 package scanner.tokenizer;
 
+import context.symbolism.STRecord;
+
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181
@@ -39,7 +44,7 @@ public class Token {
     private int characterEndPositionOnLine;		// character ending position within lineIndexInFile
     private String file;                        // The physical file that the token belongs to. Potential support for multifile
     private String lexeme;		                // actual lexeme character string from scanner
-//	private StRec symbol;	// symbol table entry - used in Pt3 for the Parser, not needed in Pt1
+    private STRecord symbol;	// symbol table entry - used in Pt3 for the Parser, not needed in Pt1
 
     public Token(TokenClass tokenClass, int lineStartingPosition,
                  int lineEndingPosition,  int lineIndexInFile,
@@ -50,7 +55,7 @@ public class Token {
         this.characterEndPositionOnLine = lineEndingPosition;
         this.lexeme = lexeme;
         this.file = file;
-//		symbol = null;	// initially null, got from Parser SymTab lookup if TIDNT/TILIT/TFLIT/TSTRG
+		symbol = null;
     }
 
     public TokenClass getTokenClass() { return tokenClass; }
@@ -60,10 +65,13 @@ public class Token {
     public String getLexeme() { return lexeme; }
     public String getFile() { return this.file; }
 
-    /*  Needed for part three
-        public StRec getSymbol() { return symbol; }
-        public void setSymbol(StRec x) {symbol = x; }
-    */
+    public STRecord getSymbol() {
+        return symbol;
+    }
+
+    public void setSymbol(STRecord symbol) {
+        this.symbol = symbol;
+    }
 
     // HERE BE DRAGONS
 
@@ -110,6 +118,11 @@ public class Token {
 
     public void forceTokenLexemeMutation(String lex) {
         this.lexeme = lex;
+    }
+
+    public static Map<String, STRecord> generateKeywords() {
+        // TODO
+        return new HashMap<>();
     }
 
 }

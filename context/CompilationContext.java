@@ -1,8 +1,9 @@
 package context;
 
-import config.CompilerConfig;
+import context.symbolism.SymbolTable;
 import context.error.CompilationError;
 import io.ReturnCharacter;
+import scanner.tokenizer.Token;
 import utils.DebugWriter;
 
 import java.io.*;
@@ -27,6 +28,8 @@ public class CompilationContext {
     private StringBuffer outputBuffer;
     private int totalErrorCount;
     private int lineCount;
+    public SymbolTable SymbolTable; // Have it named in this way for brevity
+    public static CompilationContext Context;
 
     public CompilationContext(String sourceFile) {
         this.sourceFile = sourceFile;
@@ -39,6 +42,8 @@ public class CompilationContext {
         errorBuffers.put(Phase.SEMANTIC_ANALYSIS, new ArrayList<CompilationError>());
         errorBuffers.put(Phase.CODE_GENERATION, new ArrayList<CompilationError>());
         errorBuffers.put(Phase.CODE_OPTIMIZATION, new ArrayList<CompilationError>());
+        this.SymbolTable = new SymbolTable(Token.generateKeywords());
+        CompilationContext.Context = this;
     }
 
     /**
@@ -102,30 +107,14 @@ public class CompilationContext {
         // Clean up anything that we need to
         String fileName = this.sourceFile + "_compilation-listing.txt";
 
-                                    /*      NASTY HAX ZONE      */
-        // *************************************************************************************************************
-        if (CompilerConfig.IS_ASSIGNMENT1) {                                                                     //    *
-                                                                                                                 //    *
-            // Write shit to STD OUT as well                                                                     //    *
-            // HAX ALERT I just cut an paste                                                                     //    *
-            try    {                                                                                             //    *
-                Writer writer = new BufferedWriter(new OutputStreamWriter(System.out));                          //    *
-                                                                                                                 //    *
-                this.writeCompilationSummary(writer);                                                            //    *
-                writer.write(this.outputBuffer.toString());                                                      //    *
-                for (Phase phase : Phase.values()) {                                                             //    *
-                    this.writeCompilationErrors(phase, writer);                                                  //    *
-                }                                                                                                //    *
-                writer.flush();                                                                                  //    *
-            } catch (FileNotFoundException e) {                                                                  //    *
-                DebugWriter.writeToFile("ERROR: cannot write to program listing file. \n" + e.getCause());       //    *
-            }catch (IOException e) {                                                                             //    *
-                DebugWriter.writeToFile("ERROR: cannot write to program listing file. \n" + e.getCause());       //    *
-            }                                                                                                    //    *
-                                                                                                                 //    *
-        }                                                                                                        //    *
-        // *************************************************************************************************************
+        this.writeCompilationListing(fileName);
+        this.writeSymbolTable(fileName);
 
+        CompilationContext.currentContext = null;
+
+    }
+
+    private void writeCompilationListing(String fileName) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(fileName), "utf-8"))) {
             this.writeCompilationSummary(writer);
@@ -139,9 +128,18 @@ public class CompilationContext {
         }catch (IOException e) {
             DebugWriter.writeToFile("ERROR: cannot write to program listing file. \n" + e.getCause());
         }
+    }
 
-        CompilationContext.currentContext = null;
+    private void writeSymbolTable(String fileName) {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream("symbol_listing_" + fileName), "utf-8"))) {
 
+            // TODO: write a nice printing method here
+        } catch (FileNotFoundException e) {
+            DebugWriter.writeToFile("ERROR: cannot write to symbol file. \n" + e.getCause());
+        }catch (IOException e) {
+            DebugWriter.writeToFile("ERROR: cannot write to symbol file. \n" + e.getCause());
+        }
     }
 
     private void writeCompilationSummary(Writer writer) throws IOException{
