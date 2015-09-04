@@ -56,6 +56,8 @@ public class InputController {
 
     }
 
+    public String currentFile() {return this.currentFile;}
+
     /**
      * Pumps the input stream for a single character
      * This will report to the scanner context the status of the input stream after pumping

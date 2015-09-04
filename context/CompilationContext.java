@@ -128,8 +128,6 @@ public class CompilationContext {
 
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(fileName), "utf-8"))) {
-
-
             this.writeCompilationSummary(writer);
             writer.write(this.outputBuffer.toString());
             for (Phase phase : Phase.values()) {

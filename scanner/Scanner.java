@@ -57,7 +57,7 @@ public class Scanner {
         // Configure the flying spaghetti machine
         this.fsm = new StateMachine(this, this.input);
         // TODO: modify the output location when mofiying for assignment 2
-        this.outputForA1 = new A1Output(CompilerConfig.getDebugOutputLocation(CompilerConfig.OUT_LOCATION.STD_OUT));
+        this.outputForA1 = new A1Output(CompilerConfig.getTokenOutputFile(input.currentFile()));
     }
 
     /**
@@ -134,6 +134,13 @@ public class Scanner {
         do {
             token = this.getToken();
         } while( token == null && this.canContinue());       // Spin while the obtained token is null. A null token is something invalid or a comment or whatnot
+
+        if (!this.canContinue()) {
+            token = new Token(TokenClass.TEOF, 0,0,0,null, null);
+            this.outputForA1.addTokenToBuffer( token );
+            return token;
+        }
+        // Else we are fine
         return token;
 
     }

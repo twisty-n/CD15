@@ -44,7 +44,7 @@ public class CD15 {
             while ( scanner.canContinue() ) {
                 scanner.getNextValidToken();
             }
-            scanner.reportEOF(); // Hax
+            //scanner.reportEOF(); // Hax
             CompilationContext.getContext().closeContext();
 
             System.out.println();

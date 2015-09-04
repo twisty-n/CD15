@@ -17,7 +17,7 @@ import java.io.PrintStream;
 public class CompilerConfig {
 
     public static PrintStream outputFile = null;
-    public static boolean IS_ASSIGNMENT1 = true;
+    public static boolean IS_ASSIGNMENT1 = false;
 
     private static final String DEBUG_FILE_LOCATION = "debug.txt";
 
@@ -47,9 +47,26 @@ public class CompilerConfig {
         }
     }
 
+    public static PrintStream getTokenOutputFile(String fileWeAreCompiling) {
+        try {
+            PrintStream tokenOut = new PrintStream(
+                    new FileOutputStream(
+                            new File( fileWeAreCompiling + "_tokens.txt" )
+                    )
+            );
+            return tokenOut;
+        } catch (FileNotFoundException fne) {
+            System.out.println("Fatal error constructing Token File. Using stdio. Error report: " + fne.toString());
+            System.out.println("Falling back to standard output");
+        }
+        // if it failed
+        return System.out;
+    }
+
     public static enum OUT_LOCATION {
         STD_OUT,
-        FILE_OUT
+        FILE_OUT,
+        TOKEN_FILE_OUT
     }
 
 
