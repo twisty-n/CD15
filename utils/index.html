@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Tristans Generated Tree</title>
+</head>
+<body>
+	<h1>Hi Dan, hopefully this makes it easier to mark :)</h1>
+	<input type="file" id="fileinput" />
+	<br />
+	<div id="graph" style="width:1000px; height:1000px;"></div>
+	<script type="text/javascript" src="viz.js"></script>
+	<script type="text/javascript">
+		
+		var readInTreeFile = function(fileOpenEvent) {
+			var file = fileOpenEvent.target.files[0];
+			if (file) {
+				var reader = new FileReader();
+				reader.onload = function(event) {
+					var fileContents = event.target.result;
+					loadGraph(fileContents);
+				}
+				reader.readAsText(file);
+			}
+		}
+		
+		var loadGraph = function(dotFileContents) {
+			var container = document.getElementById('graph');
+			container.innerHTML += Viz(dotFileContents, options={format:"svg", engine:"dot"});
+		}
+		
+		 document.getElementById('fileinput').addEventListener('change', readInTreeFile, false);
+	</script>
+</body>
+</html>
