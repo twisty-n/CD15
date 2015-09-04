@@ -56,6 +56,7 @@ public class Token {
     public TokenClass getTokenClass() { return tokenClass; }
     public int getLineIndexInFile() { return lineIndexInFile; }
     public int getCharacterStartPositionOnLine() { return characterStartPositionOnLine; }
+    public int getCharacterEndPositionOnLine() { return characterEndPositionOnLine; }
     public String getLexeme() { return lexeme; }
     public String getFile() { return this.file; }
 

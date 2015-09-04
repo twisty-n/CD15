@@ -41,5 +41,17 @@ public enum TokenClass {	TEOF,   // End of File Token
     TDVEQ, TDEQL, TNEQL, TGRTR, TLEQL, TLESS, TGREQ, TPLUS, TSUBT, TMULT, TDIVD,
 
     // then the tokens (or pseudo-tokens) with non-null tuple values
-    TIDNT, TILIT, TFLIT, TSTRG, TUNDF
+    TIDNT, TILIT, TFLIT, TSTRG, TUNDF;
+
+    public boolean isLiteral() {
+         return this.equals(TILIT) || this.equals(TFLIT) || this.equals(TSTRG);
+    }
+
+    public boolean isIdentifier() {
+        return this.equals(TIDNT);
+    }
+
+    public boolean isEOF() { return this.equals(TEOF); }
+
+
 };

@@ -39,7 +39,10 @@ public class CD15 {
             InputController ic = new InputController( considerationFile, scanner );
             scanner.configure(ic);
 
-            //System.out.println("Tokenizing File: " + considerationFile);
+            System.out.println("Tokenizing File: " + considerationFile);
+
+            // Construct the parser and pass it the scanner
+            // Then close the context
 
             while ( scanner.canContinue() ) {
                 scanner.getNextValidToken();
