@@ -92,6 +92,7 @@ public class SymbolTable {
                     token.getCharacterStartPositionOnLine(),
                     token.getCharacterEndPositionOnLine()
             );
+            token.setSymbol(this.table.get(token.getLexeme()));
         }
     }
 

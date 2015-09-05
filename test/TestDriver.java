@@ -15,7 +15,8 @@ public class TestDriver {
 
         //new InputControllerTest().execute(args);
         //new StateMachineTest().execute(args);
-        new ScannerTest().execute(args);
+        //new ScannerTest().execute(args);
+        new ParserTest().execute(args);
 
     }
 

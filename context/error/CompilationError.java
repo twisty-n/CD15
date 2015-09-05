@@ -15,17 +15,21 @@ import scanner.tokenizer.Lexeme;
 public class CompilationError implements Comparable<CompilationError>{
 
     private CompilationContext.Phase compilationPhase;
-    private Lexeme offender;
+    protected Lexeme offender;
     private String errorMessage;
 
     public enum Type {
 
+        // LEXICAL ERRORS
         UNCLOSED_STRING_LITERAL("Unclosed string literal. Are you missing a \" at the end of your string?", CompilationContext.Phase.LEXICAL_ANALYSIS),
         MALFORMED_INTEGER_LITERAL("Malformed integer value. Integer values should be of the form '0' or '123'",CompilationContext.Phase.LEXICAL_ANALYSIS),
         MALFORMED_FLOAT_LITERAL("Malformed floating point value. Floating point values should be of the form 0.0 or 12.34", CompilationContext.Phase.LEXICAL_ANALYSIS),
         MALFORMED_MLC_OPENER("Malformed multi-line comment opening symbol. Did you mean '+/+'?", CompilationContext.Phase.LEXICAL_ANALYSIS),
         UNKNOWN_CHARACTER("The character or character string is illegal. Did you mean to use a defined operator or delimiter?", CompilationContext.Phase.LEXICAL_ANALYSIS),
-        UNCLOSED_MLC("You have an unclosed multi-line comment. Did you forget to delimit your comment block with '+/+'", CompilationContext.Phase.LEXICAL_ANALYSIS);
+        UNCLOSED_MLC("You have an unclosed multi-line comment. Did you forget to delimit your comment block with '+/+'", CompilationContext.Phase.LEXICAL_ANALYSIS),
+
+        // SYNTACTIC ERRORS
+        UNEXPECTED_TOKEN("Unexpected token found.", CompilationContext.Phase.SYNTACTIC_ANALYSIS);
 
         private final String errorMessage;
         private final CompilationContext.Phase phase;
@@ -40,9 +44,7 @@ public class CompilationError implements Comparable<CompilationError>{
 
     /**
      * Push a compilation error onto the buffer
-     * @param phase
      * @param lex
-     * @param message
      */
     public static void record(Lexeme lex, Type type) {
         CompilationContext.getContext().bufferCompilationError(type.getPhase(),
@@ -50,7 +52,7 @@ public class CompilationError implements Comparable<CompilationError>{
         );
     }
 
-    private CompilationError(CompilationContext.Phase phase, Lexeme offender, Type error) {
+    protected CompilationError(CompilationContext.Phase phase, Lexeme offender, Type error) {
         this.offender = offender;
         this.compilationPhase = phase;
         this.errorMessage = error.getPrettyMessage();

@@ -54,6 +54,18 @@ public class Lexeme {
         this.justBuilt = true;
     }
 
+    public Lexeme(int startLineIndex, int endLineIndex, int lineIndexInFile, String file, String lexeme) {
+        this.lexeme = new StringBuffer(lexeme);
+        this.startLineIndex = startLineIndex;
+        this.endLineIndex = endLineIndex;
+        this.lineIndexInFile = lineIndexInFile;
+        this.file = file;
+        this.isValid = false;
+        this.isComment = false;
+        this.tokenSuggestion = null;
+        this.justBuilt = true;
+    }
+
     /**
      * Adds a character to the lexeme
      * The first time you push a character to the lexeme, it will set its starting information

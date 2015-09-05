@@ -29,19 +29,41 @@ package scanner.tokenizer;
 // 04-Aug-2015
 //
 
-public enum TokenClass {	TEOF,   // End of File Token
+public enum TokenClass {	TEOF(null),   // End of File Token
 
     // The 25 keywords come first
-    TPROG, TENDK, TARRS, TPROC, TVARP, TVALP, TLOCL, TLOOP, TEXIT, TWHEN, TCALL,
-    TWITH, TIFKW, TTHEN, TELSE, TELSF, TINPT, TPRIN, TPRLN, TNOTK, TANDK, TORKW,
-    TXORK, TIDIV, TLENG,
+    TPROG("program"),
+    TENDK("end"),
+    TARRS("arrays"),
+    TPROC("proc"),
+    TVARP("var"),
+    TVALP("val"),
+    TLOCL("local"),
+    TLOOP("loop"),
+    TEXIT("exit"),
+    TWHEN("when"),
+    TCALL("call"),
+    TWITH("with"),
+    TIFKW("if"),
+    TTHEN("then"),
+    TELSE("else"),
+    TELSF("elsif"),
+    TINPT("input"),
+    TPRIN("print"),
+    TPRLN("printline"),
+    TNOTK("not"),
+    TANDK("and"),
+    TORKW("or"),
+    TXORK("xor"),
+    TIDIV("div"),
+    TLENG("length"),
 
     // then the operators and delimiters
-    TLBRK, TRBRK, TLPAR, TRPAR, TSEMI, TCOMA, TDOTT, TASGN, TPLEQ, TMNEQ, TMLEQ,
-    TDVEQ, TDEQL, TNEQL, TGRTR, TLEQL, TLESS, TGREQ, TPLUS, TSUBT, TMULT, TDIVD,
+    TLBRK("["), TRBRK("]"), TLPAR("("), TRPAR(")"), TSEMI(";"), TCOMA(","), TDOTT("."), TASGN("="), TPLEQ("+="), TMNEQ("-="), TMLEQ("*="),
+    TDVEQ("/*"), TDEQL("=="), TNEQL("!="), TGRTR(">"), TLEQL("<="), TLESS("<"), TGREQ(">="), TPLUS("+"), TSUBT("-"), TMULT("*"), TDIVD("/"),
 
     // then the tokens (or pseudo-tokens) with non-null tuple values
-    TIDNT, TILIT, TFLIT, TSTRG, TUNDF;
+    TIDNT(null), TILIT(null), TFLIT(null), TSTRG(null), TUNDF(null);
 
     public boolean isLiteral() {
          return this.equals(TILIT) || this.equals(TFLIT) || this.equals(TSTRG);
@@ -52,6 +74,9 @@ public enum TokenClass {	TEOF,   // End of File Token
     }
 
     public boolean isEOF() { return this.equals(TEOF); }
+    public String val() {return this.val;}
+    private String val;
+    private TokenClass(String val) {this.val = val;}
 
 
 };

@@ -142,7 +142,7 @@ public class Scanner {
             return token;
         }
         // Else we are fine
-        CompilationContext.Context.SymbolTable.insert(token);
+        CompilationContext.Context.SymbolTable.lookupOrInsert(token);
         return token;
 
     }

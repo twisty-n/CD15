@@ -73,6 +73,12 @@ public class Token {
         this.symbol = symbol;
     }
 
+    public Lexeme getProperLexeme() {
+        if (this.lexeme == null)
+            this.lexeme = this.tokenClass.val();
+        return new Lexeme(this.characterStartPositionOnLine, this.characterEndPositionOnLine, this.lineIndexInFile, this.file, this.lexeme);
+    }
+
     // HERE BE DRAGONS
 
     public String toString() {		// toString method is only meant to be used for debug printing

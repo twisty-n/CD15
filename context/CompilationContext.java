@@ -1,7 +1,7 @@
 package context;
 
-import context.symbolism.SymbolTable;
 import context.error.CompilationError;
+import context.symbolism.SymbolTable;
 import io.ReturnCharacter;
 import scanner.tokenizer.Token;
 import utils.DebugWriter;
@@ -30,6 +30,7 @@ public class CompilationContext {
     private int lineCount;
     public SymbolTable SymbolTable; // Have it named in this way for brevity
     public static CompilationContext Context;
+    public StringBuffer ast;
 
     public CompilationContext(String sourceFile) {
         this.sourceFile = sourceFile;
@@ -37,6 +38,7 @@ public class CompilationContext {
         this.outputBuffer = new StringBuffer();
         this.totalErrorCount = 0;
         this.lineCount = 0;
+        ast = null;
         errorBuffers.put(Phase.LEXICAL_ANALYSIS, new ArrayList<CompilationError>());
         errorBuffers.put(Phase.SYNTACTIC_ANALYSIS, new ArrayList<CompilationError>());
         errorBuffers.put(Phase.SEMANTIC_ANALYSIS, new ArrayList<CompilationError>());
@@ -44,6 +46,10 @@ public class CompilationContext {
         errorBuffers.put(Phase.CODE_OPTIMIZATION, new ArrayList<CompilationError>());
         this.SymbolTable = new SymbolTable(Token.generateKeywords());
         CompilationContext.Context = this;
+    }
+
+    public void setAst(StringBuffer ast) {
+        this.ast = ast;
     }
 
     /**
@@ -105,10 +111,12 @@ public class CompilationContext {
         // Flush out everything to file
         // Record our errors and stuff
         // Clean up anything that we need to
-        String fileName = this.sourceFile + "_compilation-listing.txt";
+        String sourceFile = this.sourceFile;
+        String fileName = sourceFile + "_compilation-listing.txt";
 
         this.writeCompilationListing(fileName);
-        this.writeSymbolTable(fileName);
+        this.writeSymbolTable(sourceFile + "_sym-tab.txt");
+        this.writeAstListing(this.ast, sourceFile+"_ast.txt");
 
         CompilationContext.currentContext = null;
 
@@ -132,7 +140,7 @@ public class CompilationContext {
 
     private void writeSymbolTable(String fileName) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-                new FileOutputStream("symbol_listing_" + fileName), "utf-8"))) {
+                new FileOutputStream(fileName), "utf-8"))) {
 
             // TODO: write a nice printing method here
         } catch (FileNotFoundException e) {
@@ -168,6 +176,19 @@ public class CompilationContext {
             writer.write(error.toString()+'\n');
         }
 
+    }
+
+    private void writeAstListing(StringBuffer buff, String fileName) {
+        try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+                new FileOutputStream(fileName), "utf-8"))) {
+
+            // TODO: write a nice printing method here
+            writer.write(buff.toString());
+        } catch (FileNotFoundException e) {
+            DebugWriter.writeToFile("ERROR: cannot write to symbol file. \n" + e.getCause());
+        }catch (IOException e) {
+            DebugWriter.writeToFile("ERROR: cannot write to symbol file. \n" + e.getCause());
+        }
     }
 
     public enum Phase {
