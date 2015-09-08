@@ -4,6 +4,7 @@ import context.error.CompilationError;
 import context.symbolism.SymbolTable;
 import io.ReturnCharacter;
 import scanner.tokenizer.Token;
+import utils.Browser;
 import utils.DebugWriter;
 
 import java.io.*;
@@ -182,8 +183,10 @@ public class CompilationContext {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(fileName), "utf-8"))) {
 
-            // TODO: write a nice printing method here
             writer.write(buff.toString());
+            // Browse to the following file
+            //new Browser().browseTo("index.html");
+
         } catch (FileNotFoundException e) {
             DebugWriter.writeToFile("ERROR: cannot write to symbol file. \n" + e.getCause());
         }catch (IOException e) {

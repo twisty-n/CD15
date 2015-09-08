@@ -3,6 +3,7 @@ import java.awt.*;
 import java.io.IOException;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.net.URL;
 
 /**
  * Author:          Tristan Newmann
@@ -16,12 +17,16 @@ import java.net.URISyntaxException;
 
 
 public class Browser {
+
+    // Browses to some specific file location
     public static void browseTo(String url) {
 
         if(Desktop.isDesktopSupported()){
             Desktop desktop = Desktop.getDesktop();
             try {
-                desktop.browse(new URI(url));
+                URL url_test = new Browser().getClass().getResource("index.html");
+
+                desktop.browse(new URI(url_test.toString()));
             } catch (IOException | URISyntaxException e) {
                 // TODO Auto-generated catch block
                 System.out.println("Could not browse to URL: " + url);
@@ -38,4 +43,5 @@ public class Browser {
             }
         }
     }
+
 }

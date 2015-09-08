@@ -124,7 +124,7 @@ public class Parser {
      *
      * @return
      */
-    protected ArrayDecList arrays() {
+    protected TreeNode arrays() {
         // Match empty
         if (!isCurrentToken(TokenClass.TARRS, false)) {
             return null;
@@ -132,16 +132,21 @@ public class Parser {
         // Otherwise we have a set of valid arrays to work with
 
         // Get an array decl
-        ArrayDeclaration dec = arrayDeclaration();
-        ArrayDecList rest = arrayTail();
+        TreeNode dec = arrayDeclaration();
+        TreeNode rest = arrayTail();
 
-        // Set the branches of the tree up
+        // If we didn't find any other declarations
+        if ( rest == null ) {
+            return dec;
+        }
+
+        // Otherwise return the thing back up
         return new ArrayDecList(dec, rest);
     }
 
-//    --NARRYL <arrdltail> ::= , <arraydecl> <arrdltail>
-//    Special <arrdltail> ::= ?
-    protected ArrayDecList arrayTail() {
+    // NARRYL <arrdltail> ::= , <arraydecl> <arrdltail>
+    // Special <arrdltail> ::= ?
+    protected TreeNode arrayTail() {
         // If not a comma, we've finished the array declarations
         if(!isCurrentToken(TokenClass.TCOMA, false)) {
             //TODO: Fix this up in error checking
@@ -149,16 +154,22 @@ public class Parser {
         }
         // Else we've seen a comma
         //So match an array declaration, set to left,
-        ArrayDeclaration dec = arrayDeclaration();
+        TreeNode dec = arrayDeclaration();
         // Match an arrayTail. Set to right
-        ArrayDecList rest = arrayTail();
+        TreeNode rest = arrayTail();
+
+        // If this is the last one, just return the dec
+        if (rest == null) {
+            return dec;
+        }
+
         return new ArrayDecList(dec, rest); // Set left and right
     }
 
 //    --NARRDEC <arraydecl> ::= <id> [ <intlit> ]
-    protected ArrayDeclaration arrayDeclaration() {
+    protected TreeNode arrayDeclaration() {
         // Match an ID
-        ArrayDeclaration decl = new ArrayDeclaration();
+        TreeNode decl = new ArrayDeclaration();
         decl.setName(matchCurrentAndStoreRecord(TokenClass.TIDNT));
         // Match a left brace
         isCurrentToken(TokenClass.TLBRK, true);

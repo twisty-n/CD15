@@ -8,6 +8,8 @@ import parser.ast.TreeNode;
 import scanner.Scanner;
 import utils.DebugWriter;
 
+import java.io.File;
+
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181
@@ -34,11 +36,12 @@ public class ParserTest {
 
         // Set up the scanner
         Scanner scanner = new Scanner();
+        File[] files = new File(args[0]).listFiles();
 
-        for (int i = 0; i < args.length; i++) {
+        for (int i = 0; i < files.length; i++) {
 
             // Iterate over each source file
-            String considerationFile = args[i];
+            String considerationFile = files[i].getPath();
             CompilationContext.configureCompilationContext(considerationFile);
             InputController ic = new InputController(considerationFile, scanner);
             scanner.configure(ic);
@@ -48,11 +51,15 @@ public class ParserTest {
 
             // Construct the parser and pass it the scanner
             // Then close the context
-
-            TreeNode ast = parser.parse();
-            StringBuffer astBuffer = DotTreeCrawler.crawl(ast);
-            CompilationContext.Context.setAst(astBuffer);
-            CompilationContext.getContext().closeContext();
+            try {
+                TreeNode ast = parser.parse();
+                StringBuffer astBuffer = DotTreeCrawler.crawl(ast);
+                CompilationContext.Context.setAst(astBuffer);
+            } catch(Exception e) {
+                e.printStackTrace();
+            } finally {
+                CompilationContext.getContext().closeContext();
+            }
 
             System.out.println();
             System.out.println();
