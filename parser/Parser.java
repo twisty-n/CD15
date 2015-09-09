@@ -106,10 +106,10 @@ public class Parser {
         isCurrentToken(TokenClass.TIDNT, true);
         return new Program(arrays, main, procs);
     }
-//    Special <arrays> ::= arrays <arraydecl> <arrdltail>
 
     /**
      *
+     *  <arrays> ::= arrays <arraydecl> <arrdltail>
      * @return
      */
     protected TreeNode arrays() {
