@@ -173,7 +173,7 @@ public class Parser {
 
         // Build an ID: Match the ID, store it
         LocalDeclaration local = new LocalDeclaration();
-        local.setType(matchCurrentAndStoreRecord(TokenClass.TIDNT));
+        local.setName(matchCurrentAndStoreRecord(TokenClass.TIDNT));
 
         // Call localVariablesTail
         LocalDecList restOftheVars = new LocalDecList();
@@ -228,8 +228,71 @@ public class Parser {
         return dec;
     }
 
+    // NPARAMS <parameters> ::= var <plist> <paramstail>
+    // NPARAMS <parameters> ::= val <pidlist>
+    // Special <parameters> ::= ?
     protected TreeNode procedureParams() {
-        return null;
+
+        // Proc can have var | val | Epsilon to start with
+        TokenClass tokenClass = currentToken.getTokenClass();
+        if (!tokenClass.equals(TokenClass.TVALP) && !tokenClass.equals(TokenClass.TVARP)) {
+            // If its not var or val, there are no params
+            return null;
+        }
+
+        // It must be VAR or VAL
+        if (isCurrentToken(TokenClass.TVARP, false)) {
+            // Have a set of var params
+
+            // Call plist
+            TreeNode varParams = procVarParams();
+            // Call paramstail
+            return varParams;
+        } else {
+            // Only have val params
+
+            // Call PID list
+            return null;
+        }
+    }
+
+    // <plist> ::= <param> <plisttail>
+    protected TreeNode procVarParams() {
+        TreeNode param = varParam();
+        TreeNode restOfTheParams = procVarList();
+        if (restOfTheParams == null) {
+            return param;
+        }
+        TreeNode paramList = new ParameterList();
+        paramList.setLeft(param);
+        paramList.setRight(restOfTheParams);
+        return paramList;
+    }
+
+    protected TreeNode procVarList() {
+        if(!isCurrentToken(TokenClass.TCOMA, false)) {
+            return null;
+        }
+        return procVarParams();
+    }
+
+    //    Special <param> ::= <id> <paramtail>
+    //    --NSIMPAR <paramtail> ::= ?
+    //    --NARRPAR <paramtail> ::= [ ]
+    protected TreeNode varParam() {
+        STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        if (isCurrentToken(TokenClass.TLBRK, false)) {
+            isCurrentToken(TokenClass.TRBRK, true);
+            // We just matched an ArrayParam
+            ArrayParameter arrPam = new ArrayParameter();
+            arrPam.setName(id);
+            return arrPam;
+        } else {
+            // We matched a simple param
+            SimpleParameter simParam = new SimpleParameter();
+            simParam.setName(id);
+            return simParam;
+        }
     }
 
     protected TreeNode procedureLocals() {
@@ -276,17 +339,14 @@ public class Parser {
 //    Special <procs> ::= ?
 //
 
-//    --NPARAMS <parameters> ::= var <plist> <paramstail>
-//    --NPARAMS <parameters> ::= val <pidlist>
-//    Special <parameters> ::= ?
+
+
 //    Special <paramstail> ::= val <pidlist>
 //    Special <paramstail> ::= ?
-//    Special <plist> ::= <param> <plisttail>
+
 //    --NPLIST <plisttail> ::= , <plist>
 //    Special <plisttail> ::= ?
-//    Special <param> ::= <id> <paramtail>
-//    --NSIMPAR <paramtail> ::= ?
-//    --NARRPAR <paramtail> ::= [ ]
+
 //            --NSIMPAR <pidlist> ::= <id> <pidltail>
 //    --NPLIST <pidltail> ::= , <pidlist>
 //    Special <pidltail> ::= ?

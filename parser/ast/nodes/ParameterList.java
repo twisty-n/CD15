@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -13,5 +14,21 @@ import parser.ast.TreeNode;
  */
 public class ParameterList extends TreeNode {
 
-    //NPLIST
+    //Node.NPLIST
+
+    public ParameterList() {
+        super(Node.NPLIST);
+    }
+
+    public ParameterList( STRecord st) {
+        super(Node.NPLIST, st);
+    }
+
+    public ParameterList( TreeNode l, TreeNode r) {
+        super(Node.NPLIST, l, r);
+    }
+
+    public ParameterList( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NPLIST, l, m, r);
+    }
 }

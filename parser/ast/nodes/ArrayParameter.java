@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -14,4 +15,20 @@ import parser.ast.TreeNode;
 public class ArrayParameter extends TreeNode {
 
     //NARRPAR
+
+    public ArrayParameter() {
+        super(Node.NARRPAR);
+    }
+
+    public ArrayParameter( STRecord st) {
+        super(Node.NARRPAR, st);
+    }
+
+    public ArrayParameter( TreeNode l, TreeNode r) {
+        super(Node.NARRPAR, l, r);
+    }
+
+    public ArrayParameter( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NARRPAR, l, m, r);
+    }
 }

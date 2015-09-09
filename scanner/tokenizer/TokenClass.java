@@ -29,7 +29,7 @@ package scanner.tokenizer;
 // 04-Aug-2015
 //
 
-public enum TokenClass {	TEOF(null),   // End of File Token
+public enum TokenClass {	TEOF("END OF FILE"),   // End of File Token
 
     // The 25 keywords come first
     TPROG("program"),
@@ -63,7 +63,7 @@ public enum TokenClass {	TEOF(null),   // End of File Token
     TDVEQ("/*"), TDEQL("=="), TNEQL("!="), TGRTR(">"), TLEQL("<="), TLESS("<"), TGREQ(">="), TPLUS("+"), TSUBT("-"), TMULT("*"), TDIVD("/"),
 
     // then the tokens (or pseudo-tokens) with non-null tuple values
-    TIDNT(null), TILIT(null), TFLIT(null), TSTRG(null), TUNDF(null);
+    TIDNT("identifier"), TILIT("Integer Literal"), TFLIT("FP Literal"), TSTRG("String Literal"), TUNDF("Undefined");
 
     public boolean isLiteral() {
          return this.equals(TILIT) || this.equals(TFLIT) || this.equals(TSTRG);

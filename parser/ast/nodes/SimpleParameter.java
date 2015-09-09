@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -14,4 +15,20 @@ import parser.ast.TreeNode;
 public class SimpleParameter extends TreeNode {
 
     //NSIMPAR
+
+    public SimpleParameter() {
+        super(Node.NSIMPAR);
+    }
+
+    public SimpleParameter( STRecord st) {
+        super(Node.NSIMPAR, st);
+    }
+
+    public SimpleParameter( TreeNode l, TreeNode r) {
+        super(Node.NSIMPAR, l, r);
+    }
+
+    public SimpleParameter( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NSIMPAR, l, m, r);
+    }
 }
