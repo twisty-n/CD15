@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -14,4 +15,21 @@ import parser.ast.TreeNode;
 public class LocalDecList extends TreeNode {
 
     //NDLIST
+
+
+    public LocalDecList() {
+        super(Node.NIDLST);
+    }
+
+    public LocalDecList( STRecord st) {
+        super(Node.NIDLST, st);
+    }
+
+    public LocalDecList(TreeNode l, TreeNode r) {
+        super(Node.NIDLST, l, r);
+    }
+
+    public LocalDecList(TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NDLIST, l, m, r);
+    }
 }

@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -14,4 +15,21 @@ import parser.ast.TreeNode;
 public class Main extends TreeNode {
 
     //NMAIN
+
+
+    public Main() {
+        super(Node.NMAIN);
+    }
+
+    public Main( STRecord st) {
+        super(Node.NMAIN, st);
+    }
+
+    public Main( TreeNode l, TreeNode r) {
+        super(Node.NMAIN, l, r);
+    }
+
+    public Main( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NMAIN, l, m, r);
+    }
 }

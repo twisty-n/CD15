@@ -139,6 +139,8 @@ public class Parser {
         // Otherwise return the thing back up
         return new ArrayDecList(dec, rest);
     }
+
+
     // NARRYL <arrdltail> ::= , <arraydecl> <arrdltail>
     // Special <arrdltail> ::= ?
     protected TreeNode arrayTail() {
@@ -169,29 +171,31 @@ public class Parser {
         TreeNode statementList = statements();
 
         // Return the built main node
-        return null;
+        Main main = new Main(localVars, statementList);
+        return main;
     }
 
     // Returns a NDLIST OR a single local if there is only one
     //    NSIMDEC <idlist> ::= <id> <idltail>
-    //    NIDLST <idltail> ::= , <idlist>
     protected TreeNode localVariables() {
 
         // Build an ID: Match the ID, store it
-
-        // Set up the STR as an ID
+        LocalDeclaration local = new LocalDeclaration();
+        local.setType(matchCurrentAndStoreRecord(TokenClass.TIDNT));
 
         // Call localVariablesTail
-        TreeNode restOftheVars = localVarsTail();
-        if (restOftheVars == null) {
-            return null; // The actual declaration
+        LocalDecList restOftheVars = new LocalDecList();
+        TreeNode tail = localVarsTail();
+        if (tail == null) {
+            return local; // The actual declaration
         }
         // Dont forget to set the symbol table record
-
-        return null;
+        restOftheVars.setLeft(local);
+        restOftheVars.setRight(tail);
+        return restOftheVars;
     }
 
-
+    //    NIDLST <idltail> ::= , <idlist>
     protected TreeNode localVarsTail() {
         // Check a comma, if it is, continue
         if (!isCurrentToken(TokenClass.TCOMA, false)) {

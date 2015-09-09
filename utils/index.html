@@ -6,14 +6,29 @@
 </head>
 <body>
 	<h1>Hi Dan, hopefully this makes it easier to mark :)</h1>
+    <input id="clickMe" type="button" value="REFRESH" onclick="refreshFile();" />
 	<input type="file" id="fileinput" />
 	<br />
 	<div id="graph" style="width:1000px; height:1000px;"></div>
 	<script type="text/javascript" src="viz.js"></script>
 	<script type="text/javascript">
-		
+
+        var ourFile = null;
+
+        var refreshFile = function() {
+            if (ourFile) {
+                var reader = new FileReader();
+                reader.onload = function(event) {
+                    var fileContents = event.target.result;
+                    loadGraph(fileContents);
+                }
+                reader.readAsText(ourFile);
+            }
+        }
+
 		var readInTreeFile = function(fileOpenEvent) {
 			var file = fileOpenEvent.target.files[0];
+            ourFile = file;
 			if (file) {
 				var reader = new FileReader();
 				reader.onload = function(event) {
@@ -26,6 +41,7 @@
 		
 		var loadGraph = function(dotFileContents) {
 			var container = document.getElementById('graph');
+            container.innerHTML = "";
 			container.innerHTML += Viz(dotFileContents, options={format:"svg", engine:"dot"});
 		}
 		
