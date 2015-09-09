@@ -89,14 +89,6 @@ public class Parser {
         return null;
     }
 
-    protected ProcDecList procs() {
-        return null;
-    }
-
-//    --NPROG <program>::= program <id> <arrays> <procs> <main> end program <id>
-
-
-
     /**
      * Returns the completed AST for the Program
      * @return
@@ -112,7 +104,7 @@ public class Parser {
         isCurrentToken(TokenClass.TENDK, true);
         isCurrentToken(TokenClass.TPROG, true);
         isCurrentToken(TokenClass.TIDNT, true);
-        return new Program(arrays, procs, main);
+        return new Program(arrays, main, procs);
     }
 //    Special <arrays> ::= arrays <arraydecl> <arrdltail>
 
@@ -208,6 +200,60 @@ public class Parser {
         return localVariables();
     }
 
+    // NPROC <proc> ::= proc <id> <parameters> <locals> <stats> end proc <id>
+    protected ProcedureDeclaration procedure() {
+        // Match proc
+        ProcedureDeclaration dec = new ProcedureDeclaration();
+        if(!isCurrentToken(TokenClass.TPROC, false)) {
+            // If we dont see a proc, assume that there are none
+            return null;
+        }
+        // Match id
+        dec.setName(matchCurrentAndStoreRecord(TokenClass.TIDNT));
+        // Call proc_params
+        TreeNode procedureParams = procedureParams();
+        // Call proc locals
+        TreeNode procedureLocals = procedureLocals();
+        // call stats
+        TreeNode procedureStatements = statements();
+        // Match end
+        isCurrentToken(TokenClass.TENDK, true);
+        // Match proc
+        isCurrentToken(TokenClass.TPROC, true);
+        // Match id
+        isCurrentToken(TokenClass.TIDNT, true);  // <<-- Check for sem anal
+        dec.setLeft(procedureParams);
+        dec.setMiddle(procedureLocals);
+        dec.setRight(procedureStatements);
+        return dec;
+    }
+
+    protected TreeNode procedureParams() {
+        return null;
+    }
+
+    protected TreeNode procedureLocals() {
+        return null;
+    }
+
+    // NPROCL <procs> ::= <proc> <procs>
+    protected TreeNode procs() {
+
+        // Call procedure
+        ProcedureDeclaration dec = procedure();
+        if (dec == null) {
+            return null;
+        }
+        TreeNode restOfTheProcedures = procs();
+        if (restOfTheProcedures == null) {
+            return dec;
+        }
+        // Other wise
+        ProcDecList procList = new ProcDecList(dec, restOfTheProcedures);
+        return procList;
+
+    }
+
     // TODO
     protected TreeNode statements() {
         return null;
@@ -227,10 +273,9 @@ public class Parser {
         return decl;
     }
 
-//    --NPROCL <procs> ::= <proc> <procs>
 //    Special <procs> ::= ?
 //
-//    --NPROC <proc> ::= proc <id> <parameters> <locals> <stats> end proc <id>
+
 //    --NPARAMS <parameters> ::= var <plist> <paramstail>
 //    --NPARAMS <parameters> ::= val <pidlist>
 //    Special <parameters> ::= ?

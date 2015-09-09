@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -14,4 +15,20 @@ import parser.ast.TreeNode;
 public class ProcedureDeclaration extends TreeNode {
 
     //NPROC
+
+    public ProcedureDeclaration() {
+        super(Node.NPROC);
+    }
+
+    public ProcedureDeclaration(STRecord st) {
+        super(Node.NPROC, st);
+    }
+
+    public ProcedureDeclaration( TreeNode l, TreeNode r) {
+        super(Node.NPROC, l, r);
+    }
+
+    public ProcedureDeclaration( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NPROC, l, m, r);
+    }
 }

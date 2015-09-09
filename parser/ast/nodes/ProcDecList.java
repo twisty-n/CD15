@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -14,4 +15,20 @@ import parser.ast.TreeNode;
 public class ProcDecList extends TreeNode {
 
     //NPROCL
+
+    public ProcDecList() {
+        super(Node.NPROCL);
+    }
+
+    public ProcDecList( STRecord st) {
+        super(Node.NPROCL, st);
+    }
+
+    public ProcDecList( TreeNode l, TreeNode r) {
+        super(Node.NPROCL, l, r);
+    }
+
+    public ProcDecList( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NPROCL, l, m, r);
+    }
 }
