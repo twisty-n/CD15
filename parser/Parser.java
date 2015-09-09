@@ -89,17 +89,14 @@ public class Parser {
         return null;
     }
 
-    protected Main main() {
-        return null;
-    }
-
     protected ProcDecList procs() {
         return null;
     }
 
-
-
 //    --NPROG <program>::= program <id> <arrays> <procs> <main> end program <id>
+
+
+
     /**
      * Returns the completed AST for the Program
      * @return
@@ -117,9 +114,8 @@ public class Parser {
         isCurrentToken(TokenClass.TIDNT, true);
         return new Program(arrays, procs, main);
     }
-
 //    Special <arrays> ::= arrays <arraydecl> <arrdltail>
-//    Special <arrays> ::= ?
+
     /**
      *
      * @return
@@ -143,7 +139,6 @@ public class Parser {
         // Otherwise return the thing back up
         return new ArrayDecList(dec, rest);
     }
-
     // NARRYL <arrdltail> ::= , <arraydecl> <arrdltail>
     // Special <arrdltail> ::= ?
     protected TreeNode arrayTail() {
@@ -166,7 +161,55 @@ public class Parser {
         return new ArrayDecList(dec, rest); // Set left and right
     }
 
-//    --NARRDEC <arraydecl> ::= <id> [ <intlit> ]
+    //--NMAIN <main> ::= local <idlist> ; <stats>
+    protected Main main() {
+        isCurrentToken(TokenClass.TLOCL, true);
+        TreeNode localVars = localVariables();
+        isCurrentToken(TokenClass.TSEMI, true);
+        TreeNode statementList = statements();
+
+        // Return the built main node
+        return null;
+    }
+
+    // Returns a NDLIST OR a single local if there is only one
+    //    NSIMDEC <idlist> ::= <id> <idltail>
+    //    NIDLST <idltail> ::= , <idlist>
+    protected TreeNode localVariables() {
+
+        // Build an ID: Match the ID, store it
+
+        // Set up the STR as an ID
+
+        // Call localVariablesTail
+        TreeNode restOftheVars = localVarsTail();
+        if (restOftheVars == null) {
+            return null; // The actual declaration
+        }
+        // Dont forget to set the symbol table record
+
+        return null;
+    }
+
+
+    protected TreeNode localVarsTail() {
+        // Check a comma, if it is, continue
+        if (!isCurrentToken(TokenClass.TCOMA, false)) {
+            return null;
+        }
+
+        // Check for an ID, it should be an ID now
+        // Dont forget to set the symTabRecs
+        // Pretty much we call the localVariables now
+        return localVariables();
+    }
+
+    // TODO
+    protected TreeNode statements() {
+        return null;
+    }
+
+    // NARRDEC <arraydecl> ::= <id> [ <intlit> ]
     protected TreeNode arrayDeclaration() {
         // Match an ID
         TreeNode decl = new ArrayDeclaration();
@@ -182,7 +225,7 @@ public class Parser {
 
 //    --NPROCL <procs> ::= <proc> <procs>
 //    Special <procs> ::= ?
-//    --NMAIN <main> ::= local <idlist> ; <stats>
+//
 //    --NPROC <proc> ::= proc <id> <parameters> <locals> <stats> end proc <id>
 //    --NPARAMS <parameters> ::= var <plist> <paramstail>
 //    --NPARAMS <parameters> ::= val <pidlist>
@@ -267,8 +310,6 @@ public class Parser {
 //    Special <prltail> ::= ?
 //    Special <printitem> ::= <expr>
 //    NSTRG <printitem> ::= <string>
-//    NSIMDEC <idlist> ::= <id> <idltail>
-//    NIDLST <idltail> ::= , <idlist>
 //    Special <idltail> ::= ?
 
 

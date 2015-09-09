@@ -42,6 +42,7 @@ public class ParserTest {
 
             // Iterate over each source file
             String considerationFile = files[i].getPath();
+
             CompilationContext.configureCompilationContext(considerationFile);
             InputController ic = new InputController(considerationFile, scanner);
             scanner.configure(ic);
