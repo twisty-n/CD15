@@ -193,10 +193,6 @@ public class Parser {
         if (!isCurrentToken(TokenClass.TCOMA, false)) {
             return null;
         }
-
-        // Check for an ID, it should be an ID now
-        // Dont forget to set the symTabRecs
-        // Pretty much we call the localVariables now
         return localVariables();
     }
 
@@ -243,7 +239,6 @@ public class Parser {
         // It must be VAR or VAL
         if (isCurrentToken(TokenClass.TVARP, false)) {
             // Have a set of var params
-
             // Call plist
             TreeNode varParams = procVarParams();
             TreeNode valParams = paramsTail();
@@ -337,8 +332,6 @@ public class Parser {
         }
     }
 
-
-
     // Special <locals> ::= local <decllist> ; | ?
     protected TreeNode procedureLocals() {
         // Match local
@@ -398,11 +391,8 @@ public class Parser {
         return new LocalDeclaration();
     }
 
-
-
     // NPROCL <procs> ::= <proc> <procs>
     protected TreeNode procs() {
-
         // Call procedure
         ProcedureDeclaration dec = procedure();
         if (dec == null) {
@@ -415,12 +405,6 @@ public class Parser {
         // Other wise
         ProcDecList procList = new ProcDecList(dec, restOfTheProcedures);
         return procList;
-
-    }
-
-    // TODO
-    protected TreeNode statements() {
-        return null;
     }
 
     // NARRDEC <arraydecl> ::= <id> [ <intlit> ]
@@ -438,12 +422,30 @@ public class Parser {
     }
 
 
+    // Special <stats> ::= <stat> <sltail>
+    protected TreeNode statements() {
+        TreeNode statement = statement();
+        // Call sltail
+        TreeNode statementList = slTail();
+        if (statementList == null) {
+            return statement;
+        }
+        return new StatementList(statement, statementList);
+    }
 
-//    Special <stats> ::= <stat> <sltail>
-//    --NSLIST <sltail> ::= <stat> <sltail>
+    // Special <stat> ::= <loopstat> | <exitstat> | <ifstat>
+    // Special <stat> ::= <asgnstat> | <iostat> | <callstat>
+    protected TreeNode statement() {
+        // Call and return some statement based on whatever we've seen
+    }
+
+    // In this case, just recycle the method
+    // NSLIST <sltail> ::= <stat> <sltail>
+    protected TreeNode slTail() {
+        return statements();
+    }
+
 //    Special <sltail> ::= ?
-//    Special <stat> ::= <loopstat> | <exitstat> | <ifstat>
-//    Special <stat> ::= <asgnstat> | <iostat> | <callstat>
 //    --NLOOP <loopstat> ::= loop <id> <stats> end loop <id>
 //    --NEXIT <exitstat> ::= exit <id> when <bool> ;
 //    Special <ifstat> ::= if <bool> then <stats> <iftail>

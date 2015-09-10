@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -12,4 +13,20 @@ import parser.ast.TreeNode;
  * Description:     TODO Write DEscription
  */
 public class StatementList extends TreeNode {
+
+    public StatementList() {
+        super(Node.NSLIST);
+    }
+
+    public StatementList( STRecord st) {
+        super(Node.NSLIST, st);
+    }
+
+    public StatementList( TreeNode l, TreeNode r) {
+        super(Node.NSLIST, l, r);
+    }
+
+    public StatementList( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NSLIST, l, m, r);
+    }
 }
