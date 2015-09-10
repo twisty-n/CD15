@@ -337,9 +337,68 @@ public class Parser {
         }
     }
 
+
+
+    // Special <locals> ::= local <decllist> ; | ?
     protected TreeNode procedureLocals() {
-        return null;
+        // Match local
+        if(!isCurrentToken(TokenClass.TLOCL, false)) {
+            // There were no locals
+            return null;
+        }
+        // Call and return decllist
+        TreeNode locals = declList();
+        isCurrentToken(TokenClass.TSEMI, true);
+        return locals;
     }
+
+
+    // Special <decllist> ::= <decl> <dltail>
+    protected TreeNode declList() {
+        TreeNode delcaration = decl();
+        TreeNode restOfTheDeclarations = dlTail();
+        if (restOfTheDeclarations == null) {
+            return delcaration;
+        }
+        // Other wise, return up the built list
+        ProcLocals locals = new ProcLocals();
+        locals.setLeft(delcaration);
+        locals.setRight(restOfTheDeclarations);
+        return locals;
+    }
+
+    //    --NDLIST <dltail> ::= , <decllist>
+    //    Special <dltail> ::= ?
+    protected TreeNode dlTail() {
+        // Match a comma or nothing
+        if(!isCurrentToken(TokenClass.TCOMA, false)) {
+            return null;
+        }
+        // call declList
+        return declList();
+    }
+
+    //    Special <decl> ::= <id> <dtail>
+    protected TreeNode decl() {
+        STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        // We store the Id in the thing that comes back to us from dtail
+        TreeNode thing = dTail();
+        thing.setName(id);
+        return thing;
+    }
+
+    //    --NARRDEC <dtail> ::= [ <intlit> ]
+    //    --NSIMDEC <dtail> ::= ?
+    protected TreeNode dTail() {
+        if (isCurrentToken(TokenClass.TLBRK, false)) {
+            if (isCurrentToken(TokenClass.TRBRK, true)) {
+                return new ArrayDeclaration();
+            }
+        }
+        return new LocalDeclaration();
+    }
+
+
 
     // NPROCL <procs> ::= <proc> <procs>
     protected TreeNode procs() {
@@ -379,17 +438,7 @@ public class Parser {
     }
 
 
-//    --NPLIST <plisttail> ::= , <plist>
-//    Special <plisttail> ::= ?
 
-
-//    Special <locals> ::= local <decllist> ; | ?
-//    Special <decllist> ::= <decl> <dltail>
-//    --NDLIST <dltail> ::= , <decllist>
-//    Special <dltail> ::= ?
-//    Special <decl> ::= <id> <dtail>
-//    --NARRDEC <dtail> ::= [ <intlit> ]
-//            --NSIMDEC <dtail> ::= ?
 //    Special <stats> ::= <stat> <sltail>
 //    --NSLIST <sltail> ::= <stat> <sltail>
 //    Special <sltail> ::= ?
