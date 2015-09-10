@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -14,4 +15,21 @@ import parser.ast.TreeNode;
 public class ProcParameters extends TreeNode {
 
     //NPARAMS
+
+
+    public ProcParameters() {
+        super(Node.NPARAMS);
+    }
+
+    public ProcParameters( STRecord st) {
+        super(Node.NPARAMS, st);
+    }
+
+    public ProcParameters( TreeNode l, TreeNode r) {
+        super(Node.NPARAMS, l, r);
+    }
+
+    public ProcParameters( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NPARAMS, l, m, r);
+    }
 }

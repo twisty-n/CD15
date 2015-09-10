@@ -246,14 +246,56 @@ public class Parser {
 
             // Call plist
             TreeNode varParams = procVarParams();
+            TreeNode valParams = paramsTail();
+            return new ProcParameters(varParams, valParams);
             // Call paramstail
-            return varParams;
         } else {
-            // Only have val params
-
             // Call PID list
+            isCurrentToken(TokenClass.TVALP, true);
+            ProcParameters params = new ProcParameters();
+            params.setMiddle(pIdList());
+            return params;
+        }
+    }
+
+    // Special <paramstail> ::= val <pidlist>
+    // Special <paramstail> ::= ?
+    protected TreeNode paramsTail() {
+        if(!isCurrentToken(TokenClass.TVALP, false)) {
+            // There are no val params
             return null;
         }
+        // Otherwise, match them up
+        return pIdList();
+    }
+
+
+    // NSIMPAR <pidlist> ::= <id> <pidltail>
+    protected TreeNode pIdList() {
+        // Match an id
+        STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        TreeNode simPar = new SimpleParameter();
+        simPar.setName(id);
+        // Call pIdLtail
+        TreeNode restOfTheParams = pIdLTail();
+        if (restOfTheParams == null) {
+            return simPar;
+        } else {
+            TreeNode paramList = new ParameterList();
+            paramList.setLeft(simPar);
+            paramList.setRight(restOfTheParams);
+            return paramList;
+        }
+    }
+
+
+    //    --NPLIST <pidltail> ::= , <pidlist>
+    //    Special <pidltail> ::= ?
+    protected TreeNode pIdLTail() {
+        if(!isCurrentToken(TokenClass.TCOMA, false)) {
+            return null;
+        }
+        return pIdList();
     }
 
     // <plist> ::= <param> <plisttail>
@@ -336,20 +378,11 @@ public class Parser {
         return decl;
     }
 
-//    Special <procs> ::= ?
-//
-
-
-
-//    Special <paramstail> ::= val <pidlist>
-//    Special <paramstail> ::= ?
 
 //    --NPLIST <plisttail> ::= , <plist>
 //    Special <plisttail> ::= ?
 
-//            --NSIMPAR <pidlist> ::= <id> <pidltail>
-//    --NPLIST <pidltail> ::= , <pidlist>
-//    Special <pidltail> ::= ?
+
 //    Special <locals> ::= local <decllist> ; | ?
 //    Special <decllist> ::= <decl> <dltail>
 //    --NDLIST <dltail> ::= , <decllist>
