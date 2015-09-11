@@ -96,6 +96,9 @@ public class STRecord {
 
     /**
      * Retrieves a property of this STRecord
+     *
+     * // TODO specify a generic type that we are passing in in order to autocast on the way out
+     *
      * @param descriptor
      * @return
      */

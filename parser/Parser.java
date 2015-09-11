@@ -7,6 +7,7 @@ import parser.ast.nodes.*;
 import scanner.Scanner;
 import scanner.tokenizer.Token;
 import scanner.tokenizer.TokenClass;
+import utils.DebugWriter;
 
 /**
  * Author:          Tristan Newmann
@@ -264,7 +265,6 @@ public class Parser {
         return pIdList();
     }
 
-
     // NSIMPAR <pidlist> ::= <id> <pidltail>
     protected TreeNode pIdList() {
         // Match an id
@@ -284,8 +284,8 @@ public class Parser {
     }
 
 
-    //    --NPLIST <pidltail> ::= , <pidlist>
-    //    Special <pidltail> ::= ?
+    // NPLIST <pidltail> ::= , <pidlist>
+    // Special <pidltail> ::= ?
     protected TreeNode pIdLTail() {
         if(!isCurrentToken(TokenClass.TCOMA, false)) {
             return null;
@@ -313,9 +313,9 @@ public class Parser {
         return procVarParams();
     }
 
-    //    Special <param> ::= <id> <paramtail>
-    //    --NSIMPAR <paramtail> ::= ?
-    //    --NARRPAR <paramtail> ::= [ ]
+    // Special <param> ::= <id> <paramtail>
+    // NSIMPAR <paramtail> ::= ?
+    // NARRPAR <paramtail> ::= [ ]
     protected TreeNode varParam() {
         STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT);
         if (isCurrentToken(TokenClass.TLBRK, false)) {
@@ -360,8 +360,8 @@ public class Parser {
         return locals;
     }
 
-    //    --NDLIST <dltail> ::= , <decllist>
-    //    Special <dltail> ::= ?
+    // NDLIST <dltail> ::= , <decllist>
+    // Special <dltail> ::= ?
     protected TreeNode dlTail() {
         // Match a comma or nothing
         if(!isCurrentToken(TokenClass.TCOMA, false)) {
@@ -371,7 +371,7 @@ public class Parser {
         return declList();
     }
 
-    //    Special <decl> ::= <id> <dtail>
+    // Special <decl> ::= <id> <dtail>
     protected TreeNode decl() {
         STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT);
         // We store the Id in the thing that comes back to us from dtail
@@ -380,12 +380,13 @@ public class Parser {
         return thing;
     }
 
-    //    --NARRDEC <dtail> ::= [ <intlit> ]
-    //    --NSIMDEC <dtail> ::= ?
+    // NARRDEC <dtail> ::= [ <intlit> ]
+    // NSIMDEC <dtail> ::= ?
     protected TreeNode dTail() {
         if (isCurrentToken(TokenClass.TLBRK, false)) {
+            STRecord arrayLength = matchCurrentAndStoreRecord(TokenClass.TILIT);
             if (isCurrentToken(TokenClass.TRBRK, true)) {
-                return new ArrayDeclaration();
+                return new ArrayDeclaration().setType(arrayLength);
             }
         }
         return new LocalDeclaration();
@@ -437,44 +438,252 @@ public class Parser {
     // Special <stat> ::= <asgnstat> | <iostat> | <callstat>
     protected TreeNode statement() {
         // Call and return some statement based on whatever we've seen
+        switch (currentToken.getTokenClass()) {
+            case TLOOP: return loopStatement();
+            case TEXIT: return exitStatement();
+            case TIFKW: return ifStatement();
+            case TPRIN: // Cascade
+            case TPRLN: // Cascade
+            case TINPT: return ioStatement();
+            case TCALL: return callStatement();
+            case TIDNT: return assignmentStatement();
+        }
+        // Should never happen
+        DebugWriter.writeEverywhere("Error: located a statement, but no matching statement found" +
+                ". Parsing probably corrupt :/");
+        return null;
     }
 
-    // In this case, just recycle the method
+    // In this case, just recycle the method after checking that we still have statements
     // NSLIST <sltail> ::= <stat> <sltail>
+    // Special <sltail> ::= ?
     protected TreeNode slTail() {
+        // if the current token thing doesn't match a statement, or id kill it
+        if (!currentToken.getTokenClass().isStatementKeyword()
+                || !currentToken.getTokenClass().isIdentifier()) {
+            return null;
+        }
         return statements();
     }
 
-//    Special <sltail> ::= ?
-//    --NLOOP <loopstat> ::= loop <id> <stats> end loop <id>
-//    --NEXIT <exitstat> ::= exit <id> when <bool> ;
-//    Special <ifstat> ::= if <bool> then <stats> <iftail>
+    // NLOOP <loopstat> ::= loop <id> <stats> end loop <id>
+    protected TreeNode loopStatement() {
+        isCurrentToken(TokenClass.TLOOP, true); // It really should be loop
+        STRecord loopId = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        TreeNode loopStatements = statements();
+        // If there are no statements we have an error
+        // TODO: No statements in Loop error: empty control structure
+        isCurrentToken(TokenClass.TENDK, true);
+        isCurrentToken(TokenClass.TLOOP, true);
+        isCurrentToken(TokenClass.TIDNT, true);
+        TreeNode loop = new Loop();
+        loop.setMiddle(loopStatements);
+        loop.setName(loopId);
+        return loop;
+    }
+
+    // NEXIT <exitstat> ::= exit <id> when <bool> ;
+    protected TreeNode exitStatement() {
+        isCurrentToken(TokenClass.TEXIT, true);
+        STRecord exitIdentifer = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        isCurrentToken(TokenClass.TWHEN, true);
+        return bool().setName(exitIdentifer);
+    }
+
+    // Special <ifstat> ::= if <bool> then <stats> <iftail>
+    protected TreeNode ifStatement() {
+        return null;
+    }
+
+    // Special <asgnstat> ::= <var> <asgnop> <expr> ;
+    protected TreeNode assignmentStatement() {
+        TreeNode variable = var();
+        TreeNode assignmentOperation = asgnop();
+        TreeNode value = expr();
+        isCurrentToken(TokenClass.TSEMI, true);
+        return assignmentOperation.setLeft(variable).setRight(value);
+
+    }
+
+    // NASGN, NPLEQ, NMNEQ, NSTEQ, NDVEQ
+    // <asgnop> ::= = | += | -= | *= | /=
+    protected TreeNode asgnop() {
+        switch(currentToken.getTokenClass()) {
+            case TASGN:     return new AssignmentOperation();
+            case TPLEQ:     return new PlusEqual();
+            case TMNEQ:     return new MinusEqual();
+            case TMLEQ:     return new TimesEqual();
+            case TDEQL:     return new DivideEqual();
+            default:        {
+                DebugWriter.writeEverywhere("Expected an assignment opp but didn't find. Parsing corrupt");
+                return null;
+            }
+        }
+    }
+
+    // NINPUT <iostat> ::= input <vlist> ;
+    // NPRINT <iostat> ::= print <prlist> ;
+    // NPRLN  <iostat> ::= printline <printail>
+    protected TreeNode ioStatement() {
+        switch (currentToken.getTokenClass()) {
+            case TPRIN: {
+                // print
+                isCurrentToken(TokenClass.TPRIN, true);
+                return new Print().setMiddle(prList());
+            }
+            case TPRLN: {
+                isCurrentToken(TokenClass.TPRLN, true);
+                return new PrintLine().setMiddle(prinTail());
+            }
+            case TINPT: {
+                isCurrentToken(TokenClass.TINPT, true);
+                return new Input().setMiddle(vList());
+            }
+            default: {
+                DebugWriter.writeEverywhere("Expected IO statement but none found. Parsing may be corrupt");
+                return null; // Should never happen. PLZ never happene
+            }
+        }
+    }
+
+
+    // Special <vlist> ::= <var> <vltail>
+    protected TreeNode vList() {
+        TreeNode var = var();
+        TreeNode vlTail = vlTail();
+        if (vlTail == null) {
+            return var;
+        }
+        return new InputVarList(var, vlTail);
+    }
+
+    // Special <vltail> ::= ?
+    // NVLIST <vltail> ::= , <vlist>
+    protected TreeNode vlTail() {
+        if(!isCurrentToken(TokenClass.TCOMA, false)) {
+            return null;
+        }
+        return vList();
+    }
+
+    // Special <var> ::= <id> <vtail>
+    protected TreeNode var() {
+        STRecord identifer = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        TreeNode thing = vTail();
+        return thing.setName(identifer);
+    }
+
+    // NSIMVAR <vtail> ::= ?
+    // NARRVAR <vtail> ::= [<expr>]
+    protected TreeNode vTail() {
+        if(isCurrentToken(TokenClass.TLBRK, false)) {
+            TreeNode indexCalc = expr();
+            isCurrentToken(TokenClass.TRBRK, true);
+            return new ArrayVariable().setMiddle(indexCalc);
+        }
+        return new SimpleVariable();
+    }
+
+    // Special <printail> ::= ;
+    // Special <printail> ::= <prlist> ;
+    protected TreeNode prinTail() {
+        if(isCurrentToken(TokenClass.TSEMI, false)) {
+            return null;
+        }
+        TreeNode printList = prList();
+        isCurrentToken(TokenClass.TSEMI, true);
+        return printList;
+    }
+
+    // Special <prlist> ::= <printitem> <prltail>
+    // Will return either a string/expression,
+    // or a NPRLIST of shit to print, so same structure
+    // Special <printitem> ::= <expr> // INLINED
+    // NSTRG <printitem> ::= <string> // INLINED
+    protected TreeNode prList() {
+        TreeNode printItem;
+        if (currentToken.getTokenClass().equals(TokenClass.TSTRG)) {
+            STRecord string = matchCurrentAndStoreRecord(TokenClass.TSTRG);
+            printItem = new StringLiteral(string);
+        } else {
+            printItem = expr();
+        }
+        TreeNode prTail = prTail();
+        if (prTail == null) {
+            return printItem;
+        }
+        return new PrintList(printItem, prTail);
+    }
+
+    // NPRLIST <prltail> ::= , <prlist>
+    // Special <prltail> ::= ?
+    protected TreeNode prTail() {
+        if(!isCurrentToken(TokenClass.TCOMA, false)) {
+            return null;
+        }
+        return prList();
+    }
+
+    // NCALL <callstat> ::= call <id> <calltail>
+    protected TreeNode callStatement() {
+        isCurrentToken(TokenClass.TCALL, true);
+        STRecord procId = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        TreeNode callParams = callTail();
+        TreeNode procCall = new Call();
+        procCall.setName(procId);
+        procCall.setMiddle(callParams);
+        return procCall;
+    }
+
+
+    // Special <calltail> ::= with <elist> ;
+    // Special <calltail> ::= ;
+    protected TreeNode callTail() {
+        if (isCurrentToken(TokenClass.TSEMI, false)) {
+            // There are no more params
+            return null;
+        }
+        // Else we have some more params to process
+        TreeNode paramList = eList();
+        isCurrentToken(TokenClass.TSEMI, true);
+        return paramList;
+    }
+
+    // Special <elist> ::= <expr> <eltail>
+    protected TreeNode eList() {
+        TreeNode expression = expr();
+        TreeNode restOfTheExpressions = elTail();
+        if (restOfTheExpressions == null) {
+            return expression;
+        }
+        return new ExpressionList(expression, restOfTheExpressions);
+    }
+
+    // NELIST <eltail> ::= , <elist>
+    // Special <eltail> ::= ?
+    protected TreeNode elTail() {
+        if(!isCurrentToken(TokenClass.TCOMA, false)) {
+            return null;
+        }
+        return eList();
+    }
+
+    protected TreeNode expr() {
+        return null;
+    }
+
+
+    // Special <bool> ::= <rel> <btail>
+    protected TreeNode bool() {
+
+    }
+
+
 //    --NIFT <iftail> ::= end if
 //            --NIFTE <iftail> ::= else <stats> end if
 //            --NIFTE <iftail> ::= elsif <bool> then <stats> <elsiftail>
 //    --NIFTE <elsiftail> ::= elsif <bool> then <stats> <elsiftail>
 //    Special <elsiftail> ::= else <stats> end if
-//    Special <asgnstat> ::= <var> <asgnop> <expr> ;
-//    --NASGN, NPLEQ, NMNEQ, NSTEQ, NDVEQ
-//            <asgnop> ::= = | += | -= | *= | /=
-//            --NINPUT <iostat> ::= input <vlist> ;
-//    --NPRINT <iostat> ::= print <prlist> ;
-//    --NPRLN <iostat> ::= printline <printail>
-//    Special <printail> ::= <prlist> ;
-//    Special <printail> ::= ;
-//    --NCALL <callstat> ::= call <id> <calltail>
-//    Special <calltail> ::= with <elist> ;
-//    Special <calltail> ::= ;
-//    Special <vlist> ::= <var> <vltail>
-//    NVLIST <vltail> ::= , <vlist>
-//    Special <vltail> ::= ?
-//    Special <var> ::= <id> <vtail>
-//    NARRVAR <vtail> ::= [<expr>]
-//    NSIMVAR <vtail> ::= ?
-//    Special <elist> ::= <expr> <eltail>
-//    NELIST <eltail> ::= , <elist>
-//    Special <eltail> ::= ?
-//    Special <bool> ::= <rel> <btail>
 //    Special <btail> ::= <logop> <rel> <btail>
 //    Special <btail> ::= ?
 //            NAND, NOR, NXOR
@@ -498,11 +707,7 @@ public class Parser {
 //    Special <fact> ::= ( <bool> )
 //    Special <ftail> ::= <vtail>
 //    NLEN <ftail> ::= . length
-//    Special <prlist> ::= <printitem> <prltail>
-//    NPRLIST <prltail> ::= , <prlist>
-//    Special <prltail> ::= ?
-//    Special <printitem> ::= <expr>
-//    NSTRG <printitem> ::= <string>
+
 //    Special <idltail> ::= ?
 
 

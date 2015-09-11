@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -12,4 +13,20 @@ import parser.ast.TreeNode;
  * Description:     TODO Write DEscription
  */
 public class MinusEqual extends TreeNode {
+
+    public MinusEqual() {
+        super(Node.NMNEQ);
+    }
+
+    public MinusEqual( STRecord st) {
+        super(Node.NMNEQ, st);
+    }
+
+    public MinusEqual( TreeNode l, TreeNode r) {
+        super(Node.NMNEQ, l, r);
+    }
+
+    public MinusEqual( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NMNEQ, l, m, r);
+    }
 }

@@ -83,17 +83,17 @@ public class TreeNode {
 
     public STRecord getType() { return type; }
 
-    public void setValue(Node value) { nodeValue = value; }
+    public TreeNode setValue(Node value) { nodeValue = value; return this;}
 
-    public void setLeft(TreeNode l) { left = l; }
+    public TreeNode setLeft(TreeNode l) { left = l;return this; }
 
-    public void setMiddle(TreeNode m) { middle = m; }
+    public TreeNode setMiddle(TreeNode m) { middle = m; return this;}
 
-    public void setRight(TreeNode r) { right = r; }
+    public TreeNode setRight(TreeNode r) { right = r; return this;}
 
-    public void setName(STRecord st) { name = st; }
+    public TreeNode setName(STRecord st) { name = st; return this;}
 
-    public void setType(STRecord st) { type = st; }
+    public TreeNode setType(STRecord st) { type = st; return this;}
 
     public static void resetIndex() {
         index = 0;

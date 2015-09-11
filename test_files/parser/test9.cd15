@@ -5,9 +5,11 @@ program test2
     proc p1 var p1[], p2, p3[] val a, x, b, z
     end proc p1
 
-    proc p2
-        local test1, test2, test3[12];
+    proc p2 var p[] val z1
     end proc p2
+
+    proc p3 val z1, z2
+    end proc p3
 
     local a, b, c;
 

@@ -78,5 +78,15 @@ public enum TokenClass {	TEOF("END OF FILE"),   // End of File Token
     private String val;
     private TokenClass(String val) {this.val = val;}
 
+    public boolean isStatementKeyword() {
+        return  this.equals(TLOOP) ||
+                this.equals(TEXIT) ||
+                this.equals(TIFKW) ||
+                this.equals(TCALL) ||
+                this.equals(TINPT) ||
+                this.equals(TPRIN) ||
+                this.equals(TPRLN);
+    }
+
 
 };

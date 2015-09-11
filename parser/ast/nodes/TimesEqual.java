@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -12,4 +13,20 @@ import parser.ast.TreeNode;
  * Description:     TODO Write DEscription
  */
 public class TimesEqual extends TreeNode {
+
+    public TimesEqual() {
+        super(Node.NSTEQ);
+    }
+
+    public TimesEqual( STRecord st) {
+        super(Node.NSTEQ, st);
+    }
+
+    public TimesEqual( TreeNode l, TreeNode r) {
+        super(Node.NSTEQ, l, r);
+    }
+
+    public TimesEqual( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NSTEQ, l, m, r);
+    }
 }

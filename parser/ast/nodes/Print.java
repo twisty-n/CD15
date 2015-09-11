@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -12,4 +13,20 @@ import parser.ast.TreeNode;
  * Description:     TODO Write DEscription
  */
 public class Print extends TreeNode {
+
+    public Print() {
+        super(Node.NPRINT);
+    }
+
+    public Print( STRecord st) {
+        super(Node.NPRINT, st);
+    }
+
+    public Print( TreeNode l, TreeNode r) {
+        super(Node.NPRINT, l, r);
+    }
+
+    public Print( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NPRINT, l, m, r);
+    }
 }

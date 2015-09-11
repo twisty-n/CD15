@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -12,4 +13,20 @@ import parser.ast.TreeNode;
  * Description:     TODO Write DEscription
  */
 public class DivideEqual extends TreeNode {
+
+    public DivideEqual() {
+        super(Node.NDVEQ);
+    }
+
+    public DivideEqual( STRecord st) {
+        super(Node.NDVEQ, st);
+    }
+
+    public DivideEqual( TreeNode l, TreeNode r) {
+        super(Node.NDVEQ, l, r);
+    }
+
+    public DivideEqual( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NDVEQ, l, m, r);
+    }
 }
