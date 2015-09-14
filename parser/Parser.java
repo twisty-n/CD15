@@ -1,5 +1,6 @@
 package parser;
 
+
 import context.error.UnexpectedTokenError;
 import context.symbolism.STRecord;
 import parser.ast.TreeNode;
@@ -8,6 +9,7 @@ import scanner.Scanner;
 import scanner.tokenizer.Token;
 import scanner.tokenizer.TokenClass;
 import utils.DebugWriter;
+
 
 /**
  * Author:          Tristan Newmann
@@ -495,6 +497,13 @@ public class Parser {
         return null;
     }
 
+    // If statement stuff, get to in a second
+//    --NIFT <iftail> ::= end if
+//            --NIFTE <iftail> ::= else <stats> end if
+//            --NIFTE <iftail> ::= elsif <bool> then <stats> <elsiftail>
+//    --NIFTE <elsiftail> ::= elsif <bool> then <stats> <elsiftail>
+//    Special <elsiftail> ::= else <stats> end if
+
     // Special <asgnstat> ::= <var> <asgnop> <expr> ;
     protected TreeNode assignmentStatement() {
         TreeNode variable = var();
@@ -668,47 +677,176 @@ public class Parser {
         return eList();
     }
 
+    // Special <expr> ::= <term> <etail>
     protected TreeNode expr() {
-        return null;
+        TreeNode term = term();
+        return eTail(term);
+    }
+
+    // Special <term> ::= <fact> <ttail>
+    protected TreeNode term() {
+        TreeNode fact = fact();
+        return tTail(fact);
+    }
+
+    // Special <fact> ::= <id> <ftail>
+    // NILIT <fact> ::= <intlit>
+    // NFLIT <fact> ::= <reallit>
+    // Special <fact> ::= ( <bool> )
+    protected TreeNode fact() {
+        switch(currentToken.getTokenClass()) {
+            case TIDNT: {
+                STRecord identifer = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+                return fTail().setName(identifer);
+            }
+            case TILIT: {
+                return new IntegerLiteral().setType(matchCurrentAndStoreRecord(TokenClass.TILIT));
+            }
+            case TFLIT: {
+                return new FloatingLiteral().setType(matchCurrentAndStoreRecord(TokenClass.TFLIT));
+            }
+            case TLPAR: {
+                isCurrentToken(TokenClass.TLPAR, true);
+                TreeNode booleanExpression = bool();
+                isCurrentToken(TokenClass.TRPAR, true);
+                return booleanExpression;
+            }
+        }
+        DebugWriter.writeEverywhere("Expected a fact but didn't find one. Parsing stream " +
+                "may be corrupt");
+        return null; // Should never reach this point
+    }
+
+    // Special <ftail> ::= <vtail>
+    // or a plain array => vTail
+    // NLEN <ftail> ::= . length
+    protected TreeNode fTail() {
+        if(isCurrentToken(TokenClass.TDOTT, false)) {
+            // We have a length thing
+            if(isCurrentToken(TokenClass.TLENG, true)) {
+                return new ArrayLength();
+            } else {
+                // TODO throw error here
+                return null;
+            }
+        }
+        return vTail();
+    }
+
+    // NMUL <ttail> ::= * <fact> <ttail>
+    // NDIV <ttail> ::= / <fact> <ttail>
+    // NIDIV <ttail> ::= div <fact> <ttatil>
+    // Special <ttail> ::= ?
+    protected TreeNode tTail(TreeNode leftSide) {
+        switch (currentToken.getTokenClass()) {
+            case TMULT: {
+                isCurrentToken(TokenClass.TMULT, true);
+                TreeNode mult = new Multiplication(leftSide, fact());
+                return tTail(mult);
+            }
+            case TIDIV: {
+                isCurrentToken(TokenClass.TIDIV, true);
+                TreeNode iDiv = new IntegerDivide(leftSide, fact());
+                return tTail(iDiv);
+            }
+            case TDIVD: {
+                isCurrentToken(TokenClass.TDIVD, true);
+                TreeNode division = new Division(leftSide, fact());
+                return tTail(division);
+            }
+            default: return leftSide; // Dont kill the children
+        }
+    }
+
+    // NADD <etail> ::= + <term> <etail>
+    // NSUB <etail> ::= - <term> <etail>
+    // Special <etail> ::= ?
+    protected TreeNode eTail(TreeNode leftSide) {
+        switch (currentToken.getTokenClass()) {
+            case TPLUS: {
+                isCurrentToken(TokenClass.TPLUS, true);
+                TreeNode addition = new Addition(leftSide, fact());
+                return tTail(addition);
+            }
+            case TIDIV: {
+                isCurrentToken(TokenClass.TSUBT, true);
+                TreeNode subtraction = new Subtraction(leftSide, fact());
+                return tTail(subtraction);
+            }
+            default: return leftSide; // Dont kill the children
+        }
     }
 
 
     // Special <bool> ::= <rel> <btail>
     protected TreeNode bool() {
+        return bTail(rel());
+    }
 
+    // NNOT <rel> ::= not <rel>
+    // Special <rel> ::= <expr> <reltail>
+    protected TreeNode rel() {
+        if(isCurrentToken(TokenClass.TNOTK, false)) {
+            TreeNode invertedBool = relTail(expr());
+            return new Not().setMiddle(invertedBool);
+        }
+        return relTail(expr());
     }
 
 
-//    --NIFT <iftail> ::= end if
-//            --NIFTE <iftail> ::= else <stats> end if
-//            --NIFTE <iftail> ::= elsif <bool> then <stats> <elsiftail>
-//    --NIFTE <elsiftail> ::= elsif <bool> then <stats> <elsiftail>
-//    Special <elsiftail> ::= else <stats> end if
-//    Special <btail> ::= <logop> <rel> <btail>
-//    Special <btail> ::= ?
-//            NAND, NOR, NXOR
-//    <logop> ::= and | or | xor
-//    NNOT <rel> ::= not <rel>
-//    Special <rel> ::= <expr> <relop> <expr>
+    // Special <reltail> ::= <relop> <expr>
+    // Special <reltail> ::= ?
+    protected TreeNode relTail(TreeNode leftSide) {
+        TreeNode relationalOperator = relOp();
+        if (relationalOperator == null) {
+            return leftSide;
+        } // else
+        return relationalOperator.setLeft(leftSide).setRight(expr());
+    }
+
+    // Special <btail> ::= <logop> <rel> <btail>
+    // Special <btail> ::= ?
+    protected TreeNode bTail(TreeNode leftSide) {
+        TreeNode logicOperator = logOp();
+        if (logicOperator == null) {
+            return leftSide;
+        } // else
+        // wow. Dat method chaining will be so easy to debug -_-
+        return bTail(logicOperator.setLeft(leftSide).setRight(rel()));
+    }
+
+
+    // NAND, NOR, NXOR
+    // <logop> ::= and | or | xor
+    protected TreeNode logOp() {
+        switch (currentToken.getTokenClass()) {
+            case TANDK: isCurrentToken(TokenClass.TANDK, true); return new And();
+            case TORKW: isCurrentToken(TokenClass.TORKW, true); return new Or();
+            case TXORK: isCurrentToken(TokenClass.TXORK, true); return new Xor();
+            default: return null;
+        }
+    }
+
+
 //    NEQL, NNEQ, NGTR, NLEQ, NLESS, NGEQ
 //            <relop> ::= == | != | > | <= | < | >=
-//    Special <expr> ::= <term> <etail>
-//    NADD <etail> ::= + <term> <etail>
-//    NSUB <etail> ::= - <term> <etail>
-//    Special <etail> ::= ?
-//    Special <term> ::= <fact> <ttail>
-//    NMUL <ttail> ::= * <fact> <ttail>
-//    NDIV <ttail> ::= / <fact> <ttail>
-//    NIDIV <ttail> ::= div <fact> <ttatil>
-//    Special <ttail> ::= ?
-//    Special <fact> ::= <id> <ftail>
-//    NILIT <fact> ::= <intlit>
-//    NFLIT <fact> ::= <reallit>
-//    Special <fact> ::= ( <bool> )
-//    Special <ftail> ::= <vtail>
-//    NLEN <ftail> ::= . length
+    protected TreeNode relOp() {
+        switch (currentToken.getTokenClass()) {
+            case TDEQL: isCurrentToken(TokenClass.TDEQL, true); return new EqlEql();
+            case TNEQL: isCurrentToken(TokenClass.TNEQL, true); return new NotEquals();
+            case TGRTR: isCurrentToken(TokenClass.TGRTR, true); return new Greater();
+            case TLESS: isCurrentToken(TokenClass.TLESS, true); return new Less();
+            case TGREQ: isCurrentToken(TokenClass.TGREQ, true); return new GreaterEquals();
+            case TLEQL: isCurrentToken(TokenClass.TLEQL, true); return new LessEquals();
+            default: return null;
+        }
+    }
 
-//    Special <idltail> ::= ?
+
+
+
+
+
 
 
 }
