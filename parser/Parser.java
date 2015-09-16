@@ -107,7 +107,7 @@ public class Parser {
         isCurrentToken(TokenClass.TENDK, true);
         isCurrentToken(TokenClass.TPROG, true);
         isCurrentToken(TokenClass.TIDNT, true);
-        return new Program(arrays, main, procs);
+        return new Program(arrays, procs, main);
     }
 
     /**

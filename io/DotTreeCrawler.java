@@ -47,18 +47,21 @@ public class DotTreeCrawler {
             String leftChildName = (currentNode.getLeft() != null) ? currentNode.getLeft().getUniqueName() : "";
             buffer.append(nodeName   +" -- " + leftChildName + ";\n\t");
         }
-        if (currentNode.getRight() != null) {
-            String rightChildName = (currentNode.getRight() != null) ? currentNode.getRight().getUniqueName() : "";
-            buffer.append(nodeName   +" -- " + rightChildName +  ";\n\t");
-        }
+
         if (currentNode.getMiddle() != null) {
             String middleChildName = (currentNode.getMiddle() != null) ? currentNode.getMiddle().getUniqueName() : "";
             buffer.append(nodeName   +" -- " + middleChildName +  ";\n\t");
         }
 
+        if (currentNode.getRight() != null) {
+            String rightChildName = (currentNode.getRight() != null) ? currentNode.getRight().getUniqueName() : "";
+            buffer.append(nodeName   +" -- " + rightChildName +  ";\n\t");
+        }
+
+
         crawl(buffer, currentNode.getLeft());
-        crawl(buffer, currentNode.getRight());
         crawl(buffer, currentNode.getMiddle());
+        crawl(buffer, currentNode.getRight());
     }
 
 }
