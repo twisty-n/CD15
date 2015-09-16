@@ -147,6 +147,10 @@ public class Scanner {
 
     }
 
+    public void spinUntilEmpty() {
+        while(this.canContinue()) { getNextValidToken(); }
+    }
+
     public void reportEOF() {
 
         this.outputForA1.addTokenToBuffer(new Token(TokenClass.TEOF, 0,0,0,null, null));

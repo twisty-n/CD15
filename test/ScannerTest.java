@@ -1,8 +1,11 @@
 package test;
 
+import context.CompilationContext;
 import io.InputController;
 import scanner.Scanner;
 import utils.DebugWriter;
+
+import java.io.File;
 
 /**
  * Author:          Tristan Newmann
@@ -23,32 +26,27 @@ public class ScannerTest {
 
     public void execute(String[] args) {
 
-        String considerationFile = null;
-        if (args.length > 0) {
-            considerationFile = args[0];
-        } else {
+        if (!(args.length > 0)) {
             DebugWriter.writeEverywhere("No input file. Terminating scanner");
             System.exit(0);
         }
 
+        // Set up the scanner
         Scanner scanner = new Scanner();
-        InputController ic = new InputController( considerationFile, scanner );
-        scanner.configure(ic);
+        File[] files = new File(args[0]).listFiles();
 
-        System.out.println("******************************************************************************************************************");
-        System.out.println("******************************************************************************************************************");
-        System.out.println("******************************************************************************************************************");
-        System.out.println("******************************************************************************************************************");
-        System.out.println("******************************************************************************************************************");
-        System.out.println("RUNNING SCANNER TESTS!");
-        while ( scanner.canContinue() ) {
+        for (int i = 0; i < files.length; i++) {
 
-            scanner.getNextValidToken();
+            // Iterate over each source file
+            String considerationFile = files[i].getPath();
 
-            //DebugWriter.writeToConsole( "Report Token: " + scanner.getNextValidToken()  + "\t Scanner Status: " +scanner.getInputStatus().name() );
+            CompilationContext.configureCompilationContext(considerationFile);
+            InputController ic = new InputController(considerationFile, scanner);
+            scanner.configure(ic);
+            while(scanner.canContinue()) { scanner.getNextValidToken(); }
+            CompilationContext.Context.closeContext();
+//
         }
-        scanner.reportEOF();
-
     }
 
 }

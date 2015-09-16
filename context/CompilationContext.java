@@ -4,7 +4,6 @@ import context.error.CompilationError;
 import context.symbolism.SymbolTable;
 import io.ReturnCharacter;
 import scanner.tokenizer.Token;
-import utils.Browser;
 import utils.DebugWriter;
 
 import java.io.*;
@@ -182,8 +181,8 @@ public class CompilationContext {
     private void writeAstListing(StringBuffer buff, String fileName) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(fileName), "utf-8"))) {
-
-            writer.write(buff.toString());
+            if (buff != null)
+                writer.write(buff.toString());
             // Browse to the following file
             //new Browser().browseTo("index.html");
 

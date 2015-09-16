@@ -101,10 +101,11 @@ public enum SignificantCharacter {
      */
     public static boolean isGeneralMultiCharOpComponent(char character) {
 
-        return  character == LESS_OP.asChar ||
-                character == GREAT_OP.asChar ||
-                character == PLUS_OP.asChar ||
-                character == MINUS_OP.asChar ||
+        return  character == LESS_OP.asChar     ||
+                character == GREAT_OP.asChar    ||
+                character == PLUS_OP.asChar     ||
+                character == MINUS_OP.asChar    ||
+                character == ASSIGN_OP.asChar   ||
                 character == STAR_OP.asChar;
 
     }

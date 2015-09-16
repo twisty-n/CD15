@@ -60,7 +60,7 @@ public enum TokenClass {	TEOF("END OF FILE"),   // End of File Token
 
     // then the operators and delimiters
     TLBRK("["), TRBRK("]"), TLPAR("("), TRPAR(")"), TSEMI(";"), TCOMA(","), TDOTT("."), TASGN("="), TPLEQ("+="), TMNEQ("-="), TMLEQ("*="),
-    TDVEQ("/*"), TDEQL("=="), TNEQL("!="), TGRTR(">"), TLEQL("<="), TLESS("<"), TGREQ(">="), TPLUS("+"), TSUBT("-"), TMULT("*"), TDIVD("/"),
+    TDVEQ("/="), TDEQL("=="), TNEQL("!="), TGRTR(">"), TLEQL("<="), TLESS("<"), TGREQ(">="), TPLUS("+"), TSUBT("-"), TMULT("*"), TDIVD("/"),
 
     // then the tokens (or pseudo-tokens) with non-null tuple values
     TIDNT("identifier"), TILIT("Integer Literal"), TFLIT("FP Literal"), TSTRG("String Literal"), TUNDF("Undefined");

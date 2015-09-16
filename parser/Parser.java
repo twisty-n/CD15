@@ -462,7 +462,7 @@ public class Parser {
     protected TreeNode slTail() {
         // if the current token thing doesn't match a statement, or id kill it
         if (!currentToken.getTokenClass().isStatementKeyword()
-                || !currentToken.getTokenClass().isIdentifier()) {
+                && !currentToken.getTokenClass().isIdentifier()) {
             return null;
         }
         return statements();
@@ -489,20 +489,85 @@ public class Parser {
         isCurrentToken(TokenClass.TEXIT, true);
         STRecord exitIdentifer = matchCurrentAndStoreRecord(TokenClass.TIDNT);
         isCurrentToken(TokenClass.TWHEN, true);
-        return bool().setName(exitIdentifer);
+        TreeNode exit = new Exit().setMiddle(bool()).setName(exitIdentifer);
+        isCurrentToken(TokenClass.TSEMI, true);
+        return exit;
     }
 
     // Special <ifstat> ::= if <bool> then <stats> <iftail>
     protected TreeNode ifStatement() {
-        return null;
+
+        isCurrentToken(TokenClass.TIFKW, true);
+        TreeNode condition = bool();
+        isCurrentToken(TokenClass.TTHEN, true);
+        TreeNode statements = statements();
+        return ifTail().setLeft(condition).setMiddle(statements);
     }
 
     // If statement stuff, get to in a second
-//    --NIFT <iftail> ::= end if
-//            --NIFTE <iftail> ::= else <stats> end if
-//            --NIFTE <iftail> ::= elsif <bool> then <stats> <elsiftail>
-//    --NIFTE <elsiftail> ::= elsif <bool> then <stats> <elsiftail>
-//    Special <elsiftail> ::= else <stats> end if
+    // NIFT <iftail> ::= end if
+    // NIFTE <iftail> ::= else <stats> end if
+    // NIFTE <iftail> ::= elsif <bool> then <stats> <elsiftail>
+    protected TreeNode ifTail() {
+        switch (currentToken.getTokenClass()) {
+            case TENDK: {
+                isCurrentToken(TokenClass.TENDK, true);
+                isCurrentToken(TokenClass.TIFKW, true);
+                return new SingleIf();
+            }
+            case TELSE: {
+                isCurrentToken(TokenClass.TELSE, true);
+                TreeNode elseStatements = statements();
+                isCurrentToken(TokenClass.TENDK, true);
+                isCurrentToken(TokenClass.TIFKW, true);
+                // Set to right because we are setting the middle and left above
+                return new IfThenElseConstruct().setRight(elseStatements);
+            }
+            case TELSF: {
+                isCurrentToken(TokenClass.TELSF, true);
+                TreeNode condition = bool();
+                isCurrentToken(TokenClass.TTHEN, true);
+                TreeNode statements = statements();
+                return new IfThenElseConstruct()
+                        .setRight(
+                                new IfThenElseConstruct(condition, statements, elsIfTail())
+                        );
+            }
+            default: {
+                // TODO report error -- throw exception to sync
+                return null;
+            }
+        }
+    }
+
+    // NIFTE <elsiftail> ::= elsif <bool> then <stats> <elsiftail>
+    // Special <elsiftail> ::= else <stats> end if
+    protected TreeNode elsIfTail() {
+        switch (currentToken.getTokenClass()) {
+            case TELSE: {
+                isCurrentToken(TokenClass.TELSE, true);
+                TreeNode statements = statements();
+                isCurrentToken(TokenClass.TENDK, true);
+                isCurrentToken(TokenClass.TIFKW, true);
+                return statements;
+            }
+            case TELSF: {
+                isCurrentToken(TokenClass.TELSF, true);
+                TreeNode bool = bool();
+                isCurrentToken(TokenClass.TTHEN, true);
+                TreeNode statements = statements();
+                return new IfThenElseConstruct()
+                        .setLeft(bool)
+                        .setMiddle(statements)
+                        .setRight(elsIfTail());
+            }
+            default: {
+                // TODO error reporting
+                return null;
+            }
+        }
+    }
+
 
     // Special <asgnstat> ::= <var> <asgnop> <expr> ;
     protected TreeNode assignmentStatement() {
@@ -518,11 +583,11 @@ public class Parser {
     // <asgnop> ::= = | += | -= | *= | /=
     protected TreeNode asgnop() {
         switch(currentToken.getTokenClass()) {
-            case TASGN:     return new AssignmentOperation();
-            case TPLEQ:     return new PlusEqual();
-            case TMNEQ:     return new MinusEqual();
-            case TMLEQ:     return new TimesEqual();
-            case TDEQL:     return new DivideEqual();
+            case TASGN:     isCurrentToken(TokenClass.TASGN, true);return new AssignmentOperation();
+            case TPLEQ:     isCurrentToken(TokenClass.TPLEQ, true); return new PlusEqual();
+            case TMNEQ:     isCurrentToken(TokenClass.TMNEQ, true); return new MinusEqual();
+            case TMLEQ:     isCurrentToken(TokenClass.TMLEQ, true); return new TimesEqual();
+            case TDVEQ:     isCurrentToken(TokenClass.TDVEQ, true); return new DivideEqual();
             default:        {
                 DebugWriter.writeEverywhere("Expected an assignment opp but didn't find. Parsing corrupt");
                 return null;
@@ -538,15 +603,21 @@ public class Parser {
             case TPRIN: {
                 // print
                 isCurrentToken(TokenClass.TPRIN, true);
-                return new Print().setMiddle(prList());
+                TreeNode io = new Print().setMiddle(prList());
+                isCurrentToken(TokenClass.TSEMI, true);
+                return io;
             }
             case TPRLN: {
                 isCurrentToken(TokenClass.TPRLN, true);
-                return new PrintLine().setMiddle(prinTail());
+                TreeNode io = new PrintLine().setMiddle(prinTail());
+                isCurrentToken(TokenClass.TSEMI, true);
+                return io;
             }
             case TINPT: {
                 isCurrentToken(TokenClass.TINPT, true);
-                return new Input().setMiddle(vList());
+                TreeNode inp = new Input().setMiddle(vList());
+                isCurrentToken(TokenClass.TSEMI, true);
+                return inp;
             }
             default: {
                 DebugWriter.writeEverywhere("Expected IO statement but none found. Parsing may be corrupt");
@@ -600,7 +671,6 @@ public class Parser {
             return null;
         }
         TreeNode printList = prList();
-        isCurrentToken(TokenClass.TSEMI, true);
         return printList;
     }
 
@@ -637,11 +707,14 @@ public class Parser {
     protected TreeNode callStatement() {
         isCurrentToken(TokenClass.TCALL, true);
         STRecord procId = matchCurrentAndStoreRecord(TokenClass.TIDNT);
-        TreeNode callParams = callTail();
-        TreeNode procCall = new Call();
-        procCall.setName(procId);
-        procCall.setMiddle(callParams);
-        return procCall;
+        if(isCurrentToken(TokenClass.TWITH, true)) {
+            TreeNode callParams = callTail();
+            TreeNode procCall = new Call();
+            procCall.setName(procId);
+            procCall.setMiddle(callParams);
+            return procCall;
+        }
+        return new Call().setName(procId);
     }
 
 
@@ -765,13 +838,13 @@ public class Parser {
         switch (currentToken.getTokenClass()) {
             case TPLUS: {
                 isCurrentToken(TokenClass.TPLUS, true);
-                TreeNode addition = new Addition(leftSide, fact());
-                return tTail(addition);
+                TreeNode addition = new Addition(leftSide, term());
+                return eTail(addition);
             }
-            case TIDIV: {
+            case TSUBT: {
                 isCurrentToken(TokenClass.TSUBT, true);
-                TreeNode subtraction = new Subtraction(leftSide, fact());
-                return tTail(subtraction);
+                TreeNode subtraction = new Subtraction(leftSide, term());
+                return eTail(subtraction);
             }
             default: return leftSide; // Dont kill the children
         }

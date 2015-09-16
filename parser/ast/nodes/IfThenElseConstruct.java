@@ -1,5 +1,6 @@
 package parser.ast.nodes;
 
+import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 
 /**
@@ -12,4 +13,20 @@ import parser.ast.TreeNode;
  * Description:     TODO Write DEscription
  */
 public class IfThenElseConstruct extends TreeNode {
+
+    public IfThenElseConstruct() {
+        super(Node.NIFTE);
+    }
+
+    public IfThenElseConstruct( STRecord st) {
+        super(Node.NIFTE, st);
+    }
+
+    public IfThenElseConstruct( TreeNode l, TreeNode r) {
+        super(Node.NIFTE, l, r);
+    }
+
+    public IfThenElseConstruct( TreeNode l, TreeNode m, TreeNode r) {
+        super(Node.NIFTE, l, m, r);
+    }
 }

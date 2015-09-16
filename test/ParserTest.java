@@ -9,6 +9,7 @@ import scanner.Scanner;
 import utils.DebugWriter;
 
 import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Author:          Tristan Newmann
@@ -36,12 +37,16 @@ public class ParserTest {
 
         // Set up the scanner
         Scanner scanner = new Scanner();
-        File[] files = new File(args[0]).listFiles();
+        File[] temp = new File(args[0]).listFiles();
+        ArrayList<File> files = new ArrayList<>();
+        for (File file : temp) {
+            if (file.isFile()) files.add(file);
+        }
 
-        for (int i = 0; i < files.length; i++) {
+        for (int i = 0; i < files.size(); i++) {
 
             // Iterate over each source file
-            String considerationFile = files[i].getPath();
+            String considerationFile = files.get(i).getPath();
 
             CompilationContext.configureCompilationContext(considerationFile);
             InputController ic = new InputController(considerationFile, scanner);
@@ -59,6 +64,7 @@ public class ParserTest {
             } catch(Exception e) {
                 e.printStackTrace();
             } finally {
+                scanner.spinUntilEmpty();
                 CompilationContext.getContext().closeContext();
             }
 
