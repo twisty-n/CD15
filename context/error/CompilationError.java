@@ -29,7 +29,9 @@ public class CompilationError implements Comparable<CompilationError>{
         UNCLOSED_MLC("You have an unclosed multi-line comment. Did you forget to delimit your comment block with '+/+'", CompilationContext.Phase.LEXICAL_ANALYSIS),
 
         // SYNTACTIC ERRORS
-        UNEXPECTED_TOKEN("Unexpected token found.", CompilationContext.Phase.SYNTACTIC_ANALYSIS);
+        UNEXPECTED_TOKEN("Unexpected token found.", CompilationContext.Phase.SYNTACTIC_ANALYSIS),
+        EMPTY_CONTROL_STRUCTURE("Empty loop or control structure. Expected statements", CompilationContext.Phase.SYNTACTIC_ANALYSIS)
+        ;
 
         private final String errorMessage;
         private final CompilationContext.Phase phase;

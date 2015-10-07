@@ -1,6 +1,8 @@
 package context.error;
 
 import context.CompilationContext;
+import context.error.handlers.ErrorHandlerException;
+import context.error.handlers.Handler;
 import scanner.tokenizer.Lexeme;
 
 /**
@@ -29,10 +31,11 @@ public class UnexpectedTokenError extends CompilationError {
      * Push a compilation error onto the buffer
      * @param lex
      */
-    public static void record(String expected, Lexeme lex) {
+    public static void record(String expected, Lexeme lex, Handler errorHandler) throws ErrorHandlerException {
         CompilationContext.getContext().bufferCompilationError(CompilationContext.Phase.SYNTACTIC_ANALYSIS,
                 new UnexpectedTokenError(expected, lex)
         );
+        errorHandler.handle();
     }
 
     public String toString() {

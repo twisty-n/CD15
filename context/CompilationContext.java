@@ -31,6 +31,7 @@ public class CompilationContext {
     public SymbolTable SymbolTable; // Have it named in this way for brevity
     public static CompilationContext Context;
     public StringBuffer ast;
+    public boolean compilationSuccess;      // Initally set to true. If there is an error, set to false
 
     public CompilationContext(String sourceFile) {
         this.sourceFile = sourceFile;
@@ -46,6 +47,7 @@ public class CompilationContext {
         errorBuffers.put(Phase.CODE_OPTIMIZATION, new ArrayList<CompilationError>());
         this.SymbolTable = new SymbolTable(Token.generateKeywords());
         CompilationContext.Context = this;
+        this.compilationSuccess = true;
     }
 
     public void setAst(StringBuffer ast) {
@@ -76,6 +78,7 @@ public class CompilationContext {
      * @param error                 The generated compiler error
      */
     public void bufferCompilationError(Phase compilationPhase, CompilationError error) {
+        this.compilationSuccess = false;
         this.totalErrorCount++;
         this.errorBuffers.get(compilationPhase).add(error);
         DebugWriter.writeToFile("Recorded compilation error: " + error.toString());
