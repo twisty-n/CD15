@@ -1,4 +1,7 @@
-package context.error.handlers;
+package context.error;
+
+import context.error.handlers.ErrorHandlerException;
+import parser.Parser;
 
 /**
  * Author:          Tristan Newmann
@@ -45,6 +48,7 @@ public enum Handler {
     IF_IF_KW(new IfIFKw()),
     IF_ELSE_THEN_KW(new IfElseThenKw()),
     IF_ENDING_KEYWORD(new IfEndingKeyword()),
+    ASSIGN_OP(new AssignOp()),
     ASSIGN_STAT_SEMI(new AssignStatSemi),
     IO_STAT_SEMI(new IoStatSemi()),
     IO_VAR_ID(new IoVarId()),
@@ -63,5 +67,5 @@ public enum Handler {
         this.h = h;
     }
 
-    public void handle() throws ErrorHandlerException { this.h.handle(); }
+    public void handle(Parser context) throws ErrorHandlerException { this.h.handle(context); }
 }

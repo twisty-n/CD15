@@ -1,5 +1,7 @@
 package context.error.handlers;
 
+import parser.Parser;
+
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181
@@ -14,7 +16,7 @@ public interface Handleable {
     /**
      * Perform the error recovery actions for this error type
      */
-    public void handle() throws ErrorHandlerException;
+    public void handle(Parser parser) throws ErrorHandlerException;
 
     /**
      * Perform error recovery behaviour
