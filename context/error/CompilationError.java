@@ -20,6 +20,8 @@ public class CompilationError implements Comparable<CompilationError>{
 
     public enum Type {
 
+        // FATAL
+        FATAL("A fatal parsing error occured and could not be recovered", CompilationContext.Phase.SYNTACTIC_ANALYSIS),
         // LEXICAL ERRORS
         UNCLOSED_STRING_LITERAL("Unclosed string literal. Are you missing a \" at the end of your string?", CompilationContext.Phase.LEXICAL_ANALYSIS),
         MALFORMED_INTEGER_LITERAL("Malformed integer value. Integer values should be of the form '0' or '123'",CompilationContext.Phase.LEXICAL_ANALYSIS),

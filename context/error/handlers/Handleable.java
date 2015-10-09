@@ -21,6 +21,6 @@ public interface Handleable {
     /**
      * Perform error recovery behaviour
      */
-    public void recover();
+    public void recover() throws ErrorHandlerException;
 
 }

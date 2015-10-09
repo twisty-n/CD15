@@ -1,6 +1,10 @@
 package context.error.handlers;
 
+import context.error.EOFError;
 import parser.Parser;
+import scanner.tokenizer.TokenClass;
+
+import java.util.HashSet;
 
 /**
  * Author:          Tristan Newmann
@@ -13,7 +17,22 @@ import parser.Parser;
  */
 public abstract class ErrorHandlerException extends Exception implements Handleable {
 
-    private Parser context;
+    protected Parser context;
+    protected static final HashSet<TokenClass> statementKeywords = new HashSet<TokenClass>(){{
+        add(TokenClass.TLOOP);
+        add(TokenClass.TEXIT);
+        add(TokenClass.TIFKW);
+        add(TokenClass.TPRIN);
+        add(TokenClass.TPRLN);
+        add(TokenClass.TINPT);
+        add(TokenClass.TCALL);
+    }};
+
+    protected void checkEOF() throws ErrorHandlerException {
+        if (context.currentTokenClass().equals(TokenClass.TEOF)) {
+            EOFError.record();
+        }
+    }
     /**
      * Default behaviour is to throw an exception
      * @throws ErrorHandlerException
@@ -25,5 +44,5 @@ public abstract class ErrorHandlerException extends Exception implements Handlea
     }
 
     @Override
-    public abstract void recover();
+    public abstract void recover() throws ErrorHandlerException;
 }

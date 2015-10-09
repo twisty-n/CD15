@@ -7,15 +7,16 @@ package context.error.handlers;
  * Date Created:    10/7/2015
  * File Name:       SimpleMissingKeywordException
  * Project Name:    CD15 Compiler
- * Description:     TODO Write DEscription
+ * Description:     Handles the case where a simple token is missing and par
+ * sing should be able to be resumed after consuming the next token
  */
-public class SimpleMissingKeywordException extends ErrorHandlerException {
-
+public class SimpleMissingTokenException extends ErrorHandlerException {
     /**
      * If we miss a simple keyword, just consume the next token and proceed as normal
      */
     @Override
     public void recover() {
-
+        // Recovery is to discard the current token and load the next one
+        this.context.nextToken();
     }
 }
