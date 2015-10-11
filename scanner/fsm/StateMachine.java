@@ -50,7 +50,7 @@ public class StateMachine {
         // Assign vars
         this.context = context;
         this.input = input;
-        this.currentlyBeingConsidered = input.pumpChar();
+        this.currentlyBeingConsidered = new ReturnCharacter('\n', 0, 0, null);
 
         // Set up state management
         StateManager.registerContext(this);
