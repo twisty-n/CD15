@@ -126,7 +126,9 @@ public class Parser {
             isCurrentToken(TokenClass.TPROG, true, Handler.OPENING_PROG_KW);
             isCurrentToken(TokenClass.TIDNT, true, Handler.PROG_ID_DECL);
 
-            try { arrays = arrays(); } catch (SyncOnProcLocalOrStat ex) {ex.recover();}
+            try {
+                arrays = arrays();
+            } catch (SyncOnProcLocalOrStat ex) {ex.recover();}
             procs = procs();
             main = main();
 
@@ -480,6 +482,9 @@ public class Parser {
 
     // Special <stat> ::= <loopstat> | <exitstat> | <ifstat>
     // Special <stat> ::= <asgnstat> | <iostat> | <callstat>
+
+    // TODO: handle catching at the statement level
+
     protected TreeNode statement() throws ErrorHandlerException{
         // Call and return some statement based on whatever we've seen
         switch (currentToken.getTokenClass()) {
@@ -511,8 +516,14 @@ public class Parser {
     }
 
     // Special <stats> ::= <stat> <sltail>
-    protected TreeNode statements() throws ErrorHandlerException{
-        TreeNode statement = statement();
+    protected TreeNode statements() throws ErrorHandlerException {
+        TreeNode statement = null;
+        try {
+            statement = statement();
+        } catch (SyncAtStatementKeywordException e) {
+            e.recover();
+        }
+
         // Call sltail
         TreeNode statementList = slTail();
         if (statementList == null) {
@@ -542,7 +553,7 @@ public class Parser {
     // NEXIT <exitstat> ::= exit <id> when <bool> ;
     protected TreeNode exitStatement() throws ErrorHandlerException{
         isCurrentToken(TokenClass.TEXIT); // Matched by virtue of being here
-        STRecord exitIdentifer = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        STRecord exitIdentifer = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.EXIT_LOOP_ID);
         isCurrentToken(TokenClass.TWHEN, true, Handler.EXIT_WHEN_KW);
         TreeNode exit = new Exit().setMiddle(bool()).setName(exitIdentifer);
         isCurrentToken(TokenClass.TSEMI, true, Handler.EXIT_SEMI);
@@ -572,7 +583,7 @@ public class Parser {
             case TELSE: {
                 isCurrentToken(TokenClass.TELSE); // No check
                 TreeNode elseStatements = statements();
-                isCurrentToken(TokenClass.TENDK, true); // recycle from above
+                isCurrentToken(TokenClass.TENDK, true, Handler.IF_END_KW); // recycle from above
                 isCurrentToken(TokenClass.TIFKW, true, Handler.IF_IF_KW); // recycle from above
                 // Set to right because we are setting the middle and left above
                 return new IfThenElseConstruct().setRight(elseStatements);
@@ -674,7 +685,8 @@ public class Parser {
                 return inp;
             }
             default: {
-                DebugWriter.writeEverywhere("Expected IO statement but none found. Parsing may be corrupt");
+                // We weould only get here if the current token wasn't one of the ablve
+                // But it has to be due to the way the method is designed
                 return null; // Should never happen. PLZ never happene
             }
         }
@@ -682,8 +694,15 @@ public class Parser {
 
 
     // Special <vlist> ::= <var> <vltail>
-    protected TreeNode vList() {
-        TreeNode var = var();
+    protected TreeNode vList() throws ErrorHandlerException {
+        TreeNode var = null;
+        try {
+            var = var();
+        } catch (SyncOnCommaCascadeOnStmntException e) {
+            // Will sync and try to recover on a comma
+            // otherwise, if we find a statement, will cascade up
+            e.recover();
+        }
         TreeNode vlTail = vlTail();
         if (vlTail == null) {
             return var;
@@ -693,7 +712,7 @@ public class Parser {
 
     // Special <vltail> ::= ?
     // NVLIST <vltail> ::= , <vlist>
-    protected TreeNode vlTail() {
+    protected TreeNode vlTail() throws ErrorHandlerException{
         if(!isCurrentToken(TokenClass.TCOMA)) {
             return null;
         }
@@ -701,18 +720,18 @@ public class Parser {
     }
 
     // Special <var> ::= <id> <vtail>
-    protected TreeNode var() {
-        STRecord identifer = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+    protected TreeNode var() throws ErrorHandlerException{
+        STRecord identifer = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.IO_VAR_ID);
         TreeNode thing = vTail();
         return thing.setName(identifer);
     }
 
     // NSIMVAR <vtail> ::= ?
     // NARRVAR <vtail> ::= [<expr>]
-    protected TreeNode vTail() {
+    protected TreeNode vTail() throws ErrorHandlerException{
         if(isCurrentToken(TokenClass.TLBRK)) {
             TreeNode indexCalc = expr();
-            isCurrentToken(TokenClass.TRBRK, true);
+            isCurrentToken(TokenClass.TRBRK, true, Handler.IO_ARR_RBRK);
             return new ArrayVariable().setMiddle(indexCalc);
         }
         return new SimpleVariable();
@@ -720,7 +739,7 @@ public class Parser {
 
     // Special <printail> ::= ;
     // Special <printail> ::= <prlist> ;
-    protected TreeNode prinTail() {
+    protected TreeNode prinTail() throws ErrorHandlerException{
         if(isCurrentToken(TokenClass.TSEMI)) {
             return null;
         }
@@ -733,14 +752,22 @@ public class Parser {
     // or a NPRLIST of shit to print, so same structure
     // Special <printitem> ::= <expr> // INLINED
     // NSTRG <printitem> ::= <string> // INLINED
-    protected TreeNode prList() {
-        TreeNode printItem;
-        if (currentToken.getTokenClass().equals(TokenClass.TSTRG)) {
-            STRecord string = matchCurrentAndStoreRecord(TokenClass.TSTRG); // No check
-            printItem = new StringLiteral(string);
-        } else {
-            printItem = expr();
+    protected TreeNode prList() throws ErrorHandlerException{
+        TreeNode printItem = null;
+
+        STRecord string;
+        try {
+            if (currentToken.getTokenClass().equals(TokenClass.TSTRG)) {
+                string = matchCurrentAndStoreRecord(TokenClass.TSTRG, Handler.PRINT_ITEM); // No check
+                printItem = new StringLiteral(string);
+            } else {
+                printItem = expr();
+            }
+        } catch (SyncOnCommaCascadeOnStmntException e) {
+            // Will escalate if we reach a statement
+            e.recover();
         }
+
         TreeNode prTail = prTail();
         if (prTail == null) {
             return printItem;
@@ -750,7 +777,7 @@ public class Parser {
 
     // NPRLIST <prltail> ::= , <prlist>
     // Special <prltail> ::= ?
-    protected TreeNode prTail() {
+    protected TreeNode prTail() throws ErrorHandlerException{
         if(!isCurrentToken(TokenClass.TCOMA)) {
             return null;
         }
@@ -760,7 +787,7 @@ public class Parser {
     // NCALL <callstat> ::= call <id> <calltail>
     protected TreeNode callStatement() throws ErrorHandlerException{
         isCurrentToken(TokenClass.TCALL);                 // No check
-        STRecord procId = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+        STRecord procId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.CALL_ID);
         if(isCurrentToken(TokenClass.TWITH)) {
             TreeNode callParams = callTail();
             TreeNode procCall = new Call();
@@ -787,7 +814,7 @@ public class Parser {
     }
 
     // Special <elist> ::= <expr> <eltail>
-    protected TreeNode eList() {
+    protected TreeNode eList() throws ErrorHandlerException{
         TreeNode expression = expr();
         TreeNode restOfTheExpressions = elTail();
         if (restOfTheExpressions == null) {
@@ -811,6 +838,25 @@ public class Parser {
         return eTail(term);
     }
 
+    // NADD <etail> ::= + <term> <etail>
+    // NSUB <etail> ::= - <term> <etail>
+    // Special <etail> ::= ?
+    protected TreeNode eTail(TreeNode leftSide) throws ErrorHandlerException{
+        switch (currentToken.getTokenClass()) {
+            case TPLUS: {
+                isCurrentToken(TokenClass.TPLUS);
+                TreeNode addition = new Addition(leftSide, term());     // No check
+                return eTail(addition);
+            }
+            case TSUBT: {
+                isCurrentToken(TokenClass.TSUBT);
+                TreeNode subtraction = new Subtraction(leftSide, term());   // No check
+                return eTail(subtraction);
+            }
+            default: return leftSide; // Dont kill the children         // No err, let it cascade
+        }
+    }
+
     // Special <term> ::= <fact> <ttail>
     protected TreeNode term() throws ErrorHandlerException{
         TreeNode fact = fact();
@@ -824,19 +870,19 @@ public class Parser {
     protected TreeNode fact() throws ErrorHandlerException {
         switch(currentToken.getTokenClass()) {
             case TIDNT: {
-                STRecord identifer = matchCurrentAndStoreRecord(TokenClass.TIDNT);
+                STRecord identifer = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.FACT_COMPONENT);
                 return fTail().setName(identifer);
             }
             case TILIT: {
-                return new IntegerLiteral().setType(matchCurrentAndStoreRecord(TokenClass.TILIT));
+                return new IntegerLiteral().setType(matchCurrentAndStoreRecord(TokenClass.TILIT, Handler.FACT_COMPONENT));
             }
             case TFLIT: {
-                return new FloatingLiteral().setType(matchCurrentAndStoreRecord(TokenClass.TFLIT));
+                return new FloatingLiteral().setType(matchCurrentAndStoreRecord(TokenClass.TFLIT, Handler.FACT_COMPONENT));
             }
             case TLPAR: {
                 isCurrentToken(TokenClass.TLPAR); // No check
                 TreeNode booleanExpression = bool();
-                isCurrentToken(TokenClass.TRPAR, true);
+                isCurrentToken(TokenClass.TRPAR, true, Handler.FACT_BOOL_RPAR);
                 return booleanExpression;
             }
             // Record and throw if not matched
@@ -850,10 +896,10 @@ public class Parser {
     // Special <ftail> ::= <vtail>
     // or a plain array => vTail
     // NLEN <ftail> ::= . length
-    protected TreeNode fTail() {
+    protected TreeNode fTail() throws ErrorHandlerException{
         if(isCurrentToken(TokenClass.TDOTT)) {
             // We have a length thing
-            if(isCurrentToken(TokenClass.TLENG, true)) {
+            if(isCurrentToken(TokenClass.TLENG, true, Handler.FACT_ARR_LENGTH)) {
                 return new ArrayLength();
             } else {
                 // TODO throw error here
@@ -888,24 +934,7 @@ public class Parser {
         }
     }
 
-    // NADD <etail> ::= + <term> <etail>
-    // NSUB <etail> ::= - <term> <etail>
-    // Special <etail> ::= ?
-    protected TreeNode eTail(TreeNode leftSide) throws ErrorHandlerException{
-        switch (currentToken.getTokenClass()) {
-            case TPLUS: {
-                isCurrentToken(TokenClass.TPLUS);
-                TreeNode addition = new Addition(leftSide, term());     // No check
-                return eTail(addition);
-            }
-            case TSUBT: {
-                isCurrentToken(TokenClass.TSUBT);
-                TreeNode subtraction = new Subtraction(leftSide, term());   // No check
-                return eTail(subtraction);
-            }
-            default: return leftSide; // Dont kill the children         // No err, let it cascade
-        }
-    }
+
 
 
     // Special <bool> ::= <rel> <btail>
@@ -953,7 +982,6 @@ public class Parser {
             case TANDK: isCurrentToken(TokenClass.TANDK); return new And();
             case TORKW: isCurrentToken(TokenClass.TORKW); return new Or();
             case TXORK: isCurrentToken(TokenClass.TXORK); return new Xor();
-            default: UnexpectedTokenError.record("and | or | xor", currentToken.getProperLexeme(), Handler.LOG_OP, this);
         }
         return null; // Never reach due to exception
     }
@@ -969,7 +997,6 @@ public class Parser {
             case TLESS: isCurrentToken(TokenClass.TLESS); return new Less();
             case TGREQ: isCurrentToken(TokenClass.TGREQ); return new GreaterEquals();
             case TLEQL: isCurrentToken(TokenClass.TLEQL); return new LessEquals();
-            default: UnexpectedTokenError.record("relational operator", currentToken.getProperLexeme(), Handler.REL_OP, this);
         }
         return null; // Never reach due to exception
     }

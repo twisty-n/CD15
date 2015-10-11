@@ -25,7 +25,6 @@ public enum Handler {
     END_PROG_END_KW(new SimpleMissingTokenException()),
     END_PROG_ID(new SimpleMissingTokenException()),
     PROGRAM_LOCAL_DECL(new SyncAtStatementKeywordException()),
-    PROGRAM_LOCAL_END_SEMI(new SimpleMissingTokenException()),
 
     LOCAL_DECL_ID(new SyncAtStatementKeywordException()),
     LOCAL_DECL_SEMI(new SimpleMissingTokenException()),
@@ -54,31 +53,32 @@ public enum Handler {
     LOOP_END_LOOP_KW(new SimpleMissingTokenException()),
     LOOP_END_ID(new SimpleMissingTokenException()),
 
-    EXIT_LOOP_ID(new ExitLoopIdHandler()),
+    EXIT_LOOP_ID(new SimpleMissingTokenException()),
     EXIT_WHEN_KW(new SimpleMissingTokenException()),
     EXIT_SEMI(new SimpleMissingTokenException()),
 
     IF_THEN_KW(new SimpleMissingTokenException()),
     IF_END_KW(new SimpleMissingTokenException()),
     IF_IF_KW(new SimpleMissingTokenException()),
-    IF_ELSE_THEN_KW(new IfElseThenKw()),
-    IF_ENDING_KEYWORD(new IfEndingKeyword()),
+    IF_ENDING_KEYWORD(new SyncAtStatementKeywordException()),
 
-    ASSIGN_OP(new AssignOp()),
+    ASSIGN_OP(new SyncAtStatementKeywordException()),
     ASSIGN_STAT_SEMI(new SimpleMissingTokenException()),
 
-    IO_STAT_SEMI(new SimpleMissingTokenException()),
-    IO_VAR_ID(new IoVarId()),
-    IO_ARR_RBRK(new IoVarRbrk),
+    PRINT_ITEM(new SyncOnCommaCascadeOnStmntException()),
 
-    CALL_ID(new CallId),
+    IO_STAT_SEMI(new SimpleMissingTokenException()),
+    IO_VAR_ID(new SyncOnCommaCascadeOnStmntException()),
+    IO_ARR_RBRK(new SyncOnCommaCascadeOnStmntException()),
+
+    CALL_ID(new SimpleMissingTokenException()),
     CALL_SEMI(new  SimpleMissingTokenException()),
 
-    FACT_COMPONENT(new FactIdentifier()),
-    FACT_BOOL_RPAR(new FactBoolRpar()),
-    FACT_ARR_LENGTH(new FactArrLength()),
-    LOG_OP(new LogOp()),
-    REL_OP(new RolOp())
+    FACT_COMPONENT(new SyncAtStatementKeywordException()),
+    FACT_BOOL_RPAR(new SyncAtStatementKeywordException()),
+    FACT_ARR_LENGTH(new SyncAtStatementKeywordException()),
+    LOG_OP(new SyncAtStatementKeywordException()),
+    REL_OP(new SyncAtStatementKeywordException());
 
     private ErrorHandlerException h;
 

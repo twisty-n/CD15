@@ -15,7 +15,7 @@ public class SyncAtStatementKeywordException extends ErrorHandlerException {
      * Will consume the input tokens until it arrives as the next statement keyword
      */
     @Override
-    public void recover() throws FatalException{
+    public void recover() throws ErrorHandlerException {
         while(!statementKeywords.contains(context.currentTokenClass())) {
             this.checkEOF();
             context.nextToken();

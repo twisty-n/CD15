@@ -117,15 +117,17 @@ public class CompilationContext {
         String sourceFile = this.sourceFile;
         String fileName = sourceFile + "_compilation-listing.txt";
 
-        this.writeCompilationListing(fileName);
+        this.writeCompilationListing(fileName, true);
         this.writeSymbolTable(sourceFile + "_sym-tab.txt");
-        this.writeAstListing(this.ast, sourceFile+"_ast.txt");
+        if (compilationSuccess) {
+            this.writeAstListing(this.ast, sourceFile+"_ast.txt");
+        }
 
         CompilationContext.currentContext = null;
 
     }
 
-    private void writeCompilationListing(String fileName) {
+    private void writeCompilationListing(String fileName, boolean writeToConsole) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(fileName), "utf-8"))) {
             this.writeCompilationSummary(writer);
@@ -133,6 +135,17 @@ public class CompilationContext {
             for (Phase phase : Phase.values()) {
                 this.writeCompilationErrors(phase, writer);
             }
+
+            if (writeToConsole) {
+                Writer console = new BufferedWriter(new OutputStreamWriter(System.out));
+                this.writeCompilationSummary(console);
+                console.write(this.outputBuffer.toString());
+                for (Phase phase : Phase.values()) {
+                    this.writeCompilationErrors(phase, console);
+                }
+                console.flush();
+            }
+
 
         } catch (FileNotFoundException e) {
             DebugWriter.writeToFile("ERROR: cannot write to program listing file. \n" + e.getCause());
@@ -157,6 +170,7 @@ public class CompilationContext {
 
         writer.write("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~\n");
         writer.write("Compilation Listing.\nSource File: " + this.sourceFile + '\n');
+        writer.write("Compilation Status: " + (this.compilationSuccess ? "Successful" : "Failed") + '\n');
         writer.write("Total Compilation Errors: " + this.totalErrorCount+ '\n');
         writer.write("Lexical Errors: " + this.errorBuffers.get(Phase.LEXICAL_ANALYSIS).size()+ '\n');
         writer.write("Syntatic Errors: " + this.errorBuffers.get(Phase.SYNTACTIC_ANALYSIS).size()+ '\n');

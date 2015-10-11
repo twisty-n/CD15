@@ -17,6 +17,7 @@ public class SimpleMissingTokenException extends ErrorHandlerException {
     @Override
     public void recover() {
         // Recovery is to discard the current token and load the next one
-        this.context.nextToken();
+        //this.context.nextToken();
+        // We will assume that the token has been missed, and not replaced with the incorrect thing
     }
 }
