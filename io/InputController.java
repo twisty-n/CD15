@@ -1,11 +1,12 @@
 package io;
 
 import context.CompilationContext;
-import utils.DebugWriter;
 import scanner.Scanner;
+import utils.DebugWriter;
 
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
 import java.io.IOException;
 
 /**
@@ -41,6 +42,13 @@ public class InputController {
 
         try {
 
+            // Append newline to end of file.
+            FileWriter f;
+            f = new FileWriter(considersationFile, true);
+            f.append("\n");
+            f.flush();
+            f.close();
+
             this.fis = new FileInputStream( considersationFile );
 
         } catch ( FileNotFoundException fne) {
@@ -50,6 +58,15 @@ public class InputController {
                         + fne
                         + "\nStack trace"
                         + fne.getStackTrace()
+            );
+            this.context.reportInputStatus(InputStatus.FATAL_ERROR);
+        } catch(IOException fne) {
+            DebugWriter.writeEverywhere("FATAL ERROR: Could not open input file."
+                            + considersationFile
+                            +" \nError contents: "
+                            + fne
+                            + "\nStack trace"
+                            + fne.getStackTrace()
             );
             this.context.reportInputStatus(InputStatus.FATAL_ERROR);
         }
