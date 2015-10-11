@@ -3,24 +3,48 @@
  * Student Number:  c3163181
  * Email:           c3163181@uon.edu.au
  * Date Created:    8/8/2015
- * File Name:       CD15ScannerDriver
+ * File Name:       README
  * Project Name:    CD15 Compiler
  * Description:     A compiler for the CD15 Programming Language
+
+ BUG FIXES:
+    - someArray[0] reports TUNDF instead of INTLIT
+    - Starting program with a comment evals to error
+    - No newline at end of file causes final lexeme to be reported as TUNDF
+
+NOTE:
+    - Scanner error semantics have no been repaired, since it will create an error anyway
+    - Parser will try to recover to a statement level where it can, and a lower level in some cases
+    - It will sometimes skip over optional parts of source code so that it can maintain its context
+    - A fuzzy text match algorithm attempts to help when decided in token skipping behaviour
+
+IMPORTANT:
+    - If using batch mode. Ensure the files are only files containing CD15 source code
+    - .cd15 !!
  */
 
 
  Compiled and tested with Java 7 on Windows and OS X
 
- To run the compiler:
-    java CD15 you_input_file
+ To run the compiler in SINGLE FILE MODE:
+    java CD15 file your_input_file
 
-Note that the compiler can accept multiple files for compilation at once with
-    java CD15 your_input_file_1 your_input_file_2 ...
+To run the compiler in BATCH COMPILE MODE
+    java CD15 folder path_to_all_my_CD15_files
 
-The output will be the required Token stream specified in the Assignment 1 Brief,
-as well as a listing file with all of the errors aggregated at the bottom of the file.
+To ACCESS HELP
+    java cd15 help
+
+The output will be a compilation listing and an AST file. Instructions for use can be
+accessed with java cd15 help.
+
+Tool to read listing file is utils/index.html
+You then use the JS file picked launched by the button to select the my_file_name.ast.txt file
+The tree will be graphically generated on the web page
+
+You can use this tool to view individual files only
 
 Listing files will also be generated in the directory that the compiler was run.
-To view expanded debugging information, view the created debug.txt file
+To view expanded debugging information, view the created debug.txt or the generated files for each source file
 
 Note that the compiler will print any fatal error information to console.

@@ -1,9 +1,13 @@
 import context.CompilationContext;
+import io.DotTreeCrawler;
 import io.InputController;
 import parser.Parser;
 import parser.ast.TreeNode;
 import scanner.Scanner;
 import utils.DebugWriter;
+
+import java.io.File;
+import java.util.ArrayList;
 
 /**
  * Author:          Tristan Newmann
@@ -23,6 +27,7 @@ public class CD15 {
 
     }
 
+    // Args  [ mode (folder|file), {folder || files} ]
     public void run(String[] args) {
 
         if (!(args.length > 0)) {
@@ -30,36 +35,65 @@ public class CD15 {
             System.exit(0);
         }
 
+        // Determine mode
+        String mode = args[0];
+        if (mode.equals("help")) {
+            this.help();
+            return;
+        }
+        boolean folderMode = (mode.equals("folder") ? true : false);
+
         // Set up the scanner
         Scanner scanner = new Scanner();
+        ArrayList<File> files = new ArrayList<>();
 
-        for (int i = 0; i < args.length; i++) {
+        if (folderMode) {
+            File[] temp = new File(args[1]).listFiles();
+            for (File file : temp) {
+                if (file.isFile()) files.add(file);
+            }
+        } else {
+            files.add(new File(args[1]));
+        }
+
+
+        for (int i = 0; i < files.size(); i++) {
 
             // Iterate over each source file
-            String considerationFile = args[i];
+            String considerationFile = files.get(i).getPath();
+
             CompilationContext.configureCompilationContext(considerationFile);
-            InputController ic = new InputController( considerationFile, scanner );
+            InputController ic = new InputController(considerationFile, scanner);
             scanner.configure(ic);
             Parser parser = new Parser(scanner);
 
-            System.out.println("Tokenizing File: " + considerationFile);
+            System.out.println("Compiling CD15 Source File: " + considerationFile);
 
             // Construct the parser and pass it the scanner
             // Then close the context
-
-            TreeNode ast = parser.parse();
-            //scanner.reportEOF(); // Hax
-            CompilationContext.getContext().closeContext();
-
-            System.out.println();
-            System.out.println();
-
+            try {
+                TreeNode ast = parser.parse();
+                StringBuffer astBuffer = DotTreeCrawler.crawl(ast);
+                CompilationContext.Context.setAst(astBuffer);
+            } catch(Exception e) {
+                e.printStackTrace();
+            } finally {
+                scanner.spinUntilEmpty();
+                CompilationContext.getContext().closeContext();
+            }
         }
-
     }
 
     public void help() {
-
+        System.out.println("****************************");
+        System.out.println("Compiler instructions:");
+        System.out.println("To compile a single file: 'java CD15 file my/file/path.cd15'");
+        System.out.println("\nThis compiler supports batch compiling, to compile a directory of CD15");
+        System.out.println("To compile a directory: 'java CD15 folder path/to/cd15/files'");
+        System.out.println("\nEach .cd15 file will have a program listing produced in the standard output" +
+                "\n as well as debug files in the .cd15 source directory.");
+        System.out.println("\nTo view an AST, open the utils/index.html and use the choose file dialog to view a graphic AST");
+        System.out.println("Note that AST's will only be produced for successful compilations");
     }
 
 }

@@ -4,6 +4,7 @@ import context.error.CompilationError;
 import context.symbolism.SymbolTable;
 import io.ReturnCharacter;
 import scanner.tokenizer.Token;
+import utils.Browser;
 import utils.DebugWriter;
 
 import java.io.*;
@@ -198,10 +199,12 @@ public class CompilationContext {
     private void writeAstListing(StringBuffer buff, String fileName) {
         try (Writer writer = new BufferedWriter(new OutputStreamWriter(
                 new FileOutputStream(fileName), "utf-8"))) {
-            if (buff != null)
+            if (buff != null) {
+                System.out.println("Open AST at the follow location:\t" + fileName);
                 writer.write(buff.toString());
+            }
             // Browse to the following file
-            //new Browser().browseTo("index.html");
+            new Browser().browseTo("index.html", fileName);
 
         } catch (FileNotFoundException e) {
             DebugWriter.writeToFile("ERROR: cannot write to symbol file. \n" + e.getCause());
