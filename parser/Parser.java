@@ -42,6 +42,9 @@ public class Parser {
     }
 
     public TokenClass currentTokenClass() { return this.currentToken.getTokenClass(); }
+    public String currentTokenLexeme() {
+        return this.currentToken.getProperLexeme().getLexemeVal().toLowerCase();
+    }
 
     /**
      * Sets the current token to be the next token from the scanner

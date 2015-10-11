@@ -23,6 +23,7 @@ public class SyncOnCommaCascadeOnStmntException extends ErrorHandlerException {
         statementKeywords.add(TokenClass.TCOMA);
         while(!statementKeywords.contains(context.currentTokenClass()) ) {
             checkEOF();
+            context.nextToken();
         }
         statementKeywords.remove(TokenClass.TCOMA);
         if (!context.currentTokenClass().equals(TokenClass.TCOMA)) {

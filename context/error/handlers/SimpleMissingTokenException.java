@@ -1,5 +1,8 @@
 package context.error.handlers;
 
+import scanner.tokenizer.TokenClass;
+import utils.Levenhstein;
+
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181
@@ -16,8 +19,17 @@ public class SimpleMissingTokenException extends ErrorHandlerException {
      */
     @Override
     public void recover() {
-        // Recovery is to discard the current token and load the next one
-        //this.context.nextToken();
         // We will assume that the token has been missed, and not replaced with the incorrect thing
+
+        // Decide recovery action based on the L distance between what should have been and what is
+        // If > 50% match, consume until next token, else, they may have simply skipped it, so
+        // Leave it in there
+        for (TokenClass tClass : TokenClass.keywords()) {
+            if (new Levenhstein().compare(tClass.val(), context.currentTokenLexeme()) >= 0.5) {
+                context.nextToken();
+            }
+        }
+
+
     }
 }

@@ -1,5 +1,8 @@
 package scanner.tokenizer;
 
+import java.util.Collection;
+import java.util.LinkedList;
+
 /**
  * Author:          Tristan Newmann
  * Student Number:  c3163181
@@ -71,6 +74,36 @@ public enum TokenClass {	TEOF("END OF FILE"),   // End of File Token
 
     public boolean isIdentifier() {
         return this.equals(TIDNT);
+    }
+
+    public static Collection<TokenClass> keywords() {
+        return new LinkedList<TokenClass>() {{
+                    add(TPROG);
+                    add(TENDK);
+                    add(TARRS);
+                    add(TPROC);
+                    add(TVARP);
+                    add(TVALP);
+                    add(TLOCL);
+                    add(TLOOP);
+                    add(TEXIT);
+                    add(TWHEN);
+                    add(TCALL);
+                    add(TWITH);
+                    add(TIFKW);
+                    add(TTHEN);
+                    add(TELSE);
+                    add(TELSF);
+                    add(TINPT);
+                    add(TPRIN);
+                    add(TPRLN);
+                    add(TNOTK);
+                    add(TANDK);
+                    add(TORKW);
+                    add(TXORK);
+                    add(TIDIV);
+                    add(TLENG);
+        }};
     }
 
     public boolean isEOF() { return this.equals(TEOF); }
