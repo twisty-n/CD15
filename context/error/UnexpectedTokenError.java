@@ -48,7 +48,7 @@ public class UnexpectedTokenError extends CompilationError {
                 + '\t'
                 + this.getMessage() + '\t'
                 + "Found: \'" + this.offender.getLexemeVal() + "\'"
-                + "Expected: \'" + this.expected + "\'";
+                + "\tExpected: \'" + this.expected + "\'";
     }
 
 }

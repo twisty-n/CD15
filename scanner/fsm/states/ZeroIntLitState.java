@@ -53,7 +53,7 @@ public class ZeroIntLitState extends State{
         } else if ( SignificantCharacter.isOperatorOrDelimiter(charCh)  ) {
 
             // We know its not a dotOperator so we have some other op or delim
-            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true);
+            this.getExecutionContext().exposeLexeme().setIsComplete(true, charObj.getIndexOnLine() - 1, true, TokenClass.TILIT);
             this.getExecutionContext().setNextState(StateManager.getState(StateManager.StateClass.START_STATE));
 
         } else {
