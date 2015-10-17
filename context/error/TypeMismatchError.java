@@ -29,7 +29,7 @@ public class TypeMismatchError extends CompilationError {
      * @param lex
      */
     public static void record(String expected, String found, Lexemable lex) {
-        CompilationContext.getContext().bufferCompilationError(CompilationContext.Phase.SYNTACTIC_ANALYSIS,
+        CompilationContext.getContext().bufferCompilationError(CompilationContext.Phase.SEMANTIC_ANALYSIS,
                 new TypeMismatchError(expected, found, lex)
         );
 
@@ -44,7 +44,7 @@ public class TypeMismatchError extends CompilationError {
                 + this.getAproxEndColumn()
                 + '\t'
                 + this.getMessage() + '\t'
-                + "Found: \'" + this.offender.getLexemeVal() + "\'"
+                + "Found: \'" + this.found + "\'"
                 + "\tExpected: \'" + this.expected + "\'";
     }
 

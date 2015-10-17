@@ -3,6 +3,7 @@ package context.symbolism;
 import scanner.tokenizer.Token;
 import scanner.tokenizer.TokenClass;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -27,10 +28,12 @@ public class SymbolTable {
      * Constructor that will populate the symbol table with a set of inital values
      * @param keywords
      */
-    public SymbolTable(Map<String, STRecord> keywords) {
+    public SymbolTable(Map<String, STRecord> keywords, boolean flagAsKey) {
         this.table = new HashMap<>();
-        for (STRecord record : keywords.values()) {
-            record.addProperty("type", new Property("keyword"));
+        if (flagAsKey) {
+            for (STRecord record : keywords.values()) {
+                record.addProperty("type", "keyword", new Property("keyword"));
+            }
         }
         this.table.putAll(keywords);
     }
@@ -84,7 +87,7 @@ public class SymbolTable {
             ));
             record = this.table.get(token.getLexeme());
             if (token.getTokenClass().isLiteral()) {
-                record.addProperty("isLiteral", new Property<>(true));
+                record.addProperty("isLiteral", "literal", new Property<>(true));
             }
 
             // We will set the token up with the STRecord in here
@@ -112,6 +115,22 @@ public class SymbolTable {
     }
 
     /**
+     * Return a collection of symbol table items that match the filter type
+     * @return
+     */
+    public SymbolTable filter(Query query) {
+        return new SymbolTable(query.query(this), false);
+    }
+
+    /**
+     * Return all of the entries for this symbol table
+     * @return
+     */
+    public Map<String, STRecord> get() {
+        return this.table;
+    }
+
+    /**
      * Returns true if a particular STRecord has been placed in the table
      * OR false if no current record exists
      * @param token
@@ -130,5 +149,6 @@ public class SymbolTable {
     public boolean seenYet(String lexeme) {
         return table.containsKey(lexeme);
     }
+
 
 }

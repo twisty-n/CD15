@@ -46,7 +46,7 @@ public class CompilationContext {
         errorBuffers.put(Phase.SEMANTIC_ANALYSIS, new ArrayList<CompilationError>());
         errorBuffers.put(Phase.CODE_GENERATION, new ArrayList<CompilationError>());
         errorBuffers.put(Phase.CODE_OPTIMIZATION, new ArrayList<CompilationError>());
-        this.SymbolTable = new SymbolTable(Token.generateKeywords());
+        this.SymbolTable = new SymbolTable(Token.generateKeywords(), true);
         CompilationContext.Context = this;
         this.compilationSuccess = true;
     }

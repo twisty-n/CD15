@@ -5,13 +5,18 @@ import context.CompilationContext;
 import context.error.*;
 import context.error.handlers.*;
 import context.symbolism.Property;
+import context.symbolism.Query;
 import context.symbolism.STRecord;
+import context.symbolism.SymbolTable;
 import parser.ast.TreeNode;
 import parser.ast.nodes.*;
 import scanner.Scanner;
 import scanner.tokenizer.Token;
 import scanner.tokenizer.TokenClass;
 import utils.DebugWriter;
+
+import java.util.HashMap;
+import java.util.Map;
 
 
 /**
@@ -30,6 +35,8 @@ public class Parser {
 
     private Context context;
 
+    private SymbolTable symbolTable;
+
     private class Context {
 
         public int procDeclParams;
@@ -37,8 +44,12 @@ public class Parser {
         public int procVarParams;
         public int procValParams;
 
+        public String currentProc;
+
         public String scope;
         public Parser owner;
+
+        public final String global = "global";
 
         /**
          * Will create a default context
@@ -51,7 +62,7 @@ public class Parser {
             this.procValParams = 0;
             this.callArgumentParams = 0;
             this.resetCallContext();
-            this.scope = "program";
+            this.scope = "global";
             this.owner = owner;
         }
 
@@ -77,6 +88,7 @@ public class Parser {
         this.scanner = scanner;
         this.currentToken = scanner.getNextValidToken();
         this.context = new Context(this);
+        symbolTable = CompilationContext.Context.SymbolTable;
     }
 
     public TreeNode parse() {
@@ -247,6 +259,13 @@ public class Parser {
         // Match an ID
         TreeNode decl = new ArrayDeclaration();
         decl.setName(matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.ARRAY_DECL_ID));
+
+        // Check for redeclaration
+        if (decl.getName().existsInScope(context.global)) {
+            RedefinitionOfIdError.record(decl.getName().getLexemeString(), context.global, decl.getName());
+        }
+
+        decl.getName().addProperty("type", "global", new Property("array"));
         // Match a left brace
         isCurrentToken(TokenClass.TLBRK, true, Handler.ARRAY_LBRK);
         // Match an IntLit
@@ -282,7 +301,11 @@ public class Parser {
 
         // Build an ID: Match the ID, store it
         LocalDeclaration local = new LocalDeclaration();
-        local.setName(matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.LOCAL_DECL_ID));
+        STRecord var = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.LOCAL_DECL_ID);
+        local.setName(var);
+        var.addProperty("type", context.global, new Property("number"));
+
+        // Assign a type
 
         // Call localVariablesTail
         LocalDecList restOftheVars = new LocalDecList();
@@ -321,8 +344,14 @@ public class Parser {
 
         try {
             dec.setName(matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PROC_DECL_ID));
-            dec.getName().addProperty("type", new Property<String>("proc"));
-            dec.getName().addProperty("declared", new Property(true));
+
+            context.scope = dec.getName().getLexemeString();
+            if (dec.getName().existsInScope(context.global)) {
+                RedefinitionOfIdError.record(dec.getName().getLexemeString(), context.global, dec.getName());
+            }
+
+            dec.getName().addProperty("type", context.global, new Property("proc"));
+            dec.getName().addProperty("declared", context.global, new Property(true));
             // Call proc_params
             procedureParams = procedureParams();
         } catch(SyncOnProcLocalOrStat se) {
@@ -350,8 +379,8 @@ public class Parser {
         dec.setMiddle(procedureLocals);
         dec.setRight(procedureStatements);
 
-        dec.getName().addProperty("numberOfParams", new Property(context.procDeclParams));
-        dec.getName().addProperty("numVarParams", new Property(context.procVarParams));
+        dec.getName().addProperty("numberOfParams", context.global, new Property(context.procDeclParams));
+        dec.getName().addProperty("numVarParams", context.global, new Property(context.procVarParams));
 
         context.reset();
         return dec;
@@ -401,6 +430,9 @@ public class Parser {
     protected TreeNode pIdList() throws ErrorHandlerException{
         // Match an id
         STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PARAMS_ID);
+        if (id.existsInScope(context.scope)) {
+            RedefinitionOfIdError.record(id.getLexemeString(), context.scope, id);
+        }
         TreeNode simPar = new SimpleParameter();
         simPar.setName(id);
         context.procDeclParams++;
@@ -452,18 +484,24 @@ public class Parser {
     // NARRPAR <paramtail> ::= [ ]
     protected TreeNode varParam() throws ErrorHandlerException{
         STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PARAMS_ID);
+        if (id.existsInScope(context.scope)) {
+            RedefinitionOfIdError.record(id.getLexemeString(), context.scope, id);
+        }
         context.procDeclParams++;
         context.procVarParams++;
+        id.addProperty("orderInParams", context.scope, new Property(context.procDeclParams)); // Record which param we are looking at
         if (isCurrentToken(TokenClass.TLBRK)) {
             isCurrentToken(TokenClass.TRBRK, true, Handler.PARAMS_ARR_RBRK);
             // We just matched an ArrayParam
             ArrayParameter arrPam = new ArrayParameter();
             arrPam.setName(id);
+            id.addProperty("paramType", context.scope, new Property("array"));
             return arrPam;
         } else {
             // We matched a simple param
             SimpleParameter simParam = new SimpleParameter();
             simParam.setName(id);
+            id.addProperty("paramType", context.scope, new Property("number"));
             return simParam;
         }
     }
@@ -861,15 +899,16 @@ public class Parser {
         STRecord procId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.CALL_ID);
 
         // Check that what we are calling is a proc, and that it has been declared
-        if( !Boolean.TRUE.equals(procId.getPropertyValue("declared", Boolean.class))) {
+        if( !Boolean.TRUE.equals(procId.getPropertyValue("declared", context.global ,Boolean.class))) {
             // Trying to do something with undeclared proc
             CompilationError.record(procId, CompilationError.Type.UNDECLARED_IDENTIFIER);
         }
-        if ( !"proc".equals(procId.getPropertyValue("type", String.class))) {
+        if ( !"proc".equals(procId.getPropertyValue("type",  context.global, String.class))) {
             // Trying to call a proc that has the same name as some identifier
-            TypeMismatchError.record("proc", procId.getPropertyValue("type", String.class), procId);
+            TypeMismatchError.record("proc", procId.getPropertyValue("type", context.global, String.class), procId);
         }
 
+        context.currentProc = procId.getLexemeString();
         if(isCurrentToken(TokenClass.TWITH)) {
 
             context.callArgumentParams = 0;
@@ -877,16 +916,16 @@ public class Parser {
             TreeNode procCall = new Call();
 
             // Ensure that the is not being passed too many arguments
-            if ( context.callArgumentParams > procId.getPropertyValue("numberOfParams", Integer.class)) {
+            if ( context.callArgumentParams > procId.getPropertyValue("numberOfParams", context.global, Integer.class)) {
                 InvalidProcCallError.record("Too many arguments.\tExpected: "
-                        + procId.getPropertyValue("numberOfParams", Integer.class) + "\tFound: "
+                        + procId.getPropertyValue("numberOfParams", context.global, Integer.class) + "\tFound: "
                         + context.callArgumentParams, procId);
             }
 
             // Ensure that enough var params have been passed
-            if (context.callArgumentParams < procId.getPropertyValue("numVarParams", Integer.class)) {
+            if (context.callArgumentParams < procId.getPropertyValue("numVarParams",context.global, Integer.class)) {
                 InvalidProcCallError.record("Insufficient var arguments.\tExpected: "
-                        + procId.getPropertyValue("numVarParams", Integer.class) + "\tFound: "
+                        + procId.getPropertyValue("numVarParams", context.global,Integer.class) + "\tFound: "
                         + context.callArgumentParams, procId);
             }
 
@@ -895,6 +934,13 @@ public class Parser {
             procCall.setName(procId);
             procCall.setMiddle(callParams);
             return procCall;
+        } else {
+            // Need to make sure that there shouldn't have been arguments
+            if ( procId.getPropertyValue("numVarParams", context.global,Integer.class) > 0) {
+                InvalidProcCallError.record("Insufficient var arguments.\tExpected: "
+                        + procId.getPropertyValue("numVarParams", context.global,Integer.class) + "\tFound: "
+                        + 0, procId);
+            }
         }
         isCurrentToken(TokenClass.TSEMI, true, Handler.CALL_SEMI);
         return new Call().setName(procId);
@@ -918,6 +964,47 @@ public class Parser {
     protected TreeNode eList() throws ErrorHandlerException{
         TreeNode expression = expr();
         context.callArgumentParams++;
+
+        // We now need to make sure that the type matches what we expect
+        // get all the STRecs where type is array
+
+        // Filter table to get all ids in the scope defined by the proc id
+        // Filter ids to get an id whose order match the current callArgumentParams
+        try {
+            STRecord record = (STRecord) ((Map.Entry)symbolTable.filter(new Query() {
+                @Override
+                public Map<String, STRecord> query(SymbolTable st) {
+                    Map<String, STRecord> results = new HashMap<>();
+                    for (STRecord rec : st.get().values()) {
+                        // Refine filter to get us the things that exist in proc scope
+                        // That are tagged as being correctly ordered in the param
+                        // That h
+                        if (rec.existsInScope(context.currentProc)
+                                && new Integer(context.callArgumentParams)
+                                .equals(rec.getPropertyValue("orderInParams", context.currentProc, Integer.class))
+                                ) {
+                            results.put(rec.getLexemeString(), rec);
+                        }
+                    }
+                    return results;
+                }
+            }).get().entrySet().toArray()[0]).getValue();   // This will work, as we have already validated the types
+
+            if (!expression.getName().getPropertyValue("type", context.scope, String.class)
+                    .equals(record.getPropertyValue("paramType", context.currentProc, String.class))) {
+                // It failed the conditions.
+                // It could find a match, or wasn't the right type
+                TypeMismatchError.record(record.getPropertyValue("paramType", context.currentProc, String.class),
+                        expression.getName().getPropertyValue("type", context.scope, String.class),
+                        expression.getName()
+                );
+            }
+        } catch (Exception e) {
+            // continue
+            DebugWriter.writeToFile("ST filter and lookup failed because " + e.getMessage() + e.getCause() + e.getStackTrace());
+        }
+
+
         TreeNode restOfTheExpressions = elTail();
         if (restOfTheExpressions == null) {
             return expression;

@@ -4,6 +4,7 @@ import context.error.Lexemable;
 import scanner.tokenizer.TokenClass;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -22,7 +23,12 @@ public class STRecord implements Lexemable{
     private TokenClass tokenClass;
     private String lexemeString;
     private ArrayList<LCTuple> references;
-    private HashMap<String, Property> properties;
+
+    /*
+    A scope of a STRecord is a collection of scopes in whith it was used
+    Each scope has a set of properties associated with the variables use in that scope
+     */
+    private HashMap<String, HashMap<String, Property>> scopes;
 
     /**
      *
@@ -36,9 +42,9 @@ public class STRecord implements Lexemable{
                     int initialColumnStart,
                     int initialColumnEnd) {
         this.lexemeString = lexemeString;
-        this.tokenClass =tokenClass;
+        this.tokenClass = tokenClass;
         this.references = new ArrayList<>();
-        this.properties = new HashMap<>();
+       scopes = new HashMap<>();
         this.references.add(new LCTuple(initialLine,
                 initialColumnStart, initialColumnEnd));
     }
@@ -66,8 +72,12 @@ public class STRecord implements Lexemable{
      * @param properties
      * @return
      */
-    public STRecord attachProperties(Map<String, Property> properties) {
-        this.properties.putAll(properties);
+    public STRecord attachProperties(Map<String, Property> properties, String scope) {
+        HashMap scopeMap = this.scopes.get(scope);
+        if (scopeMap == null) {
+            return null;
+        }
+        scopeMap.putAll(properties);
         return this;
     }
 
@@ -103,12 +113,15 @@ public class STRecord implements Lexemable{
      * @param descriptor
      * @return
      */
-    public Property getProperty(String descriptor) {
-        return properties.get(descriptor);
+    public Property getProperty(String descriptor, String scope) {
+        if (this.scopes.get(scope) == null) return null;
+        return this.scopes.get(scope).get(descriptor);
     }
 
-    public <K> K getPropertyValue(String descriptor, Class<K>a) {
-        Property prop = this.properties.get(descriptor);
+    public <K> K getPropertyValue(String descriptor, String scope, Class<K>a) {
+        HashMap scopeCol = this.scopes.get(scope);
+        if (scopeCol == null) return null;
+        Property prop = (Property) scopeCol.get(descriptor);
         if (prop == null) { return null; }
         try {
             K val = (K)prop.getValue();
@@ -116,33 +129,57 @@ public class STRecord implements Lexemable{
         } catch (ClassCastException e) {
             return null;
         }
-
     }
 
     /**
      * Set and return a property on this STRecord
+     *
+     * A scope is only created when the first property is added to it
+     *
      * @param descriptor
      * @param property
      * @return
      */
-    public Property addProperty(String descriptor, Property property) {
-        this.properties.put(descriptor, property);
+    public Property addProperty(String descriptor, String scope, Property property) {
+        HashMap scopeMap = scopes.get(scope);
+        if (scopeMap == null) {
+            scopes.put(scope, new HashMap<String, Property>());
+        }
+        this.scopes.get(scope).put(descriptor, property);
         return property;
+    }
+
+    /**
+     * Returns a syb
+     * @param scope
+     * @return
+     */
+    public HashMap scope(String scope) {
+        return this.scopes.get(scope);
+    }
+
+    /**
+     *
+     * @param scope
+     * @return
+     */
+    public boolean existsInScope(String scope) {
+        return scopes.get(scope) != null;
     }
 
     @Override
     public int getLineIndexInFile() {
-        return this.references.get(0).getLineNumber();
+        return this.references.get(this.references.size()-1).getLineNumber();
     }
 
     @Override
     public int getStartLineIndex() {
-        return this.references.get(0).getColumnNumberStart();
+        return this.references.get(this.references.size() - 1).getColumnNumberStart();
     }
 
     @Override
     public int getEndLineIndex() {
-        return this.references.get(0).getColumnNumberEnd();
+        return this.references.get(this.references.size()-1).getColumnNumberEnd();
     }
 
     @Override

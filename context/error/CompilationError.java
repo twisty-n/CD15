@@ -38,7 +38,8 @@ public class CompilationError implements Comparable<CompilationError>{
         ID_MISMATCH("Closing id doesn't match opening id", CompilationContext.Phase.SEMANTIC_ANALYSIS),
         UNDECLARED_IDENTIFIER("Undeclared Identifier", CompilationContext.Phase.SEMANTIC_ANALYSIS),
         TYPE_MISMATCH("Type mismatch. Unexpected type found.", CompilationContext.Phase.SEMANTIC_ANALYSIS),
-        INVALID_CALL("Error calling procedure: ", CompilationContext.Phase.SEMANTIC_ANALYSIS)
+        INVALID_CALL("Error calling procedure: ", CompilationContext.Phase.SEMANTIC_ANALYSIS),
+        REDEFINITION_OF_ID("The identifer has already beed used in the current scope", CompilationContext.Phase.SEMANTIC_ANALYSIS),
         ;
 
         private final String errorMessage;
