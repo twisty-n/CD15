@@ -160,6 +160,7 @@ public class CompilationContext {
                 new FileOutputStream(fileName), "utf-8"))) {
 
             // TODO: write a nice printing method here
+
         } catch (FileNotFoundException e) {
             DebugWriter.writeToFile("ERROR: cannot write to symbol file. \n" + e.getCause());
         }catch (IOException e) {
@@ -204,7 +205,7 @@ public class CompilationContext {
                 writer.write(buff.toString());
             }
             // Browse to the following file
-            new Browser().browseTo("index.html", fileName);
+           // new Browser().browseTo("index.html");
 
         } catch (FileNotFoundException e) {
             DebugWriter.writeToFile("ERROR: cannot write to symbol file. \n" + e.getCause());

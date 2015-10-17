@@ -1,5 +1,5 @@
 package scanner.tokenizer;
-
+import context.error.Lexemable;
 import io.ReturnCharacter;
 
 /**
@@ -11,7 +11,7 @@ import io.ReturnCharacter;
  * Project Name:    CD15 Compiler
  * Description:     The FSM will spit out a lexeme which the Tokenizer will use to build a Token
  */
-public class Lexeme {
+public class Lexeme implements Lexemable {
 
     private StringBuffer lexeme;
     private int startLineIndex;

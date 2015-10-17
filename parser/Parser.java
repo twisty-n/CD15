@@ -1,8 +1,10 @@
 package parser;
 
 
+import context.CompilationContext;
 import context.error.*;
 import context.error.handlers.*;
+import context.symbolism.Property;
 import context.symbolism.STRecord;
 import parser.ast.TreeNode;
 import parser.ast.nodes.*;
@@ -26,6 +28,45 @@ public class Parser {
     private Token currentToken;
     private Scanner scanner;
 
+    private Context context;
+
+    private class Context {
+
+        public int procDeclParams;
+        public int callArgumentParams;
+        public int procVarParams;
+        public int procValParams;
+
+        public String scope;
+        public Parser owner;
+
+        /**
+         * Will create a default context
+         * The default scope will be progam
+         * @param owner
+         */
+        public Context(Parser owner) {
+            this.procDeclParams = 0;
+            this.procVarParams = 0;
+            this.procValParams = 0;
+            this.callArgumentParams = 0;
+            this.resetCallContext();
+            this.scope = "program";
+            this.owner = owner;
+        }
+
+        /**
+         * Destroys the current context and creates a new one
+         */
+        public void reset() {
+            owner.context = new Context(owner);
+        }
+
+        public void resetCallContext() {
+            this.callArgumentParams = 0;
+        }
+    }
+
     /**
      * We need the scanner in order to parse
      * The rest of the things we need are attached to
@@ -35,6 +76,7 @@ public class Parser {
     public Parser(Scanner scanner) {
         this.scanner = scanner;
         this.currentToken = scanner.getNextValidToken();
+        this.context = new Context(this);
     }
 
     public TreeNode parse() {
@@ -127,7 +169,7 @@ public class Parser {
             TreeNode main = null;
 
             isCurrentToken(TokenClass.TPROG, true, Handler.OPENING_PROG_KW);
-            isCurrentToken(TokenClass.TIDNT, true, Handler.PROG_ID_DECL);
+            STRecord openeningId  =  matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PROG_ID_DECL);
 
             try {
                 arrays = arrays();
@@ -137,7 +179,12 @@ public class Parser {
 
             isCurrentToken(TokenClass.TENDK, true, Handler.END_PROG_KW);
             isCurrentToken(TokenClass.TPROG, true, Handler.END_PROG_END_KW);
-            isCurrentToken(TokenClass.TIDNT, true, Handler.END_PROG_ID);
+            STRecord closingId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.END_PROG_ID);
+
+            if(!closingId.equals(openeningId)) {
+                IdMismatchError.record(openeningId.getLexemeString(), closingId.getLexemeString(), closingId);
+            }
+
             return new Program(arrays, procs, main);
         } catch (ErrorHandlerException ehe) {
            // CompilationError.record(currentToken.getProperLexeme(), CompilationError.Type.FATAL);
@@ -261,6 +308,7 @@ public class Parser {
     // NPROC <proc> ::= proc <id> <parameters> <locals> <stats> end proc <id>
     protected ProcedureDeclaration procedure() throws ErrorHandlerException{
         // Match proc
+        context.reset();
         ProcedureDeclaration dec = new ProcedureDeclaration();
         if(!isCurrentToken(TokenClass.TPROC)) {
             // If we dont see a proc, assume that there are none
@@ -273,6 +321,8 @@ public class Parser {
 
         try {
             dec.setName(matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PROC_DECL_ID));
+            dec.getName().addProperty("type", new Property<String>("proc"));
+            dec.getName().addProperty("declared", new Property(true));
             // Call proc_params
             procedureParams = procedureParams();
         } catch(SyncOnProcLocalOrStat se) {
@@ -290,11 +340,20 @@ public class Parser {
 
         isCurrentToken(TokenClass.TENDK, true, Handler.PROC_DECL_END);
         isCurrentToken(TokenClass.TPROC, true, Handler.PROC_DECL_END_PROC);
-        isCurrentToken(TokenClass.TIDNT, true, Handler.PROC_DECL_ID_END);  // <<-- Check for sem anal
+        STRecord closingId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PROC_DECL_ID_END);  // <<-- Check for sem anal
+
+        if(!dec.getName().equals(closingId)) {
+            IdMismatchError.record(dec.getName().getLexemeString(), closingId.getLexemeString(), closingId);
+        }
 
         dec.setLeft(procedureParams);
         dec.setMiddle(procedureLocals);
         dec.setRight(procedureStatements);
+
+        dec.getName().addProperty("numberOfParams", new Property(context.procDeclParams));
+        dec.getName().addProperty("numVarParams", new Property(context.procVarParams));
+
+        context.reset();
         return dec;
     }
 
@@ -344,6 +403,8 @@ public class Parser {
         STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PARAMS_ID);
         TreeNode simPar = new SimpleParameter();
         simPar.setName(id);
+        context.procDeclParams++;
+        context.procValParams++;
         // Call pIdLtail
         TreeNode restOfTheParams = pIdLTail();
         if (restOfTheParams == null) {
@@ -391,6 +452,8 @@ public class Parser {
     // NARRPAR <paramtail> ::= [ ]
     protected TreeNode varParam() throws ErrorHandlerException{
         STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PARAMS_ID);
+        context.procDeclParams++;
+        context.procVarParams++;
         if (isCurrentToken(TokenClass.TLBRK)) {
             isCurrentToken(TokenClass.TRBRK, true, Handler.PARAMS_ARR_RBRK);
             // We just matched an ArrayParam
@@ -546,7 +609,12 @@ public class Parser {
         }
         isCurrentToken(TokenClass.TENDK, true, Handler.LOOP_END_KW);
         isCurrentToken(TokenClass.TLOOP, true, Handler.LOOP_END_LOOP_KW);
-        isCurrentToken(TokenClass.TIDNT, true, Handler.LOOP_END_ID); // Sem anal here
+        STRecord closingId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.LOOP_END_ID); // Sem anal here
+
+        if(!loopId.equals(closingId)) {
+            IdMismatchError.record(loopId.getLexemeString(), closingId.getLexemeString(), closingId);
+        }
+
         TreeNode loop = new Loop();
         loop.setMiddle(loopStatements);
         loop.setName(loopId);
@@ -791,9 +859,39 @@ public class Parser {
     protected TreeNode callStatement() throws ErrorHandlerException{
         isCurrentToken(TokenClass.TCALL);                 // No check
         STRecord procId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.CALL_ID);
+
+        // Check that what we are calling is a proc, and that it has been declared
+        if( !Boolean.TRUE.equals(procId.getPropertyValue("declared", Boolean.class))) {
+            // Trying to do something with undeclared proc
+            CompilationError.record(procId, CompilationError.Type.UNDECLARED_IDENTIFIER);
+        }
+        if ( !"proc".equals(procId.getPropertyValue("type", String.class))) {
+            // Trying to call a proc that has the same name as some identifier
+            TypeMismatchError.record("proc", procId.getPropertyValue("type", String.class), procId);
+        }
+
         if(isCurrentToken(TokenClass.TWITH)) {
+
+            context.callArgumentParams = 0;
             TreeNode callParams = callTail();
             TreeNode procCall = new Call();
+
+            // Ensure that the is not being passed too many arguments
+            if ( context.callArgumentParams > procId.getPropertyValue("numberOfParams", Integer.class)) {
+                InvalidProcCallError.record("Too many arguments.\tExpected: "
+                        + procId.getPropertyValue("numberOfParams", Integer.class) + "\tFound: "
+                        + context.callArgumentParams, procId);
+            }
+
+            // Ensure that enough var params have been passed
+            if (context.callArgumentParams < procId.getPropertyValue("numVarParams", Integer.class)) {
+                InvalidProcCallError.record("Insufficient var arguments.\tExpected: "
+                        + procId.getPropertyValue("numVarParams", Integer.class) + "\tFound: "
+                        + context.callArgumentParams, procId);
+            }
+
+            context.resetCallContext();
+
             procCall.setName(procId);
             procCall.setMiddle(callParams);
             return procCall;
@@ -819,6 +917,7 @@ public class Parser {
     // Special <elist> ::= <expr> <eltail>
     protected TreeNode eList() throws ErrorHandlerException{
         TreeNode expression = expr();
+        context.callArgumentParams++;
         TreeNode restOfTheExpressions = elTail();
         if (restOfTheExpressions == null) {
             return expression;

@@ -11,6 +11,7 @@ package context.symbolism;
  */
 public class Property<K> {
     K value;
-    Property(K value) { this.value = value; }
+    public Property(K value) { this.value = value; }
     public K getValue() { return this.value; }
+
 }

@@ -15,7 +15,7 @@ import scanner.tokenizer.Lexeme;
 public class CompilationError implements Comparable<CompilationError>{
 
     private CompilationContext.Phase compilationPhase;
-    protected Lexeme offender;
+    protected Lexemable offender;
     private String errorMessage;
 
     public enum Type {
@@ -32,7 +32,13 @@ public class CompilationError implements Comparable<CompilationError>{
 
         // SYNTACTIC ERRORS
         UNEXPECTED_TOKEN("Unexpected token found.", CompilationContext.Phase.SYNTACTIC_ANALYSIS),
-        EMPTY_CONTROL_STRUCTURE("Empty loop or control structure. Expected statements", CompilationContext.Phase.SYNTACTIC_ANALYSIS)
+        EMPTY_CONTROL_STRUCTURE("Empty loop or control structure. Expected statements", CompilationContext.Phase.SYNTACTIC_ANALYSIS),
+
+        // Semantic errors
+        ID_MISMATCH("Closing id doesn't match opening id", CompilationContext.Phase.SEMANTIC_ANALYSIS),
+        UNDECLARED_IDENTIFIER("Undeclared Identifier", CompilationContext.Phase.SEMANTIC_ANALYSIS),
+        TYPE_MISMATCH("Type mismatch. Unexpected type found.", CompilationContext.Phase.SEMANTIC_ANALYSIS),
+        INVALID_CALL("Error calling procedure: ", CompilationContext.Phase.SEMANTIC_ANALYSIS)
         ;
 
         private final String errorMessage;
@@ -50,13 +56,13 @@ public class CompilationError implements Comparable<CompilationError>{
      * Push a compilation error onto the buffer
      * @param lex
      */
-    public static void record(Lexeme lex, Type type) {
+    public static void record(Lexemable lex, Type type) {
         CompilationContext.getContext().bufferCompilationError(type.getPhase(),
             new CompilationError(type.getPhase(), lex, type)
         );
     }
 
-    protected CompilationError(CompilationContext.Phase phase, Lexeme offender, Type error) {
+    protected CompilationError(CompilationContext.Phase phase, Lexemable offender, Type error) {
         this.offender = offender;
         this.compilationPhase = phase;
         this.errorMessage = error.getPrettyMessage();

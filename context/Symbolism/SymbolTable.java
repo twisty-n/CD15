@@ -29,6 +29,9 @@ public class SymbolTable {
      */
     public SymbolTable(Map<String, STRecord> keywords) {
         this.table = new HashMap<>();
+        for (STRecord record : keywords.values()) {
+            record.addProperty("type", new Property("keyword"));
+        }
         this.table.putAll(keywords);
     }
 

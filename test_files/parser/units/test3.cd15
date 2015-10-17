@@ -1,4 +1,0 @@
-program test2
-    arrays myArray[1], myArray2[3], myThrid[3]
-    local a, b, c;
-end program test2

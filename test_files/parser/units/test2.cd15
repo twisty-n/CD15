@@ -1,3 +1,0 @@
-program test2
-    arrays myArray[1], myArray2[3]
-end program test2

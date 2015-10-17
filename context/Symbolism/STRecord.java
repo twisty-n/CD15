@@ -1,5 +1,6 @@
 package context.symbolism;
 
+import context.error.Lexemable;
 import scanner.tokenizer.TokenClass;
 
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.Map;
  * Description:     A flexible base symbol table record that can be used
  *                  for general symbol items
  */
-public class STRecord {
+public class STRecord implements Lexemable{
 
     private TokenClass tokenClass;
     private String lexemeString;
@@ -106,6 +107,18 @@ public class STRecord {
         return properties.get(descriptor);
     }
 
+    public <K> K getPropertyValue(String descriptor, Class<K>a) {
+        Property prop = this.properties.get(descriptor);
+        if (prop == null) { return null; }
+        try {
+            K val = (K)prop.getValue();
+            return val;
+        } catch (ClassCastException e) {
+            return null;
+        }
+
+    }
+
     /**
      * Set and return a property on this STRecord
      * @param descriptor
@@ -115,6 +128,26 @@ public class STRecord {
     public Property addProperty(String descriptor, Property property) {
         this.properties.put(descriptor, property);
         return property;
+    }
+
+    @Override
+    public int getLineIndexInFile() {
+        return this.references.get(0).getLineNumber();
+    }
+
+    @Override
+    public int getStartLineIndex() {
+        return this.references.get(0).getColumnNumberStart();
+    }
+
+    @Override
+    public int getEndLineIndex() {
+        return this.references.get(0).getColumnNumberEnd();
+    }
+
+    @Override
+    public String getLexemeVal() {
+        return this.getLexemeString();
     }
 
     /**
