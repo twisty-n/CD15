@@ -33,6 +33,13 @@ public class RedefinitionOfIdError extends CompilationError {
 
     public String toString() {
         return
+                "Error Line: "
+                        + this.getOffendingLine()
+                        + "\tError Starting Column: "
+                        + this.getAproxStartColumn()
+                        + "\tError Ending Column: "
+                        + this.getAproxEndColumn()
+                        + '\t' +
                 this.getMessage()
                     + "\tIdentifier: " + this.id
                     + "\tScope:" + this.scope;

@@ -302,8 +302,14 @@ public class Parser {
         // Build an ID: Match the ID, store it
         LocalDeclaration local = new LocalDeclaration();
         STRecord var = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.LOCAL_DECL_ID);
+
+        if (var.existsInScope(context.global)) {
+            RedefinitionOfIdError.record(var.getLexemeString(), context.global, var);
+        }
+
         local.setName(var);
         var.addProperty("type", context.global, new Property("number"));
+        var.addProperty("initialiazed", context.global, new Property(false));
 
         // Assign a type
 
@@ -430,6 +436,7 @@ public class Parser {
     protected TreeNode pIdList() throws ErrorHandlerException{
         // Match an id
         STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PARAMS_ID);
+
         if (id.existsInScope(context.scope)) {
             RedefinitionOfIdError.record(id.getLexemeString(), context.scope, id);
         }
@@ -548,21 +555,26 @@ public class Parser {
     // Special <decl> ::= <id> <dtail>
     protected TreeNode decl() throws ErrorHandlerException {
         STRecord id = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.PROC_LOCAL_ID);
+        if (id.existsInScope(context.scope)) {
+            RedefinitionOfIdError.record(id.getLexemeString(), context.scope, id);
+        }
         // We store the Id in the thing that comes back to us from dtail
-        TreeNode thing = dTail();
+        TreeNode thing = dTail(id);
         thing.setName(id);
         return thing;
     }
 
     // NARRDEC <dtail> ::= [ <intlit> ]
     // NSIMDEC <dtail> ::= ?
-    protected TreeNode dTail() throws ErrorHandlerException{
+    protected TreeNode dTail(STRecord id) throws ErrorHandlerException{
         if (isCurrentToken(TokenClass.TLBRK)) {
             STRecord arrayLength = matchCurrentAndStoreRecord(TokenClass.TILIT, Handler.PROC_LOCAL_ARR_LENGTH);
             if (isCurrentToken(TokenClass.TRBRK, true, Handler.PROC_LOCAL_ARR_RBRK)) {
+                id.addProperty("type", context.scope, new Property("array"));
                 return new ArrayDeclaration().setType(arrayLength);
             }
         }
+        id.addProperty("type", context.scope, new Property("number"));
         return new LocalDeclaration();
     }
 

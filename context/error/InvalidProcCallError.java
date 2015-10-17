@@ -32,7 +32,13 @@ public class InvalidProcCallError extends CompilationError {
     }
 
     public String toString() {
-        return
+        return  "Error Line: "
+                + this.getOffendingLine()
+                + "\tError Starting Column: "
+                + this.getAproxStartColumn()
+                + "\tError Ending Column: "
+                + this.getAproxEndColumn()
+                + '\t'+
                  this.getMessage() + procName + '\t'
                 + this.helpMessage;
     }
