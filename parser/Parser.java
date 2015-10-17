@@ -15,6 +15,7 @@ import scanner.tokenizer.Token;
 import scanner.tokenizer.TokenClass;
 import utils.DebugWriter;
 
+import java.lang.reflect.UndeclaredThrowableException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -442,6 +443,7 @@ public class Parser {
         }
         TreeNode simPar = new SimpleParameter();
         simPar.setName(id);
+        id.addProperty("type", context.scope, new Property("number"));
         context.procDeclParams++;
         context.procValParams++;
         // Call pIdLtail
@@ -652,6 +654,8 @@ public class Parser {
     protected TreeNode loopStatement() throws ErrorHandlerException{
         isCurrentToken(TokenClass.TLOOP); // It really should be loop
         STRecord loopId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.LOOP_DECL_ID);
+        loopId.addProperty("type", context.scope, new Property("loop"));
+        loopId.addProperty("inLoop", context.scope, new Property(true));
         TreeNode loopStatements = statements();
         // If there are no statements we have an error
         if (loopStatements == null) {
@@ -668,6 +672,10 @@ public class Parser {
         TreeNode loop = new Loop();
         loop.setMiddle(loopStatements);
         loop.setName(loopId);
+        if (!new Boolean(true).equals(loopId.getPropertyValue("hasExitStatement", context.scope, Boolean.class))) {
+            CompilationError.record(loopId, CompilationError.Type.NO_EXIT_STATEMENT);
+        }
+        loopId.addProperty("inLoop", context.scope, new Property(false));
         return loop;
     }
 
@@ -675,6 +683,17 @@ public class Parser {
     protected TreeNode exitStatement() throws ErrorHandlerException{
         isCurrentToken(TokenClass.TEXIT); // Matched by virtue of being here
         STRecord exitIdentifer = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.EXIT_LOOP_ID);
+        if (!exitIdentifer.existsInScope(context.scope)) {
+           CompilationError.record(exitIdentifer, CompilationError.Type.UNDECLARED_IDENTIFIER);
+        }
+        if (!"loop".equals(exitIdentifer.getPropertyValue("type", context.scope, String.class))) {
+            TypeMismatchError.record("loop", exitIdentifer.getPropertyValue("type",
+                    context.scope, String.class), exitIdentifer);
+        }
+        if (! new Boolean(true).equals(exitIdentifer.getPropertyValue("inLoop", context.scope, Boolean.class))) {
+            CompilationError.record(exitIdentifer, CompilationError.Type.EXIT_USED_WO_ENCLOSING_LOOP);
+        }
+        exitIdentifer.addProperty("hasExitStatement", context.scope, new Property(true));
         isCurrentToken(TokenClass.TWHEN, true, Handler.EXIT_WHEN_KW);
         TreeNode exit = new Exit().setMiddle(bool()).setName(exitIdentifer);
         isCurrentToken(TokenClass.TSEMI, true, Handler.EXIT_SEMI);
@@ -843,14 +862,19 @@ public class Parser {
     // Special <var> ::= <id> <vtail>
     protected TreeNode var() throws ErrorHandlerException{
         STRecord identifer = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.IO_VAR_ID);
-        TreeNode thing = vTail();
+        TreeNode thing = vTail(identifer);
         return thing.setName(identifer);
     }
 
     // NSIMVAR <vtail> ::= ?
     // NARRVAR <vtail> ::= [<expr>]
-    protected TreeNode vTail() throws ErrorHandlerException{
+    protected TreeNode vTail(STRecord id) throws ErrorHandlerException{
         if(isCurrentToken(TokenClass.TLBRK)) {
+
+            if (!"array".equals(id.getPropertyValue("type", context.scope, String.class))) {
+                TypeMismatchError.record("array", id.getPropertyValue("type", context.scope, String.class), id);
+            }
+
             TreeNode indexCalc = expr();
             isCurrentToken(TokenClass.TRBRK, true, Handler.IO_ARR_RBRK);
             return new ArrayVariable().setMiddle(indexCalc);
@@ -911,7 +935,7 @@ public class Parser {
         STRecord procId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.CALL_ID);
 
         // Check that what we are calling is a proc, and that it has been declared
-        if( !Boolean.TRUE.equals(procId.getPropertyValue("declared", context.global ,Boolean.class))) {
+        if( ! procId.existsInScope(context.global) ) {
             // Trying to do something with undeclared proc
             CompilationError.record(procId, CompilationError.Type.UNDECLARED_IDENTIFIER);
         }
@@ -1072,7 +1096,10 @@ public class Parser {
         switch(currentToken.getTokenClass()) {
             case TIDNT: {
                 STRecord identifer = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.FACT_COMPONENT);
-                return fTail().setName(identifer);
+                if (!identifer.existsInScope(context.scope) && !identifer.existsInScope(context.global)) {
+                    CompilationError.record(identifer, CompilationError.Type.UNDECLARED_IDENTIFIER);
+                }
+                return fTail(identifer).setName(identifer);
             }
             case TILIT: {
                 return new IntegerLiteral().setType(matchCurrentAndStoreRecord(TokenClass.TILIT, Handler.FACT_COMPONENT));
@@ -1097,8 +1124,12 @@ public class Parser {
     // Special <ftail> ::= <vtail>
     // or a plain array => vTail
     // NLEN <ftail> ::= . length
-    protected TreeNode fTail() throws ErrorHandlerException{
+    protected TreeNode fTail(STRecord potentialArray) throws ErrorHandlerException{
         if(isCurrentToken(TokenClass.TDOTT)) {
+            if(!"array".equals(potentialArray.getPropertyValue("type", context.scope, String.class))) {
+                TypeMismatchError.record("array", potentialArray.getPropertyValue("type",
+                        context.scope, String.class), potentialArray);
+            }
             // We have a length thing
             if(isCurrentToken(TokenClass.TLENG, true, Handler.FACT_ARR_LENGTH)) {
                 return new ArrayLength();
@@ -1107,7 +1138,7 @@ public class Parser {
                 return null;
             }
         }
-        return vTail();
+        return vTail(potentialArray);
     }
 
     // NMUL <ttail> ::= * <fact> <ttail>

@@ -44,8 +44,9 @@ public class TypeMismatchError extends CompilationError {
                 + this.getAproxEndColumn()
                 + '\t'
                 + this.getMessage() + '\t'
-                + "Found: \'" + this.found + "\'"
-                + "\tExpected: \'" + this.expected + "\'";
+                + "\tFound: \'" + this.found + "\'"
+                + "\tExpected: \'" + this.expected + "\'"
+                + "\tIdentifier: " + this.offender.getLexemeVal();
     }
 
 }

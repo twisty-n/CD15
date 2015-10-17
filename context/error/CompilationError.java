@@ -40,6 +40,8 @@ public class CompilationError implements Comparable<CompilationError>{
         TYPE_MISMATCH("Type mismatch. Unexpected type found.", CompilationContext.Phase.SEMANTIC_ANALYSIS),
         INVALID_CALL("Error calling procedure: ", CompilationContext.Phase.SEMANTIC_ANALYSIS),
         REDEFINITION_OF_ID("The identifer has already beed used in the current scope", CompilationContext.Phase.SEMANTIC_ANALYSIS),
+        EXIT_USED_WO_ENCLOSING_LOOP("Exit statement used outside loop target", CompilationContext.Phase.SEMANTIC_ANALYSIS),
+        NO_EXIT_STATEMENT("Loop contains no exit statement within root level scope", CompilationContext.Phase.SEMANTIC_ANALYSIS),
         ;
 
         private final String errorMessage;
