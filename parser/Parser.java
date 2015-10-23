@@ -934,7 +934,7 @@ public class Parser {
         isCurrentToken(TokenClass.TCALL);                 // No check
         STRecord procId = matchCurrentAndStoreRecord(TokenClass.TIDNT, Handler.CALL_ID);
 
-        // Check that what we are calling is a proc, and that it has been declared
+        // Check that what we are calling is a proc, and that it has been declared, and that it is not recursive
         if( ! procId.existsInScope(context.global) ) {
             // Trying to do something with undeclared proc
             CompilationError.record(procId, CompilationError.Type.UNDECLARED_IDENTIFIER);
@@ -942,6 +942,10 @@ public class Parser {
         if ( !"proc".equals(procId.getPropertyValue("type",  context.global, String.class))) {
             // Trying to call a proc that has the same name as some identifier
             TypeMismatchError.record("proc", procId.getPropertyValue("type", context.global, String.class), procId);
+        }
+
+        if (context.scope.equals(procId.getLexemeString())) {
+            CompilationError.record(procId, CompilationError.Type.RECURSIVE_CALL);
         }
 
         context.currentProc = procId.getLexemeString();
